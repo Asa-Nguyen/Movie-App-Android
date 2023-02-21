@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Movie-App</string>
+    // Onboarding screen
+    <string name="onboar_title">New Experience</string>
+    <string name="onboar_description">Watch a new movie much\neasier than any before</string>
+    <string name="get_started">Get Started</string>
+    // Sign-in screen
+    <string name="sign_title">Welcome Back,\nMovie Lover!</string>
+    <string name="email_add">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forget_pw">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="su_create_acc">Create an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_pw">Confirm Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_acc">Sign Up</string>
+    // Sign-up screen
+    <string name="su_title">Create New Your Account</string>
+    // User Profiling
+    <string name="select_genre">Select Your Favorite Genre</string>
+    <string name="horror">Horror</string>
+    <string name="action">Action</string>
+    <string name="drama">Drama</string>
+    <string name="War">War</string>
+    <string name="Comedy">Comedy</string>
+    <string name="Crime">Crime</string>
+    <string name="select_lang">Select Your Favorite language</string>
+    <string name="lang_bahasa">Bahasa</string>
+    <string name="lang_en">English</string>
+    <string name="lang_vi">Vietnamese</string>
+    <string name="lang_jp">Japanese</string>
+    <string name="lang_kr">Korean</string>
+    // Confirmation Profile
+    <string name="confirm_acc">Confirm New Account</string>
+    <string name="welcome">Welcome</string>
+
+</resources>
