@@ -45,8 +45,10 @@
 
     <Button
         android:id="@+id/get_started"
-        android:layout_width="255"
-        android:layout_height="60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="255dp"
+        android:height="60dp"
         android:layout_marginTop="72dp"
         android:background="@drawable/second_gradient"
         android:paddingLeft="75dp"
