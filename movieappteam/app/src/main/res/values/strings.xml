@@ -17,7 +17,7 @@
     <string name="sign_in">Sign In</string>
     <string name="create_acc">Sign Up</string>
     // Sign-up screen
-    <string name="su_title">Create New Your Account</string>
+    <string name="su_title">Create New\nYour Account</string>
     // User Profiling
     <string name="select_genre">Select Your Favorite Genre</string>
     <string name="horror">Horror</string>
