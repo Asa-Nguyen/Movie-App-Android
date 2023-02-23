@@ -7,13 +7,28 @@
         <entry key="..\:/Work/Learn Code/movieappteam/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Work/Learn Code/movieappteam/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Work/Learn Code/movieappteam/app/src/main/res/layout/sign_in.xml" value="0.264" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/button_main_gradient.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_btn_active.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_btn_icon.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_btn_unactive.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_button.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_dark_btn.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_main_button.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/custom_second_button.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/main_gradient.xml" value="0.17743055555555556" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/drawable/second_gradient.xml" value="0.17743055555555556" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/confirm_profile.xml" value="0.16" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/home_full.xml" value="0.2" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/home_full.xml" value="0.176" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/item_poster.xml" value="0.16666666666666666" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/sign-up.xml" value="0.1875" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/sign_in.xml" value="0.1875" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/sign_up.xml" value="0.152" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/layout/user_profiling.xml" value="0.536" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/menu/bottom_nav_hot.xml" value="0.16666666666666666" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/menu/bottom_nav_late.xml" value="0.16666666666666666" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movieappteam/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16666666666666666" />
       </map>
     </option>
   </component>
@@ -22,5 +37,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
   </component>
 </project>

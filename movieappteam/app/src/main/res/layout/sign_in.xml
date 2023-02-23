@@ -81,7 +81,7 @@
         android:layout_width="255dp"
         android:layout_height="60dp"
         android:layout_marginTop="58dp"
-        android:background="@color/dark_1"
+        android:background="@drawable/custom_btn_unactive"
         android:paddingLeft="101dp"
         android:paddingTop="19dp"
         android:text="@string/login"

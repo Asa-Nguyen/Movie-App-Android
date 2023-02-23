@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item
+        android:id="@+id/nav_trend"
+        android:title="Trend"
+        android:icon="@drawable/ic_baseline_grade_24"/>
+    <item
+        android:id="@+id/nav_watch_late"
+        android:title="Watch late"
+        android:icon="@drawable/ic_baseline_watch_later_24"/>
+</menu>

@@ -75,7 +75,7 @@
         android:layout_width="255dp"
         android:layout_height="60dp"
         android:layout_marginTop="101dp"
-        android:background="@drawable/main_gradient"
+        android:background="@drawable/custom_main_button"
         android:paddingLeft="40dp"
         android:paddingTop="19dp"
         android:text="@string/create_acc"
