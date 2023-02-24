@@ -1,9 +1,9 @@
-package com.example.movie_app__team;
+package Slider;
 
 public class SliderItem {
     private int image;
 
-    SliderItem(int image){
+    public SliderItem(int image){
         this.image = image;
     }
 

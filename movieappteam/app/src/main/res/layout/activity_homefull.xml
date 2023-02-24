@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_2"
-    tools:context=".MainActivity">
+    tools:context=".IntroActivity">
 
 
     <TextView
@@ -32,17 +32,6 @@
         app:srcCompat="@drawable/photo_profile" />
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="269dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"></androidx.appcompat.widget.SearchView>
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="48dp"
@@ -64,6 +53,22 @@
             tools:layout_editor_absoluteY="178dp" />
     </LinearLayout>
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchMovie"
+        android:layout_width="269dp "
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/custom_btn_unactive"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:queryHint="Search movie"
+        android:textColorHint="@color/white"
+        />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -75,10 +80,10 @@
         android:textColor="@color/white"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchMovie" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerImageSlider2"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="25dp"
@@ -87,17 +92,17 @@
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"></androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@+id/textView8"></androidx.viewpager2.widget.ViewPager2>
 
-<!--    <FrameLayout-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginBottom="184dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
-<!--    </FrameLayout>-->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="184dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+    </FrameLayout>
 
     <TextView
         android:id="@+id/comingSoon"
