@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_3"
-    tools:context=".IntroActivity"
-    tools:layout_editor_absoluteX="-15dp"
-    tools:layout_editor_absoluteY="1dp">
+    tools:context=".SignUpActivity"
+    >
 
      <ImageButton
         android:id="@+id/backBtn"
@@ -109,16 +108,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputEditText4" />
 
     <Button
-        android:id="@+id/get_started"
+        android:id="@+id/signUp_btn"
         android:layout_width="255dp"
         android:layout_height="60dp"
         android:layout_marginTop="44dp"
-        android:background="@color/dark_1"
-        android:paddingLeft="101dp"
-        android:paddingTop="19dp"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:background="@drawable/custom_btn_unactive"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputEditText5" />

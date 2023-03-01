@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_3"
-    tools:context=".IntroActivity">
+    tools:context=".SignInActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -76,47 +76,43 @@
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
+    <!--    update text gradient color to sign-up -->
+
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/signIn_btn"
         android:layout_width="255dp"
         android:layout_height="60dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/custom_btn_unactive"
-        android:paddingLeft="101dp"
-        android:paddingTop="19dp"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="18dp"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
-
-    <!--    update text gradient color to sign-up -->
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/su_create_acc"
         android:textColor="@color/white"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/get_started" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn_btn" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textSize="14dp"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/get_started" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

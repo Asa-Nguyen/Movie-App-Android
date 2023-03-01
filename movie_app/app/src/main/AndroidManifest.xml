@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.testcode">
+    package="com.example.movie_app">
 
     <application
         android:allowBackup="true"
@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".HomefullActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".ConfirmProfilingActivity"></activity>
     </application>
 
 </manifest>

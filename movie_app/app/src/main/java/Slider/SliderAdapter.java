@@ -1,8 +1,9 @@
-package com.example.testcode;
+package Slider;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.movie_app.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -12,9 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import Slider.SliderItem;
-
-public class HomefullActivity extends AppCompatActivity {
+public class SliderAdapter extends AppCompatActivity {
 
     private ViewPager2 viewPager2;
 

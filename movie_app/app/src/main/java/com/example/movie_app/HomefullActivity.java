@@ -1,9 +1,8 @@
-package Slider;
+package com.example.movie_app;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.testcode.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.CompositePageTransformer;

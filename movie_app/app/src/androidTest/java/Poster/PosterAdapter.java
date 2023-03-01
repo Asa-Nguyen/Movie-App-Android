@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.testcode.R;
+import com.example.movie_app.R;
 
 import java.util.List;
 

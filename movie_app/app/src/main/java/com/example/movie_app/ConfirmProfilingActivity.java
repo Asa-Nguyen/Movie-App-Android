@@ -1,29 +1,26 @@
-package com.example.testcode;
+package com.example.movie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class ConfirmProfilingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
-//Cần fix nha
-//        Button click=(Button)findViewById(R.id.get_started);
+        setContentView(R.layout.activity_confirm_profile);
+
+//        Button click=(Button)findViewById(R.id.signIn_btn);
 //        click.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, SignUnActivity.class);
+//                Intent intent = new Intent(ConfirmProfilingActivity.this, HomefullActivity.class);
 //                startActivity(intent);
 //            }
 //        });
     }
-
 }
