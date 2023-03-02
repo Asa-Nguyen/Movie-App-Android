@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
         <activity android:name=".SignInActivity"></activity>
-        <activity android:name=".HomefullActivity"></activity>
+        <activity android:name=".HomeFullActivity"></activity>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".ConfirmProfilingActivity"></activity>
+        <activity android:name=".InformationFullActivity"></activity>
+        <activity android:name=".TrendingActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -1,43 +1,59 @@
 package Slider;
 
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import com.example.movie_app.R;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.ArrayList;
+import com.example.movie_app.R;
+import com.makeramen.roundedimageview.RoundedImageView;
+
 import java.util.List;
 
-public class SliderAdapter extends AppCompatActivity {
+public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder>{
 
+    private List<SliderItem> sliderItems;
     private ViewPager2 viewPager2;
 
+    public SliderAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
+        this.sliderItems = sliderItems;
+        this.viewPager2 = viewPager2;
+    }
+
+    @NonNull
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homefull);
+    public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new SliderViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.slide_item_container, parent,false
+                )
+        );
+    }
 
-        viewPager2 = findViewById(R.id.viewPagerImageSlider2);
-        List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.banner_1));
-        sliderItems.add(new SliderItem(R.drawable.banner_2));
-        sliderItems.add(new SliderItem(R.drawable.banner_3));
+    @Override
+    public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
+        holder.setImageView(sliderItems.get(position));
+    }
 
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(9));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1-Math.abs(position);
-                page.setScaleX(0.85f + r * 0.15f );
-            }
-        });
+    @Override
+    public int getItemCount() {
+        return sliderItems.size();
+    }
 
-        viewPager2.setPageTransformer(compositePageTransformer);
+    class SliderViewHolder extends RecyclerView.ViewHolder{
+
+        private RoundedImageView imageView;
+
+        SliderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageSlide);
+        }
+
+        void setImageView(SliderItem sliderItem){
+            imageView.setImageResource(sliderItem.getImage());
+        }
     }
 }
