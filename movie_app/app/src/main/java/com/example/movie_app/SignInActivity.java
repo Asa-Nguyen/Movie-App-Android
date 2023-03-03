@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
         signUpClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signUpClick.setTextSize(14);
+                signUpClick.setTextSize(12);
                 onSignUpActivity();
             }
         });

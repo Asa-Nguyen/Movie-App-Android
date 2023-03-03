@@ -1,4 +1,4 @@
-package Slider;
+package com.example.movie_app.Model.Slider;
 
 public class SliderItem {
     private int image;

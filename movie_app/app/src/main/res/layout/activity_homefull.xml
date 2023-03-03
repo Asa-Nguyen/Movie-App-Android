@@ -7,7 +7,6 @@
     android:background="@color/dark_2"
     tools:context=".HomeFullActivity">
 
-
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -21,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="48dp"
@@ -31,61 +31,58 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/photo_profile" />
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ImageButton
+        android:id="@+id/imageFilter"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/custom_btn_icon"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
-
-        <ImageButton
-            android:id="@+id/imageFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_control"
-            tools:layout_editor_absoluteX="357dp"
-            tools:layout_editor_absoluteY="178dp" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/ic_control" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchMovie"
-        android:layout_width="269dp "
+        android:layout_width="300dp "
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/custom_btn_unactive"
+        android:textColorHint="@color/white"
         app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/imageFilter"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:queryHint="Search movie"
-        android:textColorHint="@color/white"
-        />
+        app:queryHint="Search movie" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_choiceCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchMovie" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
         android:fontWeight="600"
         android:text="@string/now_playing"
         android:textColor="@color/white"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchMovie" />
+        app:layout_constraintTop_toBottomOf="@+id/rcv_choiceCategory" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerImageSlider2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="225dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,26 +107,32 @@
         android:id="@+id/comingSoon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:fontWeight="600"
         android:text="@string/coming_soon"
         android:textColor="@color/white"
         android:textSize="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/viewPagerImageSlider2"
-        tools:layout_editor_absoluteX="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerImageSlider2" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/custom_color_bottom_nav"
+        app:itemTextColor="@color/custom_color_bottom_nav"
+        app:backgroundTint="@color/dark_3"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/pos_spongebob"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="591dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comingSoon"
+        app:srcCompat="@drawable/pos_spongebob" />
 </androidx.constraintlayout.widget.ConstraintLayout>

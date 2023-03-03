@@ -1,4 +1,4 @@
-package Slider;
+package com.example.movie_app.Model.Slider;
 
 import android.view.LayoutInflater;
 import android.view.View;

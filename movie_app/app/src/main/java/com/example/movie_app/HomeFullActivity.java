@@ -14,8 +14,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import Slider.SliderAdapter;
-import Slider.SliderItem;
+import com.example.movie_app.Model.Slider.SliderAdapter;
+import com.example.movie_app.Model.Slider.SliderItem;
 
 public class HomeFullActivity extends AppCompatActivity {
 
@@ -41,12 +41,12 @@ public class HomeFullActivity extends AppCompatActivity {
         viewPager2.getChildAt(0).setOverScrollMode(RelativeLayout.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(9));
+        compositePageTransformer.addTransformer(new MarginPageTransformer(0));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
-                float r = 1-Math.abs(position);
-                page.setScaleX(0.85f + r * 0.15f );
+                float r = 0.25f*Math.abs(position);
+                page.setScaleY(1-r);
             }
         });
 
@@ -65,7 +65,7 @@ public class HomeFullActivity extends AppCompatActivity {
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);
         }
     };
 }

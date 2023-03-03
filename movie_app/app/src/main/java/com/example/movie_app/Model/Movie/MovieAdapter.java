@@ -1,4 +1,4 @@
-package Poster;
+package com.example.movie_app.Model.Movie;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +12,12 @@ import com.example.movie_app.R;
 
 import java.util.List;
 
-public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.PosterViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.PosterViewHolder> {
 
-    private List<Poster> mPoster;
+    private List<Movie> mMovie;
 
-    public void setData(List<Poster> list){
-        this.mPoster= list;
+    public void setData(List<Movie> list){
+        this.mMovie = list;
         notifyDataSetChanged();
     }
     @NonNull
@@ -29,15 +29,15 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.PosterView
 
     @Override
     public void onBindViewHolder(@NonNull PosterViewHolder holder, int position) {
-        Poster poster = mPoster.get(position);
-        if(poster == null) return;
-        holder.imagePoster.setImageResource(poster.getResourceId());
+        Movie movie = mMovie.get(position);
+        if(movie == null) return;
+        holder.imagePoster.setImageResource(movie.getResourceId());
     }
 
     @Override
     public int getItemCount() {
-        if(mPoster != null){
-            return mPoster.size();
+        if(mMovie != null){
+            return mMovie.size();
         }
         return 0;
     }

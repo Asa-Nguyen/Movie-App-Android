@@ -1,10 +1,10 @@
-package Poster;
+package com.example.movie_app.Model.Movie;
 
-public class Poster {
+public class Movie {
     private int resourceId;
     private String title;
 
-    public Poster(int resourceId, String title) {
+    public Movie(int resourceId, String title) {
         this.resourceId = resourceId;
         this.title = title;
     }
