@@ -9,17 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TrendingActivity extends AppCompatActivity {
+public class WatchLateActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trending);
+        setContentView(R.layout.activity_watch_late);
 
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_trend);
+        navigationView.setSelectedItemId(R.id.nav_watch_late);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -34,10 +34,10 @@ public class TrendingActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_trend:
+                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
-                        overridePendingTransition(0, 0);
                         return true;
 
                 }

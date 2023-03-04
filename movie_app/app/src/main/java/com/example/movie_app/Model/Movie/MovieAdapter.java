@@ -23,7 +23,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.PosterViewHo
     @NonNull
     @Override
     public PosterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_poster,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie,parent,false);
         return new PosterViewHolder(view);
     }
 
@@ -48,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.PosterViewHo
         public PosterViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imagePoster = itemView.findViewById(R.id.img_pos);
+            imagePoster = itemView.findViewById(R.id .image_movie);
         }
     }
 }

@@ -27,7 +27,9 @@
         <activity android:name=".ConfirmProfilingActivity"></activity>
         <activity android:name=".InformationFullActivity"></activity>
         <activity android:name=".TrendingActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".WatchLateActivity"></activity>
     </application>
 
 </manifest>

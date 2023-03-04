@@ -20,6 +20,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+//      Set text color gradient SignUp button
         TextView textView = findViewById(R.id.btnSignUp);
         setTextViewColor(textView,
                 getResources().getColor(R.color.light_gradient1),
@@ -67,6 +68,7 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+//  FUNCTION OnClick()
     public void onHomeFullActivity(){
         Intent intent = new Intent(this, HomeFullActivity.class);
         startActivity(intent);

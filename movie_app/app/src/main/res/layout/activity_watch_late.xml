@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_2"
-    tools:context=".TrendingActivity"
+    tools:context=".WatchLateActivity"
     >
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coming Soon\n Trending Activity"
+        android:text="Coming Soon\n Watch late activity"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/tv_title_movie"
+    android:layout_marginEnd="18dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp">
+
+    <ImageView
+        android:id="@+id/image_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Coming Soon"
-        android:textSize="20dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_movie"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="28dp"/>
+        app:srcCompat="@drawable/pos_ralph" />
 
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
