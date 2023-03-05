@@ -40,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeTitle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_add" />
@@ -56,6 +57,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
@@ -111,6 +113,29 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="12dp"
+
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/signIn_btn" />
+
+    <ImageButton
+        android:id="@+id/si_facebook_btn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/custom_btn_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signIn_btn"
+        app:srcCompat="@drawable/ic_facebook" />
+
+    <ImageButton
+        android:id="@+id/si_google_btn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="107dp"
+        android:background="@drawable/custom_btn_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signIn_btn"
+        app:srcCompat="@drawable/ic_google" />
 </androidx.constraintlayout.widget.ConstraintLayout>

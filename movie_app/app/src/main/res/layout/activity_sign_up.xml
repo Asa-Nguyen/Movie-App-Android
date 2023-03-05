@@ -52,7 +52,7 @@
         app:srcCompat="@drawable/ic_add" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText"
+        android:id="@+id/su_fullname_data"
         android:layout_width="327dp"
         android:layout_height="48dp"
         android:layout_marginTop="51dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText2"
+        android:id="@+id/su_email_data"
         android:layout_width="327dp"
         android:layout_height="48dp"
         android:layout_marginTop="42dp"
@@ -77,10 +77,10 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/su_fullname_data" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText4"
+        android:id="@+id/su_passw_data"
         android:layout_width="327dp"
         android:layout_height="48dp"
         android:layout_marginTop="42dp"
@@ -91,10 +91,10 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText2" />
+        app:layout_constraintTop_toBottomOf="@+id/su_email_data" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText5"
+        android:id="@+id/su_confirm_passw_data"
         android:layout_width="327dp"
         android:layout_height="48dp"
         android:layout_marginTop="42dp"
@@ -105,7 +105,7 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText4" />
+        app:layout_constraintTop_toBottomOf="@+id/su_passw_data" />
 
     <Button
         android:id="@+id/signUp_btn"
@@ -116,7 +116,7 @@
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText5" />
+        app:layout_constraintTop_toBottomOf="@+id/su_confirm_passw_data" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

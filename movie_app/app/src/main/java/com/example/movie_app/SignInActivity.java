@@ -14,7 +14,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignInActivity extends AppCompatActivity {
+    
+
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +53,9 @@ public class SignInActivity extends AppCompatActivity {
                 onSignUpActivity();
             }
         });
+
+
+
     }
 
     private void setTextViewColor(TextView textView, int...color) {
