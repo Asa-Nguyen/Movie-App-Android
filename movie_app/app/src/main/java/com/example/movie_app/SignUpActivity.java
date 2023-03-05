@@ -36,34 +36,41 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, HomeFullActivity.class);
                 startActivity(intent);
-            }
-        });
 
-//        Test fire base
-        firebaseFirestore = FirebaseFirestore.getInstance();
+                //        Test fire base
+                firebaseFirestore = FirebaseFirestore.getInstance();
 
-        username = (TextView) findViewById(R.id.su_fullname_data);
-        email = (TextView) findViewById(R.id.su_email_data);
-        passw = (TextView) findViewById(R.id.su_passw_data);
+                username =  findViewById(R.id.su_fullname_data);
+                email =  findViewById(R.id.su_email_data);
+                passw =  findViewById(R.id.su_passw_data);
 
-        Map<String, Object> users = new HashMap<>();
-        users.put("username", "username.getText().toString()");
-        users.put("email", "email.getText().toString()");
-        users.put("passw", "passw.getText().toString()");
+                String username_data = username.getText().toString().trim();
+                String email_data = email.getText().toString().trim();
+                String passw_data = passw.getText().toString().trim();
+
+
+                Map<String, Object> users = new HashMap<>();
+                users.put("username", username_data);
+                users.put("email", email_data);
+                users.put("passw", passw_data);
 
 //        DocumentReference firebaseFirestore;
-        firebaseFirestore.collection("users").add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failue", Toast.LENGTH_LONG).show();
+                firebaseFirestore.collection("users").add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Failue", Toast.LENGTH_LONG).show();
 
+                    }
+                });
             }
         });
+
+
 //
     }
 }
