@@ -11,7 +11,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">`
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,15 +22,24 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"/>
-        <activity android:name=".SignInActivity"></activity>
-        <activity android:name=".HomeFullActivity"></activity>
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".ConfirmProfilingActivity"></activity>
-        <activity android:name=".InformationFullActivity"></activity>
-        <activity android:name=".TrendingActivity"></activity>
-        <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".WatchLateActivity"></activity>
+        <activity android:name=".SignInActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".HomeFullActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".SignUpActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ConfirmProfilingActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".InformationFullActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".TrendingActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".SearchActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".WatchLateActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
