@@ -18,8 +18,6 @@ public class SearchActivity extends AppCompatActivity {
     private ListView listView;
     String[] name = {"Doremon", "Ben10", "Harry Potter", "S**"};
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

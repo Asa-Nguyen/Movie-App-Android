@@ -12,8 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +31,10 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView username;
     private TextView email;
     private TextView passw;
-    //
+    private TextView conPassw;
+
+    //Create object of DatabaseReference class
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,36 +47,45 @@ public class SignUpActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
 
-                //        Test fire base
+//              Test fire base
                 firebaseFirestore = FirebaseFirestore.getInstance();
+//              Get data from EditTexts
 
-                username =  findViewById(R.id.su_fullname_data);
+                username = findViewById(R.id.su_fullname_data);
                 email =  findViewById(R.id.su_email_data);
                 passw =  findViewById(R.id.su_passw_data);
+                conPassw = findViewById(R.id.su_confirm_passw_data);
 
-                String username_data = username.getText().toString().trim();
-                String email_data = email.getText().toString().trim();
-                String passw_data = passw.getText().toString().trim();
+                final String usernameTxt = username.getText().toString();
+                final String emailTxt = email.getText().toString();
+                final String passwTxt = passw.getText().toString();
+                final String conPasswTxt = conPassw.getText().toString();
+//              Check is true value
+                if(usernameTxt.isEmpty() || emailTxt.isEmpty() || passwTxt.isEmpty() || conPasswTxt.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
+                }
+//              Check passw equals conPassw
+                else if(!passwTxt.equals(conPasswTxt)){
+                    Toast.makeText(SignUpActivity.this, "Password are not matching", Toast.LENGTH_SHORT).show();
+                }else {
+                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.hasChild(emailTxt)){
+                                Toast.makeText(SignUpActivity.this, "Email is already registered!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                databaseReference.child("users").child(emailTxt).child("username").setValue(usernameTxt);
+                                databaseReference.child("users").child(emailTxt).child("password").setValue(passwTxt);
+                                Toast.makeText(SignUpActivity.this, "Create account successfully!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-
-                Map<String, Object> users = new HashMap<>();
-                users.put("username", username_data);
-                users.put("email", email_data);
-                users.put("passw", passw_data);
-
-//        DocumentReference firebaseFirestore;
-                firebaseFirestore.collection("users").add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_LONG).show();
-
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
 

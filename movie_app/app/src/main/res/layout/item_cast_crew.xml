@@ -3,24 +3,29 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="18dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp">
-
-    <ImageView
-        android:id="@+id/image_movie"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/cast_reilly" />
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/homefull_title"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/image_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/cast_reilly" />
+        <TextView
+            android:id="@+id/name_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_cast"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="John C.\nReilly"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
