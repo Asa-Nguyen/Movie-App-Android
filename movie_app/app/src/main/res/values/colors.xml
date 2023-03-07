@@ -17,4 +17,6 @@
     <color name="dark_3">#051138</color>
     <color name="light_gradient1">#449EFF</color>
     <color name="light_gradient2">#1DC7F7</color>
+    <color name="yellow_rating">#FFAF34</color>
+    <color name="gray_rating">#DADADA</color>
 </resources>

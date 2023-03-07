@@ -22,6 +22,7 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_facebook.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_google.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2625" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_search.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/second_gradient.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/font/fontstyle.xml" value="0.28020833333333334" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_confirm_profile.xml" value="0.22554347826086957" />
@@ -40,14 +41,19 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/button_filter.xml" value="0.21829710144927536" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/card_poster.xml" value="0.22554347826086957" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/custom_input_outlinebox.xml" value="0.11302083333333333" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_cast_crew.xml" value="0.72" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_category.xml" value="0.24635416666666668" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_movie.xml" value="0.22554347826086957" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_movie.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_poster.xml" value="0.22554347826086957" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_search_movie.xml" value="0.536" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/slide_item_container.xml" value="0.22554347826086957" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/test_activity.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/test_sign_in.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/text_input_outlinebox.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/menu/search_menu.xml" value="0.2101851851851852" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14427083333333332" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14427083333333332" />
       </map>
     </option>
   </component>

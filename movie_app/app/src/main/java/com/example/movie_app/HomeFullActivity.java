@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -21,7 +20,7 @@ import java.util.List;
 
 import com.example.movie_app.Model.CategoryMovie.CategoryAdapter;
 import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
-import com.example.movie_app.Model.Movie.Movie;
+import com.example.movie_app.Model.ImageMovie.ImageMovie;
 import com.example.movie_app.Model.Slider.SliderAdapter;
 import com.example.movie_app.Model.Slider.SliderItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -119,17 +118,17 @@ public class HomeFullActivity extends AppCompatActivity {
 
     private List<CategoryMovie> getListCategory() {
         List<CategoryMovie> list = new ArrayList<>();
-        List<Movie> movieList = new ArrayList<>();
-        movieList.add(new Movie(R.drawable.pos_dragon, "Movie 1"));
-        movieList.add(new Movie(R.drawable.pos_froze, "Movie 1"));
-        movieList.add(new Movie(R.drawable.pos_onward, "Movie 1"));
-        movieList.add(new Movie(R.drawable.pos_ralph, "Movie 1"));
-        movieList.add(new Movie(R.drawable.pos_dragon, "Movie 1"));
-        movieList.add(new Movie(R.drawable.pos_spongebob, "Movie 1"));
+        List<ImageMovie> imageMovieList = new ArrayList<>();
+        imageMovieList.add(new ImageMovie(R.drawable.pos_dragon, "Movie 1"));
+        imageMovieList.add(new ImageMovie(R.drawable.pos_froze, "Movie 1"));
+        imageMovieList.add(new ImageMovie(R.drawable.pos_onward, "Movie 1"));
+        imageMovieList.add(new ImageMovie(R.drawable.pos_ralph, "Movie 1"));
+        imageMovieList.add(new ImageMovie(R.drawable.pos_dragon, "Movie 1"));
+        imageMovieList.add(new ImageMovie(R.drawable.pos_spongebob, "Movie 1"));
 
-        list.add(new CategoryMovie("Cartoon", movieList));
-        list.add(new CategoryMovie("18+", movieList));
-        list.add(new CategoryMovie("Horror", movieList));
+        list.add(new CategoryMovie("Cartoon", imageMovieList));
+        list.add(new CategoryMovie("18+", imageMovieList));
+        list.add(new CategoryMovie("Horror", imageMovieList));
         return list;
     }
 

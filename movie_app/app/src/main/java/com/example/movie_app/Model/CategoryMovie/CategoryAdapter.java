@@ -14,7 +14,7 @@ import com.example.movie_app.R;
 
 import java.util.List;
 
-import com.example.movie_app.Model.Movie.MovieAdapter;
+import com.example.movie_app.Model.ImageMovie.ImageMovieAdapter;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
@@ -48,7 +48,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvMovie.setLayoutManager(linearLayoutManager);
 
-        MovieAdapter bookAdapter = new MovieAdapter();
+        ImageMovieAdapter bookAdapter = new ImageMovieAdapter();
         bookAdapter.setData(categoryMovie.getMovieList());
         holder.rcvMovie.setAdapter(bookAdapter);
     }

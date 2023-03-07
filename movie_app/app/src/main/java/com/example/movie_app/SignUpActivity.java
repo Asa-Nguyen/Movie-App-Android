@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Failue", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_LONG).show();
 
                     }
                 });
