@@ -44,8 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                startActivity(intent);
+
 
 //              Test fire base
                 firebaseFirestore = FirebaseFirestore.getInstance();
@@ -77,6 +76,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 databaseReference.child("users").child(emailTxt).child("username").setValue(usernameTxt);
                                 databaseReference.child("users").child(emailTxt).child("password").setValue(passwTxt);
                                 Toast.makeText(SignUpActivity.this, "Create account successfully!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                startActivity(intent);
                                 finish();
                             }
                         }
