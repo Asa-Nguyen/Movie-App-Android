@@ -43,7 +43,7 @@ public class SignInActivity extends AppCompatActivity {
                 getResources().getColor(R.color.light_gradient1),
                 getResources().getColor(R.color.light_gradient2));
 
-//      This function go to HomeFullActivity
+//      Get id SignIn btn
         Button signInClick=(Button)findViewById(R.id.signIn_btn);
 
         username = findViewById(R.id.username_data);
@@ -58,6 +58,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(usernameTxt.isEmpty() || passwTxt.isEmpty()){
                     Toast.makeText(SignInActivity.this, "Please enter your email or password", Toast.LENGTH_SHORT).show();
                 }else{
+                    signInClick.setBackgroundResource(R.drawable.custom_main_button);
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
