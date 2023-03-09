@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
     <!--    add border radius to text input-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailInput"
+        android:id="@+id/username_input"
         android:layout_width="327dp"
         android:layout_height="50dp"
         android:layout_marginTop="41dp"
@@ -40,10 +40,10 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeTitle">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_data"
+            android:id="@+id/username_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_add" />
+            android:hint="@string/username" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -53,7 +53,7 @@
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput"
+        app:layout_constraintTop_toBottomOf="@+id/username_input"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText

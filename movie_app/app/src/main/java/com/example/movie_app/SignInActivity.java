@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
 
-    private EditText email;
+    private EditText username;
     private EditText passw;
     // Connect database
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
@@ -45,47 +45,45 @@ public class SignInActivity extends AppCompatActivity {
 
 //      This function go to HomeFullActivity
         Button signInClick=(Button)findViewById(R.id.signIn_btn);
+
+        username = findViewById(R.id.username_data);
+        passw = findViewById(R.id.password_data);
         signInClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String emailTxt = email.getText().toString();
+                final String usernameTxt = username.getText().toString();
                 final String passwTxt = passw.getText().toString();
 
-                if(emailTxt.isEmpty() || passwTxt.isEmpty()){
+                if(usernameTxt.isEmpty() || passwTxt.isEmpty()){
                     Toast.makeText(SignInActivity.this, "Please enter your email or password", Toast.LENGTH_SHORT).show();
                 }else{
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(emailTxt)){
-                                final String getPassw = snapshot.child(emailTxt).child("password").getValue(String.class);
+                            if(snapshot.hasChild(usernameTxt)){
+                                final String getPassw = snapshot.child(usernameTxt).child("password").getValue(String.class);
 
                                 if(getPassw.equals(passwTxt)){
-                                    Toast.makeText(SignInActivity.this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignInActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                     // Open main activity
                                     onHomeFullActivity();
                                     finish();
                                 }else{
-                                    Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignInActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
                                 }
                             }else{
-                                Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, "No info username", Toast.LENGTH_SHORT).show();
 
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
                 }
             }
         });
-
-        email = findViewById(R.id.email_data);
-        passw = findViewById(R.id.password_data);
 
 //      This function go to SignUpActivity
         Button signUpClick=(Button)findViewById(R.id.btnSignUp);
