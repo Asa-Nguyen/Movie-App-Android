@@ -48,6 +48,9 @@ public class SignInActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username_data);
         passw = findViewById(R.id.password_data);
+        if(!username.getText().toString().isEmpty() || !passw.getText().toString().isEmpty()){
+            signInClick.setBackgroundResource(R.drawable.custom_main_button);
+        }
         signInClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +61,6 @@ public class SignInActivity extends AppCompatActivity {
                 if(usernameTxt.isEmpty() || passwTxt.isEmpty()){
                     Toast.makeText(SignInActivity.this, "Please enter your email or password", Toast.LENGTH_SHORT).show();
                 }else{
-                    signInClick.setBackgroundResource(R.drawable.custom_main_button);
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

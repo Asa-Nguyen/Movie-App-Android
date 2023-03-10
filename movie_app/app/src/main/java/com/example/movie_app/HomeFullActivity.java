@@ -75,8 +75,8 @@ public class HomeFullActivity extends AppCompatActivity {
                 sliderHandler.postDelayed(sliderRunnable,3000);
             }
         });
-        // RecyclerView
 
+        // RecyclerView
         rcvCategory = findViewById(R.id.rcv_category);
         categoryAdapter = new CategoryAdapter(this);
 
@@ -119,12 +119,51 @@ public class HomeFullActivity extends AppCompatActivity {
     private List<CategoryMovie> getListCategory() {
         List<CategoryMovie> list = new ArrayList<>();
         List<ImageMovie> imageMovieList = new ArrayList<>();
-        imageMovieList.add(new ImageMovie(R.drawable.pos_dragon, "Movie 1"));
-        imageMovieList.add(new ImageMovie(R.drawable.pos_froze, "Movie 1"));
-        imageMovieList.add(new ImageMovie(R.drawable.pos_onward, "Movie 1"));
-        imageMovieList.add(new ImageMovie(R.drawable.pos_ralph, "Movie 1"));
-        imageMovieList.add(new ImageMovie(R.drawable.pos_dragon, "Movie 1"));
-        imageMovieList.add(new ImageMovie(R.drawable.pos_spongebob, "Movie 1"));
+        imageMovieList.add(new ImageMovie(
+                R.drawable.pos_dragon,
+//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.artstation.com%2Fartwork%2F5XbRyO&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAJ",
+                "How to Train Your Dragon",
+                R.drawable.banner_2,
+                R.drawable.pos_dragon,
+                "Action | adventure | S**",
+                "2023 | 18+ | Season 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
+        imageMovieList.add(new ImageMovie(
+                R.drawable.pos_spongebob,
+//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.harrypotterfanzone.com%2Fharry-potter-movie-posters%2F&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAp",
+                "Frozen",
+                R.drawable.banner_3,
+                R.drawable.pos_dragon,
+                "Action | adventure | S**",
+                "2023 | 18+ | Season 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+        imageMovieList.add(new ImageMovie(
+                R.drawable.pos_scoob,
+//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.yahoo.com%2Fentertainment%2Finternets-favourite-movie-posters-2016-slideshow-wp-121621653.html&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAx",
+                "Onward",
+                R.drawable.banner_1,
+                R.drawable.pos_dragon,
+                "Action | adventure | S**",
+                "2023 | 18+ | Season 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+        imageMovieList.add(new ImageMovie(
+                R.drawable.pos_ralph,
+//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.eonline.com%2Fnews%2F1005737%2F10-powerful-captain-marvel-movie-posters-revealed&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABBO",
+                "Ralph Breaks the Internet",
+                R.drawable.banner_1,
+                R.drawable.pos_dragon,
+                "Action | adventure | S**",
+                "2023 | 18+ | Season 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+        imageMovieList.add(new ImageMovie(
+                R.drawable.pos_froze,
+//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.movieposters.com%2F&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAE",
+                "SpongeBob SquarePants",
+                R.drawable.banner_1,
+                R.drawable.pos_dragon,
+                "Action | adventure | S**",
+                "2023 | 18+ | Season 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 
         list.add(new CategoryMovie("Cartoon", imageMovieList));
         list.add(new CategoryMovie("18+", imageMovieList));
