@@ -36,16 +36,16 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-//        Glide.with(context).load(imageMovies.get(position).getThumb()).into(holder.imageView);
         final ImageMovie imageMovie = imageMovies.get(position);
         if(imageMovie == null) return;
-        holder.imageView.setImageResource(imageMovie.getResourceId());
+        Glide.with(holder.imageView).load(imageMovies.get(position).getResourceId()).into(holder.imageView);
+//        holder.imageView.setImageResource(imageMovie.getResourceId());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 intent.putExtra("trailerImage", imageMovie.getTrailerImage());
-                intent.putExtra("thumb", imageMovie.getThumb());
+                intent.putExtra("resourceId", imageMovie.getResourceId());
                 intent.putExtra("name", imageMovie.getNameMovie());
                 intent.putExtra("in4", imageMovie.getIn4());
                 intent.putExtra("category", imageMovie.getCategory());

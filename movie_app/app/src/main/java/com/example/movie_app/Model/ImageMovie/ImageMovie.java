@@ -2,40 +2,46 @@ package com.example.movie_app.Model.ImageMovie;
 
 import android.widget.ImageView;
 
+import com.example.movie_app.Model.CastCrew.CastCrew;
+
 import java.util.List;
 
 public class ImageMovie {
-    private int resourceId;
+    private String resourceId;
     private String nameMovie;
-    private int trailerImage;
-    private int thumb;
+    private String trailerImage;
     private String category;
     private String in4;
+    private List<CastCrew> castLists;
     private String synopsis;
 
-    public ImageMovie(int resourceId, String title) {
+    public ImageMovie(String resourceId, String title) {
         this.resourceId = resourceId;
         this.nameMovie = title;
     }
 
 
-    public ImageMovie(int resourceId, String title, int trailerImage, int thumb, String category, String in4, String synopsis) {
+    public ImageMovie(String resourceId, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
         this.resourceId = resourceId;
         this.nameMovie = title;
         this.trailerImage = trailerImage;
-        this.thumb = thumb;
         this.category = category;
         this.in4 = in4;
+        this.castLists = castLists;
         this.synopsis = synopsis;
     }
 
-    public int getTrailerImage() {return trailerImage;}
+    public List<CastCrew> getCastLists() {
+        return castLists;
+    }
 
-    public void setTrailerImage(int trailerImage) {this.trailerImage = trailerImage;}
+    public void setCastLists(List<CastCrew> castLists) {
+        this.castLists = castLists;
+    }
 
-    public int getThumb() {return thumb;}
+    public String getTrailerImage() {return trailerImage;}
 
-    public void setThumb(int thumb) {this.thumb = thumb;}
+    public void setTrailerImage(String trailerImage) {this.trailerImage = trailerImage;}
 
     public String getCategory() {
         return category;
@@ -61,11 +67,11 @@ public class ImageMovie {
         this.synopsis = synopsis;
     }
 
-    public int getResourceId() {
+    public String getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
     }
 

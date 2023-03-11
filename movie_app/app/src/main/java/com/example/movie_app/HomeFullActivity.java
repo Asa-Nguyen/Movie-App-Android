@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.movie_app.Model.CastCrew.CastCrew;
 import com.example.movie_app.Model.CategoryMovie.CategoryAdapter;
 import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
 import com.example.movie_app.Model.ImageMovie.ImageMovie;
@@ -118,51 +119,52 @@ public class HomeFullActivity extends AppCompatActivity {
 
     private List<CategoryMovie> getListCategory() {
         List<CategoryMovie> list = new ArrayList<>();
+        List<CastCrew> crewList = new ArrayList<>();
+        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/c/c2/Tobey_Maguire_2014.jpg&f=w", "Tobey Maguire"));
+        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/1/14/Willem_Dafoe_Cannes_2019.jpg&f=w", "Willem Dafoe"));
+        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/c/cf/James_Franco_4,_2013.jpg&f=w", "James Franco"));
+        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/e/e5/Joe_Manganiello_July_2015.jpg&f=w", "Joe Manganiello"));
+        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/d/d4/Rosemary_Harris_Spiderman_2007_Shankbone.jpg&f=w", "Rosemary Harris"));
         List<ImageMovie> imageMovieList = new ArrayList<>();
         imageMovieList.add(new ImageMovie(
-                R.drawable.pos_dragon,
-//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.artstation.com%2Fartwork%2F5XbRyO&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAJ",
+                "https://m.media-amazon.com/images/M/MV5BMjIwMDIwNjAyOF5BMl5BanBnXkFtZTgwNDE1MDc2NTM@._V1_.jpg",
                 "How to Train Your Dragon",
-                R.drawable.banner_2,
-                R.drawable.pos_dragon,
+                "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
+                crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
         imageMovieList.add(new ImageMovie(
-                R.drawable.pos_spongebob,
-//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.harrypotterfanzone.com%2Fharry-potter-movie-posters%2F&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAp",
+                "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_.jpg",
                 "Frozen",
-                R.drawable.banner_3,
-                R.drawable.pos_dragon,
+                "https://www.broadcastprome.com/wp-content/uploads/2020/07/Frozen-1.jpg",
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
+                crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new ImageMovie(
-                R.drawable.pos_scoob,
-//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.yahoo.com%2Fentertainment%2Finternets-favourite-movie-posters-2016-slideshow-wp-121621653.html&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAx",
+                "https://lumiere-a.akamaihd.net/v1/images/p_onward_19732_09862641.jpeg",
                 "Onward",
-                R.drawable.banner_1,
-                R.drawable.pos_dragon,
+                "https://www.showcasecinemas.com/Media/3032/onwardmobcall.jpg",
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
+                crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new ImageMovie(
-                R.drawable.pos_ralph,
-//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.eonline.com%2Fnews%2F1005737%2F10-powerful-captain-marvel-movie-posters-revealed&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABBO",
+                "https://static.tvtropes.org/pmwiki/pub/images/ralphbreakstheinternet.png",
                 "Ralph Breaks the Internet",
-                R.drawable.banner_1,
-                R.drawable.pos_dragon,
+                "http://images6.fanpop.com/image/photos/42000000/Ralph-Breaks-The-Internet-ralph-breaks-the-internet-wreck-it-ralph-2-42026546-2500-1881.jpg",
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
+                crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new ImageMovie(
-                R.drawable.pos_froze,
-//                "https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.movieposters.com%2F&psig=AOvVaw01M_HZdsgJ8dhMvLovls5-&ust=1678544574162000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDCg_rH0f0CFQAAAAAdAAAAABAE",
+                "https://static.wikia.nocookie.net/netflix/images/2/27/Sponge_on_the_Run_Poster.jpg",
                 "SpongeBob SquarePants",
-                R.drawable.banner_1,
-                R.drawable.pos_dragon,
+                "https://lrmonline.com/wp-content/uploads/2021/03/SpongeBobSpongeOnTheRun-3840x2160-1-scaled.jpg",
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
+                crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 
         list.add(new CategoryMovie("Cartoon", imageMovieList));
