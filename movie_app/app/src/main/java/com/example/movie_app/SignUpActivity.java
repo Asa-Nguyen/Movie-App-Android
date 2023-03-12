@@ -62,6 +62,9 @@ public class SignUpActivity extends AppCompatActivity {
                 String passwTxt = passw.getText().toString();
                 String conPasswTxt = conPassw.getText().toString();
                 // Check is true value
+                if(!usernameTxt.isEmpty() || !emailTxt.isEmpty() || !passwTxt.isEmpty() || !conPasswTxt.isEmpty()){
+                    click.setBackgroundResource(R.drawable.custom_main_button);
+                }
                 if(usernameTxt.isEmpty() || emailTxt.isEmpty() || passwTxt.isEmpty() || conPasswTxt.isEmpty()){
                     Toast.makeText(SignUpActivity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                 }

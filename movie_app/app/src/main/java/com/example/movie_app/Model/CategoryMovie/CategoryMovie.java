@@ -2,13 +2,13 @@ package com.example.movie_app.Model.CategoryMovie;
 
 import java.util.List;
 
-import com.example.movie_app.Model.ImageMovie.ImageMovie;
+import com.example.movie_app.Model.ImageMovie.Movie;
 
 public class CategoryMovie {
     private String nameCategory;
-    private List<ImageMovie> imageMovieList;
+    private List<Movie> imageMovieList;
 
-    public CategoryMovie(String nameCategory, List<ImageMovie> imageMovieList) {
+    public CategoryMovie(String nameCategory, List<Movie> imageMovieList) {
         this.nameCategory = nameCategory;
         this.imageMovieList = imageMovieList;
     }
@@ -21,11 +21,11 @@ public class CategoryMovie {
         this.nameCategory = nameCategory;
     }
 
-    public List<ImageMovie> getMovieList() {
+    public List<Movie> getMovieList() {
         return imageMovieList;
     }
 
-    public void setMovieList(List<ImageMovie> imageMovieList) {
+    public void setMovieList(List<Movie> imageMovieList) {
         this.imageMovieList = imageMovieList;
     }
 }

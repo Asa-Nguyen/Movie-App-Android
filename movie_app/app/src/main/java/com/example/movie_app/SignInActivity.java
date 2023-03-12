@@ -43,11 +43,14 @@ public class SignInActivity extends AppCompatActivity {
                 getResources().getColor(R.color.light_gradient1),
                 getResources().getColor(R.color.light_gradient2));
 
-//      This function go to HomeFullActivity
+//      Get id SignIn btn
         Button signInClick=(Button)findViewById(R.id.signIn_btn);
 
         username = findViewById(R.id.username_data);
         passw = findViewById(R.id.password_data);
+        if(!username.getText().toString().isEmpty() || !passw.getText().toString().isEmpty()){
+            signInClick.setBackgroundResource(R.drawable.custom_main_button);
+        }
         signInClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
