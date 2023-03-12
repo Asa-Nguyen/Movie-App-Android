@@ -6,23 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
-import com.example.movie_app.HomeFullActivity;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.ImageMovieViewHolder>{
     Context context;
-    List<ImageMovie> imageMovies;
+    List<Movie> imageMovies;
 
-    public void setData(List<ImageMovie> list){
+    public void setData(List<Movie> list){
         this.imageMovies = list;
         notifyDataSetChanged();
     }
@@ -36,7 +34,7 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-        final ImageMovie imageMovie = imageMovies.get(position);
+        final Movie imageMovie = imageMovies.get(position);
         if(imageMovie == null) return;
         Glide.with(holder.imageView).load(imageMovies.get(position).getResourceId()).into(holder.imageView);
 //        holder.imageView.setImageResource(imageMovie.getResourceId());

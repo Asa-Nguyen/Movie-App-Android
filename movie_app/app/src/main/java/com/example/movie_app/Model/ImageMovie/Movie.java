@@ -6,7 +6,7 @@ import com.example.movie_app.Model.CastCrew.CastCrew;
 
 import java.util.List;
 
-public class ImageMovie {
+public class Movie {
     private String resourceId;
     private String nameMovie;
     private String trailerImage;
@@ -15,13 +15,13 @@ public class ImageMovie {
     private List<CastCrew> castLists;
     private String synopsis;
 
-    public ImageMovie(String resourceId, String title) {
+    public Movie(String resourceId, String title) {
         this.resourceId = resourceId;
         this.nameMovie = title;
     }
 
 
-    public ImageMovie(String resourceId, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
+    public Movie(String resourceId, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
         this.resourceId = resourceId;
         this.nameMovie = title;
         this.trailerImage = trailerImage;

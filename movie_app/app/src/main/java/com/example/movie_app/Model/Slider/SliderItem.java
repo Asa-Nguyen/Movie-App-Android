@@ -1,14 +1,14 @@
 package com.example.movie_app.Model.Slider;
 
 public class SliderItem {
-    private int image;
+    private String imageUrl;
 
-    public SliderItem(int image){
-        this.image = image;
+    public SliderItem(String imageUrl){
+        this.imageUrl = imageUrl;
     }
 
-    public int getImage(){
-        return image;
+    public String getImage(){
+        return imageUrl;
     }
 
 }
