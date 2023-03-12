@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -20,26 +21,40 @@ import java.util.List;
 
 import com.example.movie_app.Model.CastCrew.CastCrew;
 import com.example.movie_app.Model.CategoryMovie.CategoryAdapter;
+import com.example.movie_app.Model.CategoryMovie.CategoryButtonAdapter;
 import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
 import com.example.movie_app.Model.ImageMovie.Movie;
 import com.example.movie_app.Model.Slider.SliderAdapter;
-import com.example.movie_app.Model.Slider.SliderItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFullActivity extends AppCompatActivity {
     // Variable for imageSlider
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
-    // Variable for rvcCategory
-    private RecyclerView rcvCategory;
+    // Variable for rcvCategory Image
+    private RecyclerView rcvCategoryImage;
     private CategoryAdapter categoryAdapter;
+    // Variable for rcvCategory Button
+    private RecyclerView rcvCategoryButton;
+    private CategoryButtonAdapter categoryButtonAdapter;
     // Navigation
     private BottomNavigationView navigationView;
+    // Btn
+    private ImageButton searchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
+
+        // Go to search activity
+        searchBtn = (ImageButton) findViewById(R.id.search_btn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSearchActivity();
+            }
+        });
 
         // This function use for Image Slider
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
@@ -72,16 +87,26 @@ public class HomeFullActivity extends AppCompatActivity {
             }
         });
 
-        // RecyclerView
-        rcvCategory = findViewById(R.id.rcv_category);
+        // RecyclerView ----------------
+        rcvCategoryImage = findViewById(R.id.rcv_category);
         categoryAdapter = new CategoryAdapter(this);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rcvCategory.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager linearLayoutManagerImage = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        rcvCategoryImage.setLayoutManager(linearLayoutManagerImage);
 
         categoryAdapter.setData(getListCategory());
-        rcvCategory.setAdapter(categoryAdapter);
+        rcvCategoryImage.setAdapter(categoryAdapter);
+        // ------------------------------
+        // RecyclerView Button
+        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
+        categoryButtonAdapter = new CategoryButtonAdapter(this);
 
+        LinearLayoutManager linearLayoutManagerButton = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        rcvCategoryButton.setLayoutManager(linearLayoutManagerButton);
+
+        categoryButtonAdapter.setData(getListCategory());
+        rcvCategoryButton.setAdapter(categoryButtonAdapter);
+        // -------------------------------
         // Bottom navigation
 
         navigationView = findViewById(R.id.bottom_navigation);
@@ -110,6 +135,11 @@ public class HomeFullActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void onSearchActivity(){
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private List<CategoryMovie> getListCategory() {

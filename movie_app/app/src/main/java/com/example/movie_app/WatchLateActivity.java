@@ -16,7 +16,7 @@ public class WatchLateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_detail);
+        setContentView(R.layout.activity_watch_late);
 
         navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setSelectedItemId(R.id.nav_watch_late);
@@ -39,7 +39,6 @@ public class WatchLateActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_watch_late:
                         return true;
-
                 }
                 return false;
             }
