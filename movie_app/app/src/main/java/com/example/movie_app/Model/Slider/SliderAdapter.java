@@ -40,7 +40,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
         final Movie imageMovie = movieSliders.get(position);
-        Glide.with(holder.imageView).load(movieSliders.get(position).getTrailerImage()).into(holder.imageView);
+        Glide.with(holder.imageView).load(movieSliders.get(position).getResourceId()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

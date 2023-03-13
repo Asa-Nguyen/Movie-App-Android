@@ -39,8 +39,6 @@ public class HomeFullActivity extends AppCompatActivity {
     private CategoryButtonAdapter categoryButtonAdapter;
     // Navigation
     private BottomNavigationView navigationView;
-    // Btn
-    private ImageButton searchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +46,6 @@ public class HomeFullActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homefull);
 
         // Go to search activity
-        searchBtn = (ImageButton) findViewById(R.id.search_btn);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSearchActivity();
-            }
-        });
 
         // This function use for Image Slider
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
@@ -87,16 +78,6 @@ public class HomeFullActivity extends AppCompatActivity {
             }
         });
 
-        // RecyclerView ----------------
-        rcvCategoryImage = findViewById(R.id.rcv_category);
-        categoryAdapter = new CategoryAdapter(this);
-
-        LinearLayoutManager linearLayoutManagerImage = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rcvCategoryImage.setLayoutManager(linearLayoutManagerImage);
-
-        categoryAdapter.setData(getListCategory());
-        rcvCategoryImage.setAdapter(categoryAdapter);
-        // ------------------------------
         // RecyclerView Button
         rcvCategoryButton = findViewById(R.id.rcv_btn_category);
         categoryButtonAdapter = new CategoryButtonAdapter(this);
@@ -106,7 +87,17 @@ public class HomeFullActivity extends AppCompatActivity {
 
         categoryButtonAdapter.setData(getListCategory());
         rcvCategoryButton.setAdapter(categoryButtonAdapter);
-        // -------------------------------
+        // RecyclerView ----------------
+        rcvCategoryImage = findViewById(R.id.rcv_category);
+        categoryAdapter = new CategoryAdapter(this);
+
+        LinearLayoutManager linearLayoutManagerImage = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        rcvCategoryImage.setLayoutManager(linearLayoutManagerImage);
+        rcvCategoryImage.setNestedScrollingEnabled(false);
+        categoryAdapter.setData(getListCategory());
+        rcvCategoryImage.setAdapter(categoryAdapter);
+        // -----------------------------
+
         // Bottom navigation
 
         navigationView = findViewById(R.id.bottom_navigation);
@@ -130,7 +121,6 @@ public class HomeFullActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-
                 }
                 return false;
             }
@@ -145,8 +135,10 @@ public class HomeFullActivity extends AppCompatActivity {
     private List<CategoryMovie> getListCategory() {
         List<CategoryMovie> list = new ArrayList<>();
 
-        list.add(new CategoryMovie("Cartoon", getMovie()));
-        list.add(new CategoryMovie("18+", getMovie()));
+        list.add(new CategoryMovie("Most popular", getMovie()));
+        list.add(new CategoryMovie("Action", getMovie()));
+        list.add(new CategoryMovie("Comedy", getMovie()));
+        list.add(new CategoryMovie("Romance", getMovie()));
         list.add(new CategoryMovie("Horror", getMovie()));
         return list;
     }
@@ -160,7 +152,7 @@ public class HomeFullActivity extends AppCompatActivity {
         crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/d/d4/Rosemary_Harris_Spiderman_2007_Shankbone.jpg&f=w", "Rosemary Harris"));
         List<Movie> imageMovieList = new ArrayList<>();
         imageMovieList.add(new Movie(
-                "https://m.media-amazon.com/images/M/MV5BMjIwMDIwNjAyOF5BMl5BanBnXkFtZTgwNDE1MDc2NTM@._V1_.jpg",
+                "https://znews-photo.zingcdn.me/w660/Uploaded/fsmhv/2014_02_05/Capt2_Teaser2_1Sht_v9_2.jpg",
                 "How to Train Your Dragon",
                 "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
                 "Action | adventure | S**",
