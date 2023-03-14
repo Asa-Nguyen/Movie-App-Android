@@ -7,9 +7,9 @@
     app:cardCornerRadius="10dp">
 
     <ImageView
-        android:id="@+id/item_image_movie"
-        android:layout_width="103dp"
-        android:layout_height="154dp"
+        android:id="@+id/image_search"
+        android:layout_width="123dp"
+        android:layout_height="174dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/pos_ralph" />
 

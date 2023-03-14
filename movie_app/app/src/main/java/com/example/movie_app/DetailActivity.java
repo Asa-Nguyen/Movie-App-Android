@@ -26,6 +26,8 @@ public class DetailActivity extends AppCompatActivity {
     // rcv cast
     private RecyclerView rcvCast;
     private CastCrewAdapter castCrewAdapter;
+    // btn bookmark
+    private ImageButton buttonBookmark;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,22 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onVideoPlayActivity();
+            }
+        });
+        
+        // BOOKMARK////////////
+        buttonBookmark = (ImageButton) findViewById(R.id.bookmark);
+        buttonBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), WatchLateActivity.class);
+                intent.putExtra("trailerImage", getIntent().getStringExtra("trailerImage"));
+                intent.putExtra("resourceId", getIntent().getStringExtra("resourceId"));
+                intent.putExtra("name", getIntent().getStringExtra("name"));
+                intent.putExtra("in4", getIntent().getStringExtra("in4"));
+                intent.putExtra("synopsis", getIntent().getStringExtra("synopsis"));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
             }
         });
     }

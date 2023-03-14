@@ -36,7 +36,7 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
         final Movie imageMovie = imageMovies.get(position);
         if(imageMovie == null) return;
-        Glide.with(holder.imageView).load(imageMovies.get(position).getResourceId()).into(holder.imageView);
+        Glide.with(holder.imageView).load(imageMovie.getResourceId()).into(holder.imageView);
 //        holder.imageView.setImageResource(imageMovie.getResourceId());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +66,7 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
         ImageView imageView;
         public ImageMovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.item_image_movie);
+            imageView = itemView.findViewById(R.id.image_search);
 
         }
 

@@ -20,7 +20,9 @@ public class Movie {
         this.nameMovie = title;
     }
 
+    public Movie(){
 
+    }
     public Movie(String resourceId, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
         this.resourceId = resourceId;
         this.nameMovie = title;
