@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -19,12 +18,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.movie_app.Model.CastCrew.CastCrew;
-import com.example.movie_app.Model.CategoryMovie.CategoryAdapter;
-import com.example.movie_app.Model.CategoryMovie.CategoryButtonAdapter;
-import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
-import com.example.movie_app.Model.ImageMovie.Movie;
-import com.example.movie_app.Model.Slider.SliderAdapter;
+import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Adapter.CategoryAdapter;
+import com.example.movie_app.Adapter.CategoryButtonAdapter;
+import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Adapter.SliderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFullActivity extends AppCompatActivity {
@@ -40,22 +39,47 @@ public class HomeFullActivity extends AppCompatActivity {
     // Navigation
     private BottomNavigationView navigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
+        initUi();
+        // Image Slider --------------
+        setImageSlider(viewPager2, sliderHandler);
 
-        // Go to search activity
+        // RecyclerView Button ---------
+        categoryButtonAdapter = new CategoryButtonAdapter(this);
+        categoryButtonAdapter.setData(getListCategory());
+        rcvCategoryButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvCategoryButton.setAdapter(categoryButtonAdapter);
 
-        // This function use for Image Slider
+        // RecyclerView ----------------
+        categoryAdapter = new CategoryAdapter(this);
+        categoryAdapter.setData(getListCategory());
+        rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        rcvCategoryImage.setNestedScrollingEnabled(false);
+        rcvCategoryImage.setAdapter(categoryAdapter);
+
+        // Bottom navigation
+        navigationView.setSelectedItemId(R.id.nav_home);
+        setBottomNav(navigationView);
+    }
+//  Using init
+    private void initUi(){
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
-        // Setting adapter
-        viewPager2.setAdapter(new SliderAdapter(getMovie(), viewPager2));
+        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
+        rcvCategoryImage = findViewById(R.id.rcv_category);
+        navigationView = findViewById(R.id.bottom_navigation);
+    }
 
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RelativeLayout.OVER_SCROLL_NEVER);
+//  Setup Image slide
+    private void setImageSlider(ViewPager2 imageSlider, Handler handler){
+        imageSlider.setAdapter(new SliderAdapter(getMovie(), viewPager2));
+        imageSlider.setClipToPadding(false);
+        imageSlider.setClipChildren(false);
+        imageSlider.setOffscreenPageLimit(3);
+        imageSlider.getChildAt(0).setOverScrollMode(RelativeLayout.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(0));
@@ -67,43 +91,27 @@ public class HomeFullActivity extends AppCompatActivity {
             }
         });
 
-        viewPager2.setPageTransformer(compositePageTransformer);
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        imageSlider.setPageTransformer(compositePageTransformer);
+        imageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable,3000);
+                handler.removeCallbacks(sliderRunnable);
+                handler.postDelayed(sliderRunnable,3000);
             }
         });
 
-        // RecyclerView Button
-        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
-        categoryButtonAdapter = new CategoryButtonAdapter(this);
+    }
 
-        LinearLayoutManager linearLayoutManagerButton = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        rcvCategoryButton.setLayoutManager(linearLayoutManagerButton);
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);
+        }
+    };
 
-        categoryButtonAdapter.setData(getListCategory());
-        rcvCategoryButton.setAdapter(categoryButtonAdapter);
-        // RecyclerView ----------------
-        rcvCategoryImage = findViewById(R.id.rcv_category);
-        categoryAdapter = new CategoryAdapter(this);
-
-        LinearLayoutManager linearLayoutManagerImage = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rcvCategoryImage.setLayoutManager(linearLayoutManagerImage);
-        rcvCategoryImage.setNestedScrollingEnabled(false);
-        categoryAdapter.setData(getListCategory());
-        rcvCategoryImage.setAdapter(categoryAdapter);
-        // -----------------------------
-
-        // Bottom navigation
-
-        navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_home);
-
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -113,23 +121,18 @@ public class HomeFullActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
-                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
+                    case R.id.nav_favourite:
+                        startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
             }
         });
-    }
-
-    public void onSearchActivity(){
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
     }
 
     private List<CategoryMovie> getListCategory() {
@@ -194,11 +197,4 @@ public class HomeFullActivity extends AppCompatActivity {
 
         return imageMovieList;
     }
-
-    private Runnable sliderRunnable = new Runnable() {
-        @Override
-        public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);
-        }
-    };
 }

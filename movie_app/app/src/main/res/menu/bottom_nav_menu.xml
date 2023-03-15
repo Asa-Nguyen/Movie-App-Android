@@ -9,11 +9,12 @@
         android:icon="@drawable/ic_search"
         android:title="Search" />
     <item
-        android:id="@+id/nav_trend"
-        android:title="Trend"
-        android:icon="@drawable/ic_baseline_grade_24"/>
-    <item
-        android:id="@+id/nav_watch_late"
+        android:id="@+id/nav_favourite"
         android:title="Watch late"
-        android:icon="@drawable/ic_baseline_watch_later_24"/>
+        android:icon="@drawable/ic_baseline_bookmark_border_24"/>
+    <item
+        android:id="@+id/nav_account"
+        android:title="Account"
+        android:icon="@drawable/ic_baseline_person_outline_24"/>
+
 </menu>

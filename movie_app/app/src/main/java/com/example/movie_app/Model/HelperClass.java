@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.HelperClass;
+package com.example.movie_app.Model;
 // This class use for database
 public class HelperClass {
     String email, username, password;

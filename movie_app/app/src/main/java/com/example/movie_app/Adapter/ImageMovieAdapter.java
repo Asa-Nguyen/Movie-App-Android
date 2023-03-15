@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.ImageMovie;
+package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
+import com.example.movie_app.Model.Movie;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -36,14 +37,14 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
         final Movie imageMovie = imageMovies.get(position);
         if(imageMovie == null) return;
-        Glide.with(holder.imageView).load(imageMovie.getResourceId()).into(holder.imageView);
-//        holder.imageView.setImageResource(imageMovie.getResourceId());
+        // Load image url
+        Glide.with(holder.imageView).load(imageMovie.getThumbUrl()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 intent.putExtra("trailerImage", imageMovie.getTrailerImage());
-                intent.putExtra("resourceId", imageMovie.getResourceId());
+                intent.putExtra("resourceId", imageMovie.getThumbUrl());
                 intent.putExtra("name", imageMovie.getNameMovie());
                 intent.putExtra("in4", imageMovie.getIn4());
                 intent.putExtra("category", imageMovie.getCategory());
@@ -56,18 +57,14 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public int getItemCount() {
-        if(imageMovies != null){
-            return imageMovies.size();
-        }
-        return 0;
+        return imageMovies != null ? imageMovies.size() : 0;
     }
 
     public class ImageMovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         public ImageMovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image_search);
-
+            imageView = itemView.findViewById(R.id.image_movie);
         }
 
         @Override

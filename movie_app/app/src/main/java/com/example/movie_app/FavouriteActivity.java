@@ -9,19 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class WatchLateActivity extends AppCompatActivity {
+public class FavouriteActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watch_late);
-
+        setContentView(R.layout.activity_favourite);
+        unitUi();
+        // Bottom nav
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_watch_late);
+        navigationView.setSelectedItemId(R.id.nav_favourite);
+        setBottomNav(navigationView);
 
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    }
+
+    private void unitUi(){
+    }
+
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -33,11 +41,11 @@ public class WatchLateActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
-                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
-                        overridePendingTransition(0, 0);
+                    case R.id.nav_favourite:
                         return true;
-                    case R.id.nav_watch_late:
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;

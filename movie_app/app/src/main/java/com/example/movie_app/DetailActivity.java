@@ -3,7 +3,6 @@ package com.example.movie_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_app.Model.CastCrew.CastCrew;
-import com.example.movie_app.Model.CastCrew.CastCrewAdapter;
+import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Adapter.CastCrewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +31,10 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail);
+        initUi();
+        // rcv cast and crew
+        setupRcvCast();
 
-        mTrailerMovie = (ImageView) findViewById(R.id.trailer_image);
-        mThumb = (ImageView) findViewById(R.id.thumb);
-        mMovieName = (TextView) findViewById(R.id.movie_name);
-        mIn4 = (TextView) findViewById(R.id.in4);
-        mSynopsis = (TextView) findViewById(R.id.synopsis_detail);
 
         Glide.with(mThumb).load(getIntent().getStringExtra("resourceId")).into(mThumb);
         Glide.with(mTrailerMovie).load(getIntent().getStringExtra("trailerImage")).into(mTrailerMovie);
@@ -45,12 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         mIn4.setText(getIntent().getStringExtra("in4"));
         mSynopsis.setText(getIntent().getStringExtra("synopsis"));
 
-        // rcv cast and crew
-        rcvCast = findViewById(R.id.rcv_cast_detail);
-        setupRcvCast();
-
         // btn go to watching movie
-        playVideo = (ImageButton) findViewById(R.id.play_video_btn);
         playVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,11 +51,10 @@ public class DetailActivity extends AppCompatActivity {
         });
         
         // BOOKMARK////////////
-        buttonBookmark = (ImageButton) findViewById(R.id.bookmark);
         buttonBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), WatchLateActivity.class);
+                Intent intent = new Intent(view.getContext(), FavouriteActivity.class);
                 intent.putExtra("trailerImage", getIntent().getStringExtra("trailerImage"));
                 intent.putExtra("resourceId", getIntent().getStringExtra("resourceId"));
                 intent.putExtra("name", getIntent().getStringExtra("name"));
@@ -73,6 +64,17 @@ public class DetailActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);
             }
         });
+    }
+
+    private void initUi(){
+        mTrailerMovie = (ImageView) findViewById(R.id.trailer_image);
+        mThumb = (ImageView) findViewById(R.id.thumb);
+        mMovieName = (TextView) findViewById(R.id.movie_name);
+        mIn4 = (TextView) findViewById(R.id.in4);
+        mSynopsis = (TextView) findViewById(R.id.synopsis_detail);
+        rcvCast = (RecyclerView) findViewById(R.id.rcv_cast_detail);
+        playVideo = (ImageButton) findViewById(R.id.play_video_btn);
+        buttonBookmark = (ImageButton) findViewById(R.id.bookmark);
     }
 
     void setupRcvCast(){
@@ -91,8 +93,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void onVideoPlayActivity(){
-        Intent intent = new Intent(this, VideoPlayActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, VideoPlayActivity.class);
+//        startActivity(intent);
     }
 
 }

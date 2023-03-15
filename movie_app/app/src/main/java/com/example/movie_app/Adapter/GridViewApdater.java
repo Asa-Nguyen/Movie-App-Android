@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.ImageMovie;
+package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.movie_app.Model.Movie;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -15,24 +16,24 @@ import java.util.List;
 
 public class GridViewApdater extends BaseAdapter {
 
-    private List<Movie> movieList;
+    private List<Movie> gridViewLists;
     private LayoutInflater inflater;
     private Context context;
 
     public GridViewApdater(Context context, List<Movie> movieList) {
-        this.movieList = movieList;
+        this.gridViewLists = movieList;
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return movieList.size();
+        return gridViewLists != null ? gridViewLists.size() : 0;
     }
 
     @Override
     public Object getItem(int i) {
-        return movieList.get(i);
+        return gridViewLists.get(i);
     }
 
     @Override
@@ -43,12 +44,13 @@ public class GridViewApdater extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ImageView imageView;
-        view = inflater.inflate(R.layout.item_search_movie, null);
-        imageView = (ImageView) view.findViewById(R.id.image_movie);
+        view = inflater.inflate(R.layout.item_grid_movie, null);
+        imageView = (ImageView) view.findViewById(R.id.image_grid);
         view.setTag(imageView);
 
-        Movie movie = movieList.get(i);
-        Glide.with(imageView).load(movie.getResourceId()).into(imageView);
+        Movie movie = gridViewLists.get(i);
+        // Load image url
+        Glide.with(imageView).load(movie.getThumbUrl()).into(imageView);
         return view;
     }
 

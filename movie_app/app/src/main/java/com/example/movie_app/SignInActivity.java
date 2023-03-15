@@ -30,34 +30,27 @@ public class SignInActivity extends AppCompatActivity {
     private EditText username;
     private EditText passw;
     // Connect database
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
-
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
+    //
+    private TextView btnSignUp;
+    private Button signInClick;
+    private Button signUpClick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        initUi();
 
 //      Set text color gradient SignUp button
-        TextView textView = findViewById(R.id.btnSignUp);
-        setTextViewColor(textView,
+        setTextViewColor(btnSignUp,
                 getResources().getColor(R.color.light_gradient1),
                 getResources().getColor(R.color.light_gradient2));
 
-//      Get id SignIn btn
-        Button signInClick=(Button)findViewById(R.id.signIn_btn);
-
-        username = findViewById(R.id.username_data);
-        passw = findViewById(R.id.password_data);
-        if(!username.getText().toString().isEmpty() || !passw.getText().toString().isEmpty()){
-            signInClick.setBackgroundResource(R.drawable.custom_main_button);
-        }
         signInClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String usernameTxt = username.getText().toString();
                 final String passwTxt = passw.getText().toString();
-
                 if(usernameTxt.isEmpty() || passwTxt.isEmpty()){
                     Toast.makeText(SignInActivity.this, "Please enter your email or password", Toast.LENGTH_SHORT).show();
                 }else{
@@ -87,9 +80,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
-
 //      This function go to SignUpActivity
-        Button signUpClick=(Button)findViewById(R.id.btnSignUp);
         signUpClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,15 +89,19 @@ public class SignInActivity extends AppCompatActivity {
                 onSignUpActivity();
             }
         });
+    }
 
-
-
+    private void initUi(){
+        btnSignUp = findViewById(R.id.btnSignUp);
+        signInClick=(Button)findViewById(R.id.signIn_btn);
+        signUpClick =(Button)findViewById(R.id.btnSignUp);
+        username = findViewById(R.id.username_data);
+        passw = findViewById(R.id.password_data);
     }
 
     private void setTextViewColor(TextView textView, int...color) {
         TextPaint paint = textView.getPaint();
         float width = paint.measureText(textView.getText().toString());
-
         Shader shader = new LinearGradient(0, 0, width, textView.getTextSize(), color, null, Shader.TileMode.CLAMP);
         textView.getPaint().setShader(shader);
         textView.setTextColor(color[0]);

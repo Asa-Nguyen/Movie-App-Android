@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TrendingActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
@@ -19,9 +19,12 @@ public class TrendingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trending);
 
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_trend);
+        navigationView.setSelectedItemId(R.id.nav_account);
 
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        setBottomNav(navigationView);
+    }
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -33,13 +36,12 @@ public class TrendingActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
-                        return true;
-                    case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
+                    case R.id.nav_favourite:
+                        startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-
+                    case R.id.nav_account:
+                        return true;
                 }
                 return false;
             }

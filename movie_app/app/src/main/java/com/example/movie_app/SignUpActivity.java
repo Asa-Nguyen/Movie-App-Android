@@ -11,21 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movie_app.Model.HelperClass.HelperClass;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.movie_app.Model.HelperClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     //Test object Email, Password for firebase
@@ -34,6 +26,8 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView email;
     private TextView passw;
     private TextView conPassw;
+    //
+    private Button btnSignUp;
 
     //Create object of DatabaseReference class
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
@@ -41,29 +35,19 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        initUi();
 
-        Button click=(Button)findViewById(R.id.signUp_btn);
-        click.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-//              Test fire base
-                firebaseFirestore = FirebaseFirestore.getInstance();
 //              Get data from EditTexts
-
-                username = findViewById(R.id.su_username_data);
-                email =  findViewById(R.id.su_email_data);
-                passw =  findViewById(R.id.su_passw_data);
-                conPassw = findViewById(R.id.su_confirm_passw_data);
-
                 String usernameTxt = username.getText().toString();
                 String emailTxt = email.getText().toString();
                 String passwTxt = passw.getText().toString();
                 String conPasswTxt = conPassw.getText().toString();
                 // Check is true value
                 if(!usernameTxt.isEmpty() || !emailTxt.isEmpty() || !passwTxt.isEmpty() || !conPasswTxt.isEmpty()){
-                    click.setBackgroundResource(R.drawable.custom_main_button);
+                    btnSignUp.setBackgroundResource(R.drawable.custom_main_button);
                 }
                 if(usernameTxt.isEmpty() || emailTxt.isEmpty() || passwTxt.isEmpty() || conPasswTxt.isEmpty()){
                     Toast.makeText(SignUpActivity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
@@ -92,12 +76,19 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
                 }
             }
         });
+    }
+
+    private void initUi(){
+        btnSignUp =(Button)findViewById(R.id.signUp_btn);
+        username = findViewById(R.id.su_username_data);
+        email =  findViewById(R.id.su_email_data);
+        passw =  findViewById(R.id.su_passw_data);
+        conPassw = findViewById(R.id.su_confirm_passw_data);
     }
 
     // check is email value

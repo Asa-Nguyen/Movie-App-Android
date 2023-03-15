@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.CategoryMovie;
+package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,23 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie_app.Model.CategoryMovie;
 import com.example.movie_app.R;
 
 import java.util.List;
 
-import com.example.movie_app.Model.ImageMovie.ImageMovieAdapter;
-
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
     private Context mContext;
-    private List<CategoryMovie> mListMovie;
+    private List<CategoryMovie> categoryMovieList;
 
     public CategoryAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<CategoryMovie> list){
-        this.mListMovie = list;
+    public void setData(List<CategoryMovie> categoryMovieList){
+        this.categoryMovieList = categoryMovieList;
         notifyDataSetChanged();
     }
 
@@ -39,7 +38,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        CategoryMovie categoryMovie = mListMovie.get(position);
+        CategoryMovie categoryMovie = categoryMovieList.get(position);
         if(categoryMovie == null){
             return;
         }
@@ -48,17 +47,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvMovie.setLayoutManager(linearLayoutManager);
 
-        ImageMovieAdapter bookAdapter = new ImageMovieAdapter();
-        bookAdapter.setData(categoryMovie.getMovieList());
-        holder.rcvMovie.setAdapter(bookAdapter);
+        ImageMovieAdapter movieAdapter = new ImageMovieAdapter();
+        movieAdapter.setData(categoryMovie.getCategoryMovieList());
+        holder.rcvMovie.setAdapter(movieAdapter);
     }
 
     @Override
     public int getItemCount() {
-        if(mListMovie != null){
-            return mListMovie.size();
-        }
-        return 0;
+        return categoryMovieList != null ? categoryMovieList.size() : 0;
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder{

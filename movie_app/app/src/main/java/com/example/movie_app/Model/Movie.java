@@ -1,13 +1,9 @@
-package com.example.movie_app.Model.ImageMovie;
-
-import android.widget.ImageView;
-
-import com.example.movie_app.Model.CastCrew.CastCrew;
+package com.example.movie_app.Model;
 
 import java.util.List;
 
 public class Movie {
-    private String resourceId;
+    private String thumbUrl;
     private String nameMovie;
     private String trailerImage;
     private String category;
@@ -16,15 +12,15 @@ public class Movie {
     private String synopsis;
 
     public Movie(String resourceId, String title) {
-        this.resourceId = resourceId;
+        this.thumbUrl = resourceId;
         this.nameMovie = title;
     }
 
     public Movie(){
 
     }
-    public Movie(String resourceId, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
-        this.resourceId = resourceId;
+    public Movie(String thumbUrl, String title, String trailerImage, String category, String in4, List<CastCrew> castLists, String synopsis) {
+        this.thumbUrl = thumbUrl;
         this.nameMovie = title;
         this.trailerImage = trailerImage;
         this.category = category;
@@ -69,12 +65,12 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public String getResourceId() {
-        return resourceId;
+    public String getThumbUrl() {
+        return thumbUrl;
     }
 
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId;
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
     }
 
     public String getNameMovie() {return nameMovie;}

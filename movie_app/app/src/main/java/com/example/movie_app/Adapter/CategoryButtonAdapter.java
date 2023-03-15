@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.CategoryMovie;
+package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie_app.Model.CategoryMovie;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -16,14 +17,14 @@ import java.util.List;
 public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAdapter.CategoryButtonViewHolder>{
 
     private Context mContext;
-    private List<CategoryMovie> mListMovie;
+    private List<CategoryMovie> categoryButtonLists;
 
     public CategoryButtonAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<CategoryMovie> list){
-        this.mListMovie = list;
+    public void setData(List<CategoryMovie> categoryButtonLists){
+        this.categoryButtonLists = categoryButtonLists;
         notifyDataSetChanged();
     }
 
@@ -36,19 +37,16 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
 
     @Override
     public void onBindViewHolder(@NonNull CategoryButtonViewHolder holder, int position) {
-        CategoryMovie categoryMovie = mListMovie.get(position);
-        if(categoryMovie == null){
+        CategoryMovie categoryBtn = categoryButtonLists.get(position);
+        if(categoryBtn == null){
             return;
         }
-        holder.btnCategory.setText(categoryMovie.getNameCategory());
+        holder.btnCategory.setText(categoryBtn.getNameCategory());
     }
 
     @Override
     public int getItemCount() {
-        if(mListMovie != null){
-            return mListMovie.size();
-        }
-        return 0;
+        return categoryButtonLists != null ? categoryButtonLists.size() : 0;
     }
 
     public class CategoryButtonViewHolder extends RecyclerView.ViewHolder{

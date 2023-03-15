@@ -2,10 +2,8 @@ package com.example.movie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +11,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.movie_app.Model.CastCrew.CastCrew;
-import com.example.movie_app.Model.ImageMovie.GridViewApdater;
-import com.example.movie_app.Model.ImageMovie.Movie;
-import com.example.movie_app.Model.ImageMovie.SearchMovieAdapter;
-import com.example.movie_app.databinding.ActivityMainBinding;
+import com.example.movie_app.Adapter.SearchMovieAdapter;
+import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Adapter.GridViewApdater;
+import com.example.movie_app.Model.Movie;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -27,59 +24,45 @@ public class SearchActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
     private SearchView searchView;
-    private RecyclerView recyclerViewSearch;
-
-//  ArrayList search
-    ArrayList<Movie> searchList;
-
+//  search
+    private SearchMovieAdapter searchMovieAdapter;
+    private RecyclerView searchRcv;
+//  Grid view
+    private GridView gridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-//      Grid view
-        final GridView gridView = findViewById(R.id.grid_view_search);
-        gridView.setAdapter(new GridViewApdater(this, getMovie()));
+        initUi();
 
 //      Search view
-//        searchView = findViewById(R.id.search_view);
-//        recyclerViewSearch.findViewById(R.id.search_rcv);
-//        searchView.clearFocus();
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
-//        recyclerViewSearch.setLayoutManager(layoutManager);
-//        SearchMovieAdapter searchMovieAdapter = new SearchMovieAdapter(this, getMovie());
-//        recyclerViewSearch.setAdapter(searchMovieAdapter);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                searchList = new ArrayList<>();
-//                if(query.length() > 0){
-//                    for (int i = 0; i < getMovie().size(); ++i){
-//                        if(getMovie().get(i).getNameMovie().toUpperCase().contains(query.toUpperCase())){
-//                            searchList.add(getMovie().get(i));
-//                        }
-//                    }
-//                    RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(SearchActivity.this);
-//                    recyclerViewSearch.setLayoutManager(layoutManager1);
-//
-//                    SearchMovieAdapter searchMovieAdapter1 = new SearchMovieAdapter(SearchActivity.this, searchList);
-//                    recyclerViewSearch.setAdapter(searchMovieAdapter1);
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-        
+        searchMovieAdapter = new SearchMovieAdapter(this, getMovie());
+        searchRcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        searchRcv.setAdapter(searchMovieAdapter);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchMovieAdapter.getFilter().filter(query);
+                return false;
+            }
 
-//      Bottom navigation //
-        navigationView = findViewById(R.id.bottom_navigation);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchMovieAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         navigationView.setSelectedItemId(R.id.nav_search);
+        setBottomNav(navigationView);
 
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+//      Grid view
+        gridView.setAdapter(new GridViewApdater(this, getMovie()));
+    }
+
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -89,18 +72,25 @@ public class SearchActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_search:
                         return true;
-                    case R.id.nav_trend:
-                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
+                    case R.id.nav_favourite:
+                        startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
             }
         });
+    }
+
+    private void initUi(){
+        navigationView = findViewById(R.id.bottom_navigation);
+        searchRcv = findViewById(R.id.rcv_search);
+        searchView = (SearchView) findViewById(R.id.search_view);
+        gridView = findViewById(R.id.grid_view_search);
     }
 
     private List<Movie> getMovie() {
