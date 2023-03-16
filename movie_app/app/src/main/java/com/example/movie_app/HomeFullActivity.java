@@ -18,38 +18,68 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.movie_app.Model.CastCrew.CastCrew;
-import com.example.movie_app.Model.CategoryMovie.CategoryAdapter;
-import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
-import com.example.movie_app.Model.ImageMovie.Movie;
-import com.example.movie_app.Model.Slider.SliderAdapter;
-import com.example.movie_app.Model.Slider.SliderItem;
+import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Adapter.CategoryAdapter;
+import com.example.movie_app.Adapter.CategoryButtonAdapter;
+import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Adapter.SliderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFullActivity extends AppCompatActivity {
     // Variable for imageSlider
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
-    // Variable for rvcCategory
-    private RecyclerView rcvCategory;
+    // Variable for rcvCategory Image
+    private RecyclerView rcvCategoryImage;
     private CategoryAdapter categoryAdapter;
+    // Variable for rcvCategory Button
+    private RecyclerView rcvCategoryButton;
+    private CategoryButtonAdapter categoryButtonAdapter;
     // Navigation
     private BottomNavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
+        initUi();
+        // Image Slider --------------
+        setImageSlider(viewPager2, sliderHandler);
 
-        // This function use for Image Slider
+        // RecyclerView Button ---------
+        categoryButtonAdapter = new CategoryButtonAdapter(this);
+        categoryButtonAdapter.setData(getListCategory());
+        rcvCategoryButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvCategoryButton.setAdapter(categoryButtonAdapter);
+
+        // RecyclerView ----------------
+        categoryAdapter = new CategoryAdapter(this);
+        categoryAdapter.setData(getListCategory());
+        rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        rcvCategoryImage.setNestedScrollingEnabled(false);
+        rcvCategoryImage.setAdapter(categoryAdapter);
+
+        // Bottom navigation
+        navigationView.setSelectedItemId(R.id.nav_home);
+        setBottomNav(navigationView);
+    }
+//  Using init
+    private void initUi(){
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
-        // Setting adapter
-        viewPager2.setAdapter(new SliderAdapter(getMovie(), viewPager2));
+        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
+        rcvCategoryImage = findViewById(R.id.rcv_category);
+        navigationView = findViewById(R.id.bottom_navigation);
+    }
 
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RelativeLayout.OVER_SCROLL_NEVER);
+//  Setup Image slide
+    private void setImageSlider(ViewPager2 imageSlider, Handler handler){
+        imageSlider.setAdapter(new SliderAdapter(getMovie(), viewPager2));
+        imageSlider.setClipToPadding(false);
+        imageSlider.setClipChildren(false);
+        imageSlider.setOffscreenPageLimit(3);
+        imageSlider.getChildAt(0).setOverScrollMode(RelativeLayout.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(0));
@@ -61,33 +91,27 @@ public class HomeFullActivity extends AppCompatActivity {
             }
         });
 
-        viewPager2.setPageTransformer(compositePageTransformer);
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        imageSlider.setPageTransformer(compositePageTransformer);
+        imageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable,3000);
+                handler.removeCallbacks(sliderRunnable);
+                handler.postDelayed(sliderRunnable,3000);
             }
         });
 
-        // RecyclerView
-        rcvCategory = findViewById(R.id.rcv_category);
-        categoryAdapter = new CategoryAdapter(this);
+    }
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rcvCategory.setLayoutManager(linearLayoutManager);
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);
+        }
+    };
 
-        categoryAdapter.setData(getListCategory());
-        rcvCategory.setAdapter(categoryAdapter);
-
-        // Bottom navigation
-
-        navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_home);
-
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -97,15 +121,14 @@ public class HomeFullActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
-                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
+                    case R.id.nav_favourite:
+                        startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-
                 }
                 return false;
             }
@@ -115,8 +138,10 @@ public class HomeFullActivity extends AppCompatActivity {
     private List<CategoryMovie> getListCategory() {
         List<CategoryMovie> list = new ArrayList<>();
 
-        list.add(new CategoryMovie("Cartoon", getMovie()));
-        list.add(new CategoryMovie("18+", getMovie()));
+        list.add(new CategoryMovie("Most popular", getMovie()));
+        list.add(new CategoryMovie("Action", getMovie()));
+        list.add(new CategoryMovie("Comedy", getMovie()));
+        list.add(new CategoryMovie("Romance", getMovie()));
         list.add(new CategoryMovie("Horror", getMovie()));
         return list;
     }
@@ -130,7 +155,7 @@ public class HomeFullActivity extends AppCompatActivity {
         crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/d/d4/Rosemary_Harris_Spiderman_2007_Shankbone.jpg&f=w", "Rosemary Harris"));
         List<Movie> imageMovieList = new ArrayList<>();
         imageMovieList.add(new Movie(
-                "https://m.media-amazon.com/images/M/MV5BMjIwMDIwNjAyOF5BMl5BanBnXkFtZTgwNDE1MDc2NTM@._V1_.jpg",
+                "https://znews-photo.zingcdn.me/w660/Uploaded/fsmhv/2014_02_05/Capt2_Teaser2_1Sht_v9_2.jpg",
                 "How to Train Your Dragon",
                 "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
                 "Action | adventure | S**",
@@ -172,11 +197,4 @@ public class HomeFullActivity extends AppCompatActivity {
 
         return imageMovieList;
     }
-
-    private Runnable sliderRunnable = new Runnable() {
-        @Override
-        public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);
-        }
-    };
 }

@@ -9,19 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TrendingActivity extends AppCompatActivity {
+public class FavouriteActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trending);
-
+        setContentView(R.layout.activity_favourite);
+        unitUi();
+        // Bottom nav
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_trend);
+        navigationView.setSelectedItemId(R.id.nav_favourite);
+        setBottomNav(navigationView);
 
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    }
+
+    private void unitUi(){
+    }
+
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -33,13 +41,12 @@ public class TrendingActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
+                    case R.id.nav_favourite:
                         return true;
-                    case R.id.nav_watch_late:
-                        startActivity(new Intent(getApplicationContext(), WatchLateActivity.class));
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-
                 }
                 return false;
             }

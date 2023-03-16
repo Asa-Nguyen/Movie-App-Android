@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/dark_3"
+        android:background="@color/dark_2"
         >
 
         <ImageView
@@ -17,7 +17,8 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/cast_reilly" />
+            app:srcCompat="@drawable/cast_reilly"
+            app:cardCornerRadius="10dp"/>
 
         <TextView
             android:id="@+id/name_cast"

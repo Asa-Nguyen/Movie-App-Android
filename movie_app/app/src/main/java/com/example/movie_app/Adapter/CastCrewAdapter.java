@@ -1,4 +1,4 @@
-package com.example.movie_app.Model.CastCrew;
+package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_app.Model.CategoryMovie.CategoryMovie;
+import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class CastCrewAdapter extends RecyclerView.Adapter<CastCrewAdapter.CastCr
         this.context = mContext;
     }
 
-    public void setData(List<CastCrew> list){
-        this.crewLists = list;
+    public void setData(List<CastCrew> crewLists){
+        this.crewLists = crewLists;
         notifyDataSetChanged();
     }
 
@@ -40,8 +40,9 @@ public class CastCrewAdapter extends RecyclerView.Adapter<CastCrewAdapter.CastCr
     public void onBindViewHolder(@NonNull CastCrewViewHolder holder, int position) {
         final CastCrew castCrew = crewLists.get(position);
         if(castCrew == null) return;
-        Glide.with(holder.imageCast).load(crewLists.get(position).getImageUrl()).into(holder.imageCast);
-        holder.nameCast.setText(castCrew.getName());
+        // Load image url
+        Glide.with(holder.imageCast).load(crewLists.get(position).getImageCastUrl()).into(holder.imageCast);
+        holder.nameCast.setText(castCrew.getNameCast());
     }
 
     @Override

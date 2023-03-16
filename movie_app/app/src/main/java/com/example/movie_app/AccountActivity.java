@@ -9,19 +9,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class WatchLateActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_detail);
+        setContentView(R.layout.activity_trending);
 
         navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_watch_late);
+        navigationView.setSelectedItemId(R.id.nav_account);
 
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        setBottomNav(navigationView);
+    }
+    private void setBottomNav(BottomNavigationView bottomNavigationView){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -33,13 +36,12 @@ public class WatchLateActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_trend:
-                        startActivity(new Intent(getApplicationContext(), TrendingActivity.class));
+                    case R.id.nav_favourite:
+                        startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.nav_watch_late:
+                    case R.id.nav_account:
                         return true;
-
                 }
                 return false;
             }
