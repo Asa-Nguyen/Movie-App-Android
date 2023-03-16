@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView conPassw;
     //
     private Button btnSignUp;
+    // back button
+    private ImageButton backBtn;
 
     //Create object of DatabaseReference class
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/");
@@ -36,6 +39,13 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         initUi();
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSignInActivity();
+            }
+        });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
         email =  findViewById(R.id.su_email_data);
         passw =  findViewById(R.id.su_passw_data);
         conPassw = findViewById(R.id.su_confirm_passw_data);
+        backBtn = (ImageButton) findViewById(R.id.su_backBtn);
     }
 
     // check is email value
