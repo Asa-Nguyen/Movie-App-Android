@@ -41,22 +41,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+    <TextView
+        android:id="@+id/top_search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Top search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcv_search" />
+
     <GridView
         android:id="@+id/grid_view_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="8dp"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="18dp"
         android:clipToPadding="false"
-        android:stretchMode="columnWidth"
+        android:horizontalSpacing="18dp"
         android:numColumns="3"
-        android:layout_marginTop="20dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcv_search" />
+        app:layout_constraintTop_toBottomOf="@+id/top_search_text" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
