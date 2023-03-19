@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.Model.CategoryMovie;
@@ -41,6 +42,8 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
         if(categoryBtn == null){
             return;
         }
+        if(position == 0 || position == categoryButtonLists.size()){
+        }
         holder.btnCategory.setText(categoryBtn.getNameCategory());
     }
 
@@ -52,9 +55,11 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
     public class CategoryButtonViewHolder extends RecyclerView.ViewHolder{
 
         private  TextView btnCategory;
+        private CardView item_btn_categories;
         public CategoryButtonViewHolder(@NonNull View itemView) {
             super(itemView);
             btnCategory = (TextView) itemView.findViewById(R.id.buttonCategory);
+            item_btn_categories = (CardView) itemView.findViewById(R.id.item_btn_category);
         }
     }
 }

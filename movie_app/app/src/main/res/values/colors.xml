@@ -20,5 +20,6 @@
     <color name="light_gradient2">#1DC7F7</color>
     <color name="yellow_rating">#FFAF34</color>
     <color name="gray_rating">#DADADA</color>
-    <color name="text_color_title">#90939B</color>
+    <color name="un_select_color">#90939B</color>
+    <color name="select_color">#2EAEBE</color>
 </resources>

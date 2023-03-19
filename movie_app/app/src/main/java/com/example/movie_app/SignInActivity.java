@@ -63,7 +63,6 @@ public class SignInActivity extends AppCompatActivity {
                         editor.putString("pref_password", passwordTxt);
                         editor.putBoolean("pref_check", boolIsChecked);
                         editor.apply();
-                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     }else{
                         mPreferences.edit().clear().apply();
                     }

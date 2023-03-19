@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_2">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,8 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
                 android:layout_marginTop="66dp"
+                android:layout_marginEnd="25dp"
                 android:background="@drawable/custom_search_bg"
                 app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,16 +49,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
+                android:paddingBottom="137dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_search" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView

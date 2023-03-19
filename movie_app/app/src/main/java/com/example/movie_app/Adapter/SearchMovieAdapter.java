@@ -44,7 +44,7 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
         Movie movie = searchMovieList.get(position);
         Glide.with(holder.imageView).load(movie.getTrailerImage()).into(holder.imageView);
         holder.nameMovie.setText(movie.getNameMovie());
-        holder.genreMovie.setText(movie.getIn4());
+        holder.genreMovie.setText(movie.getCategory());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

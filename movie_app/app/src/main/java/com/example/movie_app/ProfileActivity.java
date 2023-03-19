@@ -3,6 +3,8 @@ package com.example.movie_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
     private RecyclerView collectionRecyclerView;
     private CollectionAdapter collectionAdapter;
     private BottomNavigationView navigationView;
+    private Button buttonMovieList, buttonWatched, buttonMyReview, buttonSetting, buttonLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,47 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initUi() {
         collectionRecyclerView = (RecyclerView) findViewById(R.id.collectionRecyclerView);
+        buttonMovieList = (Button) findViewById(R.id.profile_button_animelist);
+        buttonWatched = (Button) findViewById(R.id.profile_button_watched);
+        buttonMyReview = (Button) findViewById(R.id.profile_button_my_review);
+        buttonSetting = (Button) findViewById(R.id.profile_button_setting);
+        buttonLogout = (Button) findViewById(R.id.profile_button_logout);
+    }
+
+    private void onClickButtonLogout(){
+        buttonMovieList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void onClickButtonMyReview(){
+        buttonWatched.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void onClickButtonMyWatched(){
+        buttonMyReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void onClickButtonMovieList(){
+        buttonMovieList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void setUpCollectionRecyclerView() {
