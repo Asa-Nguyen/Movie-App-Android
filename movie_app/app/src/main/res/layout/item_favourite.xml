@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:text="Captain American: The Winter Soldier"
             android:textSize="16dp"
-            android:fontFamily="@font/montserrat_b6"
+            android:fontFamily="@font/raleway_b6"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
@@ -63,7 +63,7 @@
             android:paddingEnd="20dp"
             android:background="@drawable/custom_main_button"
             android:text="Watching Now"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/releway_b5"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="@+id/cardView"
             app:layout_constraintStart_toEndOf="@+id/cardView" />

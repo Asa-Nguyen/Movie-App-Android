@@ -22,7 +22,7 @@
                 android:layout_height="450dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/shadow_bg"
@@ -37,11 +37,13 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginStart="16dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="32dp"
                 android:text="Categories"
-                android:textSize="20dp"
+                android:fontFamily="@font/releway_b5"
+                android:lineSpacingExtra="27dp"
+                android:textColor="@color/white"
+                android:textSize="22dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewPagerImageSlider2" />
 
@@ -82,7 +84,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:elevation="2dp"
-        app:backgroundTint="@color/dark_3"
+        app:backgroundTint="#1E212B"
         app:itemIconTint="@color/custom_color_bottom_nav"
         app:itemTextColor="@color/custom_color_bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"

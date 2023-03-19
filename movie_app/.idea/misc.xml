@@ -24,11 +24,17 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/custom_second_button.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/gradient_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_grade_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_baseline_watch_later_24.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_facebook.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_google.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2625" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_play.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_play_btn.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/ic_search.xml" value="0.2625" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/drawable/main_gradient.xml" value="0.26614583333333336" />
@@ -43,10 +49,11 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_information_movie.xml" value="0.536" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_intro.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_main.xml" value="0.22554347826086957" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_movie_detail.xml" value="0.6" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_play_video.xml" value="0.152" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_profile.xml" value="0.144" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_search.xml" value="0.264" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_profile.xml" value="0.4" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_search.xml" value="0.4" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_sign_in.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_trending.xml" value="0.25" />
@@ -59,11 +66,12 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_btn_category.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_cast_crew.xml" value="0.72" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_category.xml" value="0.25" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_collection.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_favourite.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_grid_movie.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_movie.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_poster.xml" value="0.22554347826086957" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_search_movie.xml" value="0.6" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_search_movie.xml" value="0.24803149606299213" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/movie_detail.xml" value="0.35634743875278396" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/play_video_activity.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/rcv_cast.xml" value="0.25" />

@@ -1,5 +1,6 @@
 package com.example.movie_app.Adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -9,10 +10,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie_app.DetailActivity;
 import com.example.movie_app.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_app.Model.Movie;
@@ -39,7 +42,23 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
     @Override
     public void onBindViewHolder(@NonNull SearchMovieViewHolder holder, int position) {
         Movie movie = searchMovieList.get(position);
-        Glide.with(holder.imageView).load(movie.getThumbUrl()).into(holder.imageView);
+        Glide.with(holder.imageView).load(movie.getTrailerImage()).into(holder.imageView);
+        holder.nameMovie.setText(movie.getNameMovie());
+        holder.genreMovie.setText(movie.getIn4());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                intent.putExtra("trailerImage", movie.getTrailerImage());
+                intent.putExtra("resourceId", movie.getThumbUrl());
+                intent.putExtra("name", movie.getNameMovie());
+                intent.putExtra("in4", movie.getIn4());
+                intent.putExtra("category", movie.getCategory());
+                intent.putExtra("synopsis", movie.getSynopsis());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -49,9 +68,12 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
 
     public class SearchMovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
+        TextView nameMovie, genreMovie;
         public SearchMovieViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_search);
+            nameMovie = itemView.findViewById(R.id.item_search_name_movie);
+            genreMovie = itemView.findViewById(R.id.item_search_genre);
         }
 
         @Override

@@ -18,30 +18,26 @@ import com.example.movie_app.R;
 
 import java.util.List;
 
-public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.ImageMovieViewHolder>{
+public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.CollectionViewHolder>{
     Context context;
-    List<Movie> imageMovies;
+    private List<Movie> listCollections;
 
-    public void setData(List<Movie> list){
-        this.imageMovies = list;
-        notifyDataSetChanged();
+    public CollectionAdapter(Context context, List<Movie> listCollections) {
+        this.context = context;
+        this.listCollections = listCollections;
     }
 
     @NonNull
     @Override
-    public ImageMovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie,parent,false);
-        return new ImageMovieViewHolder(view);
+    public CollectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_collection, parent, false);
+        return new CollectionViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-        final Movie movie = imageMovies.get(position);
-        if(movie == null) return;
-        // Load image url
-        Glide.with(holder.imageMovie).load(movie.getThumbUrl()).into(holder.imageMovie);
-        holder.titleMovie.setText(movie.getNameMovie());
-        holder.genreMovie.setText(movie.getIn4());
+    public void onBindViewHolder(@NonNull CollectionViewHolder holder, int position) {
+        final Movie movie = listCollections.get(position);
+        Glide.with(holder.imageMovie).load(movie.getTrailerImage()).into(holder.imageMovie);
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,17 +56,14 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public int getItemCount() {
-        return imageMovies != null ? imageMovies.size() : 0;
+        return listCollections != null ? listCollections.size() : 0;
     }
 
-    public class ImageMovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CollectionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageMovie;
-        TextView titleMovie, genreMovie;
-        public ImageMovieViewHolder(@NonNull View itemView) {
+        public CollectionViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageMovie = itemView.findViewById(R.id.image_movie);
-            titleMovie = itemView.findViewById(R.id.title_item_movie);
-            genreMovie = itemView.findViewById(R.id.genre_item_movie);
+            imageMovie = itemView.findViewById(R.id.image_collection);
         }
 
         @Override

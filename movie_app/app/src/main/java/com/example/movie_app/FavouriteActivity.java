@@ -44,7 +44,7 @@ public class FavouriteActivity extends AppCompatActivity {
                     case R.id.nav_favourite:
                         return true;
                     case R.id.nav_account:
-                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }

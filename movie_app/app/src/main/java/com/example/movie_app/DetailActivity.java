@@ -1,8 +1,6 @@
 package com.example.movie_app;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,65 +17,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
-    ImageView mTrailerMovie, mThumb;
-    TextView mMovieName, mIn4, mCategory, mEpisode, mSynopsis;
-    ImageButton playVideo;
-    // rcv cast
+    private ImageView mTrailerMovie;
+    private TextView mMovieName, mIn4, mCategory, mEpisode, mSynopsis;
+    private ImageButton playVideo;
     private RecyclerView rcvCast;
     private CastCrewAdapter castCrewAdapter;
-    // btn bookmark
-    private ImageButton buttonBookmark;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_detail);
+        setContentView(R.layout.activity_movie_detail);
         initUi();
-        // rcv cast and crew
-        setupRcvCast();
+        setUpRecyclerView();
 
-
-        Glide.with(mThumb).load(getIntent().getStringExtra("resourceId")).into(mThumb);
         Glide.with(mTrailerMovie).load(getIntent().getStringExtra("trailerImage")).into(mTrailerMovie);
         mMovieName.setText(getIntent().getStringExtra("name"));
         mIn4.setText(getIntent().getStringExtra("in4"));
+        mCategory.setText(getIntent().getStringExtra("category"));
         mSynopsis.setText(getIntent().getStringExtra("synopsis"));
-
-        // btn go to watching movie
-        playVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onVideoPlayActivity();
-            }
-        });
-        
-        // BOOKMARK////////////
-        buttonBookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), FavouriteActivity.class);
-                intent.putExtra("trailerImage", getIntent().getStringExtra("trailerImage"));
-                intent.putExtra("resourceId", getIntent().getStringExtra("resourceId"));
-                intent.putExtra("name", getIntent().getStringExtra("name"));
-                intent.putExtra("in4", getIntent().getStringExtra("in4"));
-                intent.putExtra("synopsis", getIntent().getStringExtra("synopsis"));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                view.getContext().startActivity(intent);
-            }
-        });
     }
 
     private void initUi(){
-        mTrailerMovie = (ImageView) findViewById(R.id.trailer_image);
-        mThumb = (ImageView) findViewById(R.id.thumb);
-        mMovieName = (TextView) findViewById(R.id.movie_name);
-        mIn4 = (TextView) findViewById(R.id.in4);
-        mSynopsis = (TextView) findViewById(R.id.synopsis_detail);
-        rcvCast = (RecyclerView) findViewById(R.id.rcv_cast_detail);
-        playVideo = (ImageButton) findViewById(R.id.play_video_btn);
-        buttonBookmark = (ImageButton) findViewById(R.id.bookmark);
+        mTrailerMovie = (ImageView) findViewById(R.id.detail_trailer_image);
+        mMovieName = (TextView) findViewById(R.id.detail_movie_name);
+        mIn4 = (TextView) findViewById(R.id.detail_genre);
+        mSynopsis = (TextView) findViewById(R.id.detail_synopsis_about);
+        rcvCast = (RecyclerView) findViewById(R.id.detail_cast_rcv);
+        playVideo = (ImageButton) findViewById(R.id.detail_play_button);
+        mCategory = (TextView) findViewById(R.id.detail_category);
     }
 
-    void setupRcvCast(){
+    void setUpRecyclerView(){
         List<CastCrew> castCrewList = new ArrayList<>();
         castCrewList.add(new CastCrew("https://flxt.tmsimg.com/assets/415275_v9_bb.jpg", "John C. Reilly"));
         castCrewList.add(new CastCrew("https://flxt.tmsimg.com/assets/415275_v9_bb.jpg", "John C. Reilly"));
@@ -91,10 +60,4 @@ public class DetailActivity extends AppCompatActivity {
         castCrewAdapter.setData(castCrewList);
         rcvCast.setAdapter(castCrewAdapter);
     }
-
-    public void onVideoPlayActivity(){
-//        Intent intent = new Intent(this, VideoPlayActivity.class);
-//        startActivity(intent);
-    }
-
 }

@@ -37,7 +37,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:elevation="2dp"
-        app:backgroundTint="@color/dark_3"
+        app:backgroundTint="#1E212B"
         app:itemIconTint="@color/custom_color_bottom_nav"
         app:itemTextColor="@color/custom_color_bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"

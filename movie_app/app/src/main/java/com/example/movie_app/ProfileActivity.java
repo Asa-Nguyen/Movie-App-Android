@@ -3,15 +3,13 @@ package com.example.movie_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.movie_app.Adapter.SearchMovieAdapter;
+import com.example.movie_app.Adapter.CollectionAdapter;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Model.Movie;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,41 +17,33 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
-
+public class ProfileActivity extends AppCompatActivity {
+    private RecyclerView collectionRecyclerView;
+    private CollectionAdapter collectionAdapter;
     private BottomNavigationView navigationView;
-    private SearchView searchView;
-//  search
-    private SearchMovieAdapter searchMovieAdapter;
-    private RecyclerView searchRcv;
-//  Grid view
-    private GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        initUi();
+        setContentView(R.layout.activity_profile);
 
-//      Search view
-        searchMovieAdapter = new SearchMovieAdapter(this, getMovie());
-        searchRcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        searchRcv.setAdapter(searchMovieAdapter);
-        searchView.clearFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchMovieAdapter.getFilter().filter(query);
-                return false;
-            }
+        navigationView = findViewById(R.id.bottom_navigation);
+        navigationView.setSelectedItemId(R.id.nav_account);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                searchMovieAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        navigationView.setSelectedItemId(R.id.nav_search);
         setBottomNav(navigationView);
+
+        initUi();
+        setUpCollectionRecyclerView();
+    }
+
+    private void initUi() {
+        collectionRecyclerView = (RecyclerView) findViewById(R.id.collectionRecyclerView);
+    }
+
+    private void setUpCollectionRecyclerView() {
+        collectionAdapter = new CollectionAdapter(this, getMovie());
+        collectionRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        collectionRecyclerView.setAdapter(collectionAdapter);
     }
 
     private void setBottomNav(BottomNavigationView bottomNavigationView){
@@ -66,25 +56,19 @@ public class SearchActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_search:
+                        startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_favourite:
                         startActivity(new Intent(getApplicationContext(), FavouriteActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_account:
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
             }
         });
-    }
-
-    private void initUi(){
-        navigationView = findViewById(R.id.bottom_navigation);
-        searchRcv = findViewById(R.id.rcv_search);
-        searchView = (SearchView) findViewById(R.id.search_view);
     }
 
     private List<Movie> getMovie() {
@@ -97,9 +81,9 @@ public class SearchActivity extends AppCompatActivity {
         List<Movie> imageMovieList = new ArrayList<>();
         imageMovieList.add(new Movie(
                 "https://znews-photo.zingcdn.me/w660/Uploaded/fsmhv/2014_02_05/Capt2_Teaser2_1Sht_v9_2.jpg",
-                "How to Train Your Dragon",
-                "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
-                "Action | adventure | S**",
+                "Chainsaw man",
+                "https://img3.hulu.com/user/v3/artwork/7b71b5a4-560b-4d8b-98c4-c5dee6004c21?base_image_bucket_name=image_manager&base_image=204c7e0e-a0bd-45fc-a7ff-5b6a60c90d62&size=1200x630&format=jpeg",
+                "action comedy demons seinen",
                 "2023 | 18+ | Season 1",
                 crewList,
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
