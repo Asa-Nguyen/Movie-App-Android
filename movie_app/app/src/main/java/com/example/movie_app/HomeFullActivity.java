@@ -18,59 +18,66 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.movie_app.Adapter.ContinueWatchingAdapter;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Adapter.CategoryAdapter;
-import com.example.movie_app.Adapter.CategoryButtonAdapter;
+import com.example.movie_app.Adapter.GenreButtonAdapter;
 import com.example.movie_app.Model.CategoryMovie;
 import com.example.movie_app.Model.Movie;
 import com.example.movie_app.Adapter.SliderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFullActivity extends AppCompatActivity {
-    // Variable for imageSlider
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
-    // Variable for rcvCategory Image
-    private RecyclerView rcvCategoryImage;
-    private CategoryAdapter categoryAdapter;
-    // Variable for rcvCategory Button
-    private RecyclerView rcvCategoryButton;
-    private CategoryButtonAdapter categoryButtonAdapter;
-    // Navigation
+    private RecyclerView rcvCategoryImage, rcvGenreButton, rcvWatchingContinue;
     private BottomNavigationView navigationView;
-
-
+    // Adapter
+    private CategoryAdapter categoryAdapter;
+    private GenreButtonAdapter categoryButtonAdapter;
+    private ContinueWatchingAdapter continueWatchingAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
         initUi();
-        // Image Slider --------------
         setImageSlider(viewPager2, sliderHandler);
+        setWatchingContinueRecyclerView();
+        setGenreButtonRecyclerView();
+        setGenreMovieRecyclerView();
 
-        // RecyclerView Button ---------
-        categoryButtonAdapter = new CategoryButtonAdapter(this);
+        navigationView.setSelectedItemId(R.id.nav_home);
+        setBottomNav(navigationView);
+    }
+
+    private void setWatchingContinueRecyclerView(){
+        continueWatchingAdapter = new ContinueWatchingAdapter(this, getMovie());
+        rcvWatchingContinue.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvWatchingContinue.setAdapter(continueWatchingAdapter);
+    }
+
+    private void setGenreButtonRecyclerView(){
+        categoryButtonAdapter = new GenreButtonAdapter(this);
         categoryButtonAdapter.setData(getListCategory());
-        rcvCategoryButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        rcvCategoryButton.setAdapter(categoryButtonAdapter);
+        rcvGenreButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvGenreButton.setAdapter(categoryButtonAdapter);
+    }
 
-        // RecyclerView ----------------
+    private void setGenreMovieRecyclerView(){
         categoryAdapter = new CategoryAdapter(this);
         categoryAdapter.setData(getListCategory());
         rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         rcvCategoryImage.setNestedScrollingEnabled(false);
         rcvCategoryImage.setAdapter(categoryAdapter);
-
-        // Bottom navigation
-        navigationView.setSelectedItemId(R.id.nav_home);
-        setBottomNav(navigationView);
     }
+
 //  Using init
     private void initUi(){
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
-        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
+        rcvGenreButton = findViewById(R.id.rcv_btn_category);
         rcvCategoryImage = findViewById(R.id.rcv_category);
         navigationView = findViewById(R.id.bottom_navigation);
+        rcvWatchingContinue = findViewById(R.id.rcv_continue_watching);
     }
 
 //  Setup Image slide

@@ -44,7 +44,7 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_detail.xml" value="0.264" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_favourite.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_forget_password.xml" value="0.25" />
-        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_homefull.xml" value="0.23251417769376181" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_homefull.xml" value="0.536" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_information_full.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_information_movie.xml" value="0.536" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/activity_intro.xml" value="0.4" />
@@ -67,6 +67,7 @@
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_cast_crew.xml" value="0.72" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_category.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_collection.xml" value="0.25" />
+        <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_continue_watching.xml" value="0.6" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_favourite.xml" value="0.4" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_grid_movie.xml" value="0.25" />
         <entry key="..\:/workspace/project-team/Movie-App-Android/movie_app/app/src/main/res/layout/item_movie.xml" value="0.4" />

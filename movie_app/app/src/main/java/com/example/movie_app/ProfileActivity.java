@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         setBottomNav(navigationView);
 
         initUi();
-        setUpCollectionRecyclerView();
+        setCollectionRecyclerView();
     }
 
     private void initUi() {
@@ -84,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpCollectionRecyclerView() {
+    private void setCollectionRecyclerView() {
         collectionAdapter = new CollectionAdapter(this, getMovie());
         collectionRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         collectionRecyclerView.setAdapter(collectionAdapter);

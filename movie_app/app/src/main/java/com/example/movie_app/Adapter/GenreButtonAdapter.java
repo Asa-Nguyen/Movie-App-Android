@@ -15,12 +15,12 @@ import com.example.movie_app.R;
 
 import java.util.List;
 
-public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAdapter.CategoryButtonViewHolder>{
+public class GenreButtonAdapter extends RecyclerView.Adapter<GenreButtonAdapter.CategoryButtonViewHolder>{
 
     private Context mContext;
     private List<CategoryMovie> categoryButtonLists;
 
-    public CategoryButtonAdapter(Context mContext) {
+    public GenreButtonAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
