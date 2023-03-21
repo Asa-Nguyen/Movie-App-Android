@@ -24,7 +24,7 @@ public class Database {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    castCrewDatabase.add(snapshot.getValue().toString());
+//                    castCrewDatabase.add(snapshot.getValue().toString());
                 }
             }
 
@@ -32,7 +32,7 @@ public class Database {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 
     public List<Movie2> getMovieDatabase() {
