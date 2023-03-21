@@ -20,13 +20,10 @@ public class CastCrewAdapter extends RecyclerView.Adapter<CastCrewAdapter.CastCr
     Context context;
     List<CastCrew> crewLists;
 
-    public CastCrewAdapter(Context mContext) {
+    public CastCrewAdapter(Context mContext, List<CastCrew> crewLists) {
         this.context = mContext;
-    }
-
-    public void setData(List<CastCrew> crewLists){
         this.crewLists = crewLists;
-        notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -41,8 +38,8 @@ public class CastCrewAdapter extends RecyclerView.Adapter<CastCrewAdapter.CastCr
         final CastCrew castCrew = crewLists.get(position);
         if(castCrew == null) return;
         // Load image url
-        Glide.with(holder.imageCast).load(crewLists.get(position).getImageCastUrl()).into(holder.imageCast);
-        holder.nameCast.setText(castCrew.getNameCast());
+        Glide.with(holder.imageCast).load(crewLists.get(position).getCimage()).into(holder.imageCast);
+        holder.nameCast.setText(castCrew.getCname());
     }
 
     @Override

@@ -40,14 +40,14 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
         final Movie imageMovie = movieSliders.get(position);
-        Glide.with(holder.imageView).load(movieSliders.get(position).getThumbUrl()).into(holder.imageView);
+        Glide.with(holder.imageView).load(movieSliders.get(position).getFtrailer()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", imageMovie.getTrailerImage());
-                intent.putExtra("resourceId", imageMovie.getThumbUrl());
-                intent.putExtra("name", imageMovie.getNameMovie());
+                intent.putExtra("trailerImage", imageMovie.getFtrailer());
+                intent.putExtra("resourceId", imageMovie.getFthumb());
+                intent.putExtra("name", imageMovie.getFname());
                 intent.putExtra("in4", imageMovie.getIn4());
                 intent.putExtra("category", imageMovie.getCategory());
                 intent.putExtra("synopsis", imageMovie.getSynopsis());

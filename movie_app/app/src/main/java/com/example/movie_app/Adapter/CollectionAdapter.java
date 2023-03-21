@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,14 +36,14 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Co
     @Override
     public void onBindViewHolder(@NonNull CollectionViewHolder holder, int position) {
         final Movie movie = listCollections.get(position);
-        Glide.with(holder.imageMovie).load(movie.getTrailerImage()).into(holder.imageMovie);
+        Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", movie.getTrailerImage());
-                intent.putExtra("resourceId", movie.getThumbUrl());
-                intent.putExtra("name", movie.getNameMovie());
+                intent.putExtra("trailerImage", movie.getFtrailer());
+                intent.putExtra("resourceId", movie.getFthumb());
+                intent.putExtra("name", movie.getFname());
                 intent.putExtra("in4", movie.getIn4());
                 intent.putExtra("category", movie.getCategory());
                 intent.putExtra("synopsis", movie.getSynopsis());

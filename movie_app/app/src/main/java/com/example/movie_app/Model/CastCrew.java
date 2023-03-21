@@ -1,27 +1,27 @@
 package com.example.movie_app.Model;
 
 public class CastCrew {
-    private String imageCastUrl;
-    private String nameCast;
+    private String Cimage;
+    private String Cname;
 
     public CastCrew(String imageUrl, String name) {
-        this.imageCastUrl = imageUrl;
-        this.nameCast = name;
+        this.Cimage = imageUrl;
+        this.Cname = name;
     }
 
-    public String getImageCastUrl() {
-        return imageCastUrl;
+    public String getCimage() {
+        return Cimage;
     }
 
-    public void setImageCastUrl(String imageCastUrl) {
-        this.imageCastUrl = imageCastUrl;
+    public void setCimage(String cimage) {
+        this.Cimage = cimage;
     }
 
-    public String getNameCast() {
-        return nameCast;
+    public String getCname() {
+        return Cname;
     }
 
-    public void setNameCast(String nameCast) {
-        this.nameCast = nameCast;
+    public void setCname(String cname) {
+        this.Cname = cname;
     }
 }

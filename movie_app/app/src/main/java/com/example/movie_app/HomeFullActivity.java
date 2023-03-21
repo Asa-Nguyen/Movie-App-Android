@@ -22,10 +22,13 @@ import com.example.movie_app.Adapter.ContinueWatchingAdapter;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Adapter.CategoryAdapter;
 import com.example.movie_app.Adapter.GenreButtonAdapter;
-import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.CategoryList;
+import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
 import com.example.movie_app.Adapter.SliderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeFullActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
@@ -36,6 +39,9 @@ public class HomeFullActivity extends AppCompatActivity {
     private CategoryAdapter categoryAdapter;
     private GenreButtonAdapter categoryButtonAdapter;
     private ContinueWatchingAdapter continueWatchingAdapter;
+    // Model
+    private List<Movie> movieList;
+    private DatabaseReference featured = FirebaseDatabase.getInstance().getReference("featured");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,10 @@ public class HomeFullActivity extends AppCompatActivity {
 
         navigationView.setSelectedItemId(R.id.nav_home);
         setBottomNav(navigationView);
+
+        // get database
+        movieList = new ArrayList<>();
+        
     }
 
     private void setWatchingContinueRecyclerView(){
@@ -142,15 +152,38 @@ public class HomeFullActivity extends AppCompatActivity {
         });
     }
 
-    private List<CategoryMovie> getListCategory() {
-        List<CategoryMovie> list = new ArrayList<>();
+    private List<CategoryList> getListCategory() {
+        List<CategoryList> list = new ArrayList<>();
 
-        list.add(new CategoryMovie("Most popular", getMovie()));
-        list.add(new CategoryMovie("Action", getMovie()));
-        list.add(new CategoryMovie("Comedy", getMovie()));
-        list.add(new CategoryMovie("Romance", getMovie()));
-        list.add(new CategoryMovie("Horror", getMovie()));
+        list.add(new CategoryList("Most popular", getMovie()));
+        list.add(new CategoryList("Action", getMovie()));
+        list.add(new CategoryList("Comedy", getMovie()));
+        list.add(new CategoryList("Romance", getMovie()));
+        list.add(new CategoryList("Horror", getMovie()));
         return list;
+    }
+
+    private List<Episode> getEpisodes(){
+        List<Episode> episodeList = new ArrayList<>();
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/91c8f9e4ddbcbcee7d8c12ace10e6dcf.jpe",
+                "E1 - DOG & CHAINSAW",
+                "",
+                true));
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://static.wikia.nocookie.net/chainsaw-man/images/0/07/Episode_2-1.png/revision/latest?cb=20221018090613",
+                "E2 - ARRIVAL IN TOKYO",
+                "",
+                true));
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://www.slashfilm.com/img/gallery/chainsaw-man-episode-3-is-an-action-packed-funny-and-gnarly/intro-1666735069.jpg",
+                "E3 -  MEOWY'S WHEREABOUTS",
+                "",
+                true));
+        return episodeList;
     }
 
     private List<Movie> getMovie() {
@@ -168,6 +201,7 @@ public class HomeFullActivity extends AppCompatActivity {
                 "action comedy demons seinen",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
         imageMovieList.add(new Movie(
                 "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_.jpg",
@@ -176,6 +210,7 @@ public class HomeFullActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://lumiere-a.akamaihd.net/v1/images/p_onward_19732_09862641.jpeg",
@@ -184,6 +219,7 @@ public class HomeFullActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://static.tvtropes.org/pmwiki/pub/images/ralphbreakstheinternet.png",
@@ -192,6 +228,7 @@ public class HomeFullActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://static.wikia.nocookie.net/netflix/images/2/27/Sponge_on_the_Run_Poster.jpg",
@@ -200,6 +237,7 @@ public class HomeFullActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 
         return imageMovieList;

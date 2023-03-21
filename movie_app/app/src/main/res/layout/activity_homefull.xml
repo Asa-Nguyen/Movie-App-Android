@@ -19,7 +19,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerImageSlider2"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="260dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -27,11 +27,11 @@
             <ImageView
                 android:id="@+id/shadow_bg"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="260dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/shadow_gradient_bg" />
+                app:srcCompat="@drawable/shadow2_gradient" />
 
             <TextView
                 android:id="@+id/title_continue_watching"

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -18,13 +18,13 @@ import java.util.List;
 public class GenreButtonAdapter extends RecyclerView.Adapter<GenreButtonAdapter.CategoryButtonViewHolder>{
 
     private Context mContext;
-    private List<CategoryMovie> categoryButtonLists;
+    private List<CategoryList> categoryButtonLists;
 
     public GenreButtonAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<CategoryMovie> categoryButtonLists){
+    public void setData(List<CategoryList> categoryButtonLists){
         this.categoryButtonLists = categoryButtonLists;
         notifyDataSetChanged();
     }
@@ -38,7 +38,7 @@ public class GenreButtonAdapter extends RecyclerView.Adapter<GenreButtonAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CategoryButtonViewHolder holder, int position) {
-        CategoryMovie categoryBtn = categoryButtonLists.get(position);
+        CategoryList categoryBtn = categoryButtonLists.get(position);
         if(categoryBtn == null){
             return;
         }

@@ -57,7 +57,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInput"
+                android:id="@+id/Fname"
                 android:layout_width="327dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="44dp"
@@ -67,7 +67,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_data"
+                    android:id="@+id/Fname_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
@@ -83,8 +83,8 @@
                 android:textColor="@color/white"
                 android:textSize="12dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/passwordInput"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInput"/>
+                app:layout_constraintEnd_toEndOf="@+id/Fname"
+                app:layout_constraintTop_toBottomOf="@+id/Fname"/>
 
             <Button
                 android:id="@+id/signIn_btn"
@@ -97,7 +97,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.519"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+                app:layout_constraintTop_toBottomOf="@+id/Fname" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"

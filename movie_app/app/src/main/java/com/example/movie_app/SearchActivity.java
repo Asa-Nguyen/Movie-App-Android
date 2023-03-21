@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.Adapter.SearchMovieAdapter;
 import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -87,6 +88,29 @@ public class SearchActivity extends AppCompatActivity {
         searchView = (SearchView) findViewById(R.id.search_view);
     }
 
+    private List<Episode> getEpisodes(){
+        List<Episode> episodeList = new ArrayList<>();
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/91c8f9e4ddbcbcee7d8c12ace10e6dcf.jpe",
+                "E1 - DOG & CHAINSAW",
+                "1",
+                true));
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://static.wikia.nocookie.net/chainsaw-man/images/0/07/Episode_2-1.png/revision/latest?cb=20221018090613",
+                "E2 - ARRIVAL IN TOKYO",
+                "1",
+                false));
+        episodeList.add(new Episode(
+                "Chainsaw man",
+                "https://www.slashfilm.com/img/gallery/chainsaw-man-episode-3-is-an-action-packed-funny-and-gnarly/intro-1666735069.jpg",
+                "E3 -  MEOWY'S WHEREABOUTS",
+                "1",
+                true));
+        return episodeList;
+    }
+
     private List<Movie> getMovie() {
         List<CastCrew> crewList = new ArrayList<>();
         crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/c/c2/Tobey_Maguire_2014.jpg&f=w", "Tobey Maguire"));
@@ -97,11 +121,12 @@ public class SearchActivity extends AppCompatActivity {
         List<Movie> imageMovieList = new ArrayList<>();
         imageMovieList.add(new Movie(
                 "https://znews-photo.zingcdn.me/w660/Uploaded/fsmhv/2014_02_05/Capt2_Teaser2_1Sht_v9_2.jpg",
-                "How to Train Your Dragon",
-                "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
-                "Action | adventure | S**",
+                "Chainsaw man",
+                "https://img3.hulu.com/user/v3/artwork/7b71b5a4-560b-4d8b-98c4-c5dee6004c21?base_image_bucket_name=image_manager&base_image=204c7e0e-a0bd-45fc-a7ff-5b6a60c90d62&size=1200x630&format=jpeg",
+                "action comedy demons seinen",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
         imageMovieList.add(new Movie(
                 "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_.jpg",
@@ -110,6 +135,7 @@ public class SearchActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://lumiere-a.akamaihd.net/v1/images/p_onward_19732_09862641.jpeg",
@@ -118,6 +144,7 @@ public class SearchActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://static.tvtropes.org/pmwiki/pub/images/ralphbreakstheinternet.png",
@@ -126,6 +153,7 @@ public class SearchActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         imageMovieList.add(new Movie(
                 "https://static.wikia.nocookie.net/netflix/images/2/27/Sponge_on_the_Run_Poster.jpg",
@@ -134,6 +162,7 @@ public class SearchActivity extends AppCompatActivity {
                 "Action | adventure | S**",
                 "2023 | 18+ | Season 1",
                 crewList,
+                getEpisodes(),
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 
         return imageMovieList;

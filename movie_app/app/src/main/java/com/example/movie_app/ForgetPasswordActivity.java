@@ -1,7 +1,7 @@
 package com.example.movie_app;
 
-        import android.os.Bundle;
-        import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 

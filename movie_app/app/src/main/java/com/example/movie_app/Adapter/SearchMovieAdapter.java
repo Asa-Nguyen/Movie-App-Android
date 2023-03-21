@@ -42,16 +42,16 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
     @Override
     public void onBindViewHolder(@NonNull SearchMovieViewHolder holder, int position) {
         Movie movie = searchMovieList.get(position);
-        Glide.with(holder.imageView).load(movie.getTrailerImage()).into(holder.imageView);
-        holder.nameMovie.setText(movie.getNameMovie());
+        Glide.with(holder.imageView).load(movie.getFtrailer()).into(holder.imageView);
+        holder.nameMovie.setText(movie.getFname());
         holder.genreMovie.setText(movie.getCategory());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", movie.getTrailerImage());
-                intent.putExtra("resourceId", movie.getThumbUrl());
-                intent.putExtra("name", movie.getNameMovie());
+                intent.putExtra("trailerImage", movie.getFtrailer());
+                intent.putExtra("resourceId", movie.getFthumb());
+                intent.putExtra("name", movie.getFname());
                 intent.putExtra("in4", movie.getIn4());
                 intent.putExtra("category", movie.getCategory());
                 intent.putExtra("synopsis", movie.getSynopsis());
@@ -90,7 +90,7 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
                 String strSearch = charSequence.toString();
                 List<Movie> searchResult = new ArrayList<>();
                 for(Movie movie : searchMovieList){
-                    if(movie.getNameMovie().toLowerCase().contains(strSearch.toLowerCase())){
+                    if(movie.getFname().toLowerCase().contains(strSearch.toLowerCase())){
                         searchResult.add(movie);
                     }
                 }

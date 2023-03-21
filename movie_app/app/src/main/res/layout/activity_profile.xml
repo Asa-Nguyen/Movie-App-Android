@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/releway_b7"
-                android:text="HydraCoder"
+                android:text="\@HydraCoder"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="@+id/cardView3"
@@ -49,12 +49,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/releway_b4"
-                android:text="\@ngodat2610"
+                android:text="ngodat.it213@gmail.com"
                 android:textColor="@color/un_select_color"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
@@ -72,7 +72,7 @@
                 android:textColor="@color/white"
                 android:textSize="22dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_email" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/collectionRecyclerView"

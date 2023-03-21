@@ -22,4 +22,5 @@
     <color name="gray_rating">#DADADA</color>
     <color name="un_select_color">#90939B</color>
     <color name="select_color">#2EAEBE</color>
+    <color name="title_grey">#979799</color>
 </resources>
