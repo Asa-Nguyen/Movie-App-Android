@@ -30,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        onClickButtonSetting();
+//        onClickButtonSetting();
 
         navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setSelectedItemId(R.id.nav_account);
@@ -86,15 +86,15 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void onClickButtonSetting(){
-        buttonSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+//    private void onClickButtonSetting(){
+//        buttonSetting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     private void setCollectionRecyclerView() {
         collectionAdapter = new CollectionAdapter(this, getMovie());
