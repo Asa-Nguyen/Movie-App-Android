@@ -1,10 +1,12 @@
 package com.example.movie_app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,12 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.Adapter.EpisodeAdapter;
 import com.example.movie_app.Adapter.TrailerDetailAdapter;
-import com.example.movie_app.Database.Database;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Adapter.CastCrewAdapter;
-import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +37,41 @@ public class DetailActivity extends AppCompatActivity {
     private CastCrewAdapter castCrewAdapter;
     private EpisodeAdapter episodeAdapter;
     private TrailerDetailAdapter trailerDetailAdapter;
-    private Database db;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
+        String FuidMovie = getIntent().getStringExtra("Fuid");
         initUi();
-        setUpCastRecyclerView();
-        setUpEpisodeRecyclerView();
-        setUpTrailerRecyclerView();
+        DocumentReference movieRef = db.collection("movie").document(FuidMovie);
+        movieRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Movie2 moviePage = documentSnapshot.toObject(Movie2.class);
+                Glide.with(mTrailerMovie).load(moviePage.getFtrailer()).into(mTrailerMovie);
+                mMovieName.setText(moviePage.getFname());
+                mSynopsis.setText(moviePage.getFsynopsis());
+                mCategory.setText(moviePage.toStringCategory());
+                mIn4.setText(moviePage.toStringIn4());
+                mEpisode.setText(moviePage.toStringSeasonEpisode());
+
+            }
+        });
+
+        DocumentReference castRef = db.collection("cast").document(FuidMovie);
+        castRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+
+                }
+            }
+        });
+//        setUpTrailerRecyclerView(list);
 
 
-        Glide.with(mTrailerMovie).load(getIntent().getStringExtra("trailerImage")).into(mTrailerMovie);
-        mMovieName.setText(getIntent().getStringExtra("name"));
-        mIn4.setText(getIntent().getStringExtra("in4"));
-        mCategory.setText(getIntent().getStringExtra("category"));
-        mSynopsis.setText(getIntent().getStringExtra("synopsis"));
+
     }
 
     private void initUi(){
@@ -58,10 +84,11 @@ public class DetailActivity extends AppCompatActivity {
         mCategory = (TextView) findViewById(R.id.detail_category);
         rcvEpisode = (RecyclerView) findViewById(R.id.detail_episode_rcv);
         rcvTrailer = (RecyclerView) findViewById(R.id.rcv_trailer);
+        mEpisode = (TextView) findViewById(R.id.title_episode);
     }
 
-    void setUpTrailerRecyclerView(){
-        trailerDetailAdapter = new TrailerDetailAdapter(this, db.getMovie2Db());
+    void setUpTrailerRecyclerView(List<Movie2> movie2List){
+        trailerDetailAdapter = new TrailerDetailAdapter(this, movie2List);
         rcvTrailer.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvTrailer.setHasFixedSize(true);
         rcvTrailer.setAdapter(trailerDetailAdapter);
@@ -74,15 +101,8 @@ public class DetailActivity extends AppCompatActivity {
         rcvEpisode.setAdapter(episodeAdapter);
     }
 
-    void setUpCastRecyclerView(){
-        List<CastCrew> castCrewList = new ArrayList<>();
-        castCrewList.add(new CastCrew("https://genk.mediacdn.vn/2019/11/9/photo-1-1573268390484205763958.jpg", "Tomioka Giyuu"));
-        castCrewList.add(new CastCrew("https://genk.mediacdn.vn/2019/11/9/photo-1-1573268390484205763958.jpg", "Tomioka Giyuu"));
-        castCrewList.add(new CastCrew("https://genk.mediacdn.vn/2019/11/9/photo-1-1573268390484205763958.jpg", "Tomioka Giyuu"));
-        castCrewList.add(new CastCrew("https://genk.mediacdn.vn/2019/11/9/photo-1-1573268390484205763958.jpg", "Tomioka Giyuu"));
-        castCrewList.add(new CastCrew("https://genk.mediacdn.vn/2019/11/9/photo-1-1573268390484205763958.jpg", "Tomioka Giyuu"));
-
-        castCrewAdapter = new CastCrewAdapter(this, castCrewList);
+    void setUpCastRecyclerView(List<CastCrew> list){
+                castCrewAdapter = new CastCrewAdapter(this, list);
         rcvCast.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvCast.setHasFixedSize(true);
         rcvCast.setAdapter(castCrewAdapter);

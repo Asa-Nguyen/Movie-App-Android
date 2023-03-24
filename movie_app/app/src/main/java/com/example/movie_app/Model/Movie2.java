@@ -2,6 +2,7 @@ package com.example.movie_app.Model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Data in firebase
@@ -16,14 +17,14 @@ public class Movie2 {
     private int Fmmpa;
     private int Fyear;
     private int Fseason;
+    private ArrayList<String> Fcategory;
     private List<Episode> Eepisode;
     private List<CastCrew> Ccast;
-    private List<CategoryMovie> Ccategory;
 
     public Movie2() {
     }
 
-    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason) {
+    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, ArrayList<String> fcategory) {
         Fuid = fuid;
         Fthumb = fthumb;
         Ftrailer = ftrailer;
@@ -33,9 +34,10 @@ public class Movie2 {
         Fmmpa = fmmpa;
         Fyear = fyear;
         Fseason = fseason;
+        Fcategory = fcategory;
     }
 
-    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, List<Episode> eepisode, List<CastCrew> ccast, List<CategoryMovie> ccategory) {
+    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, List<Episode> eepisode, List<CastCrew> ccast, ArrayList<String> fcategory) {
         Fuid = fuid;
         Fthumb = fthumb;
         Ftrailer = ftrailer;
@@ -47,17 +49,21 @@ public class Movie2 {
         Fseason = fseason;
         Eepisode = eepisode;
         Ccast = ccast;
-        Ccategory = ccategory;
+        Fcategory = fcategory;
+    }
+    public String toStringIn4(){
+        return Fyear + " " + Fmmpa + " Season " + Fseason;
     }
 
-    public String toStringIn4(){
-        return getFyear() + " " + getFmmpa() + " " + getFseason();
+    public String toStringSeasonEpisode(){
+        return "S"+ Fseason + " - " + Fname;
     }
 
     public String toStringCategory(){
         String res = "";
-        for(CategoryMovie category: getCcategory()){
-            res+=category.getNameCategory()+" ";
+        for(int i = 0;i < Fcategory.size() && i < 3; ++i){
+            res+= Fcategory.get(i) +" ";
+
         }
         return res;
     }
@@ -157,12 +163,12 @@ public class Movie2 {
         Ccast = ccast;
     }
 
-    public List<CategoryMovie> getCcategory() {
-        return Ccategory;
+    public ArrayList<String> getFcategory() {
+        return Fcategory;
     }
 
-    public void setCcategory(List<CategoryMovie> ccategory) {
-        Ccategory = ccategory;
+    public void setFcategory(ArrayList<String>  fcategory) {
+        Fcategory = fcategory;
     }
 
     public int getFseason() {

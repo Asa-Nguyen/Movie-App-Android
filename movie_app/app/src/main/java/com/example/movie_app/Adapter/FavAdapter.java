@@ -40,17 +40,12 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         final Movie2 imageMovie = movieList.get(position);
         Glide.with(holder.favThumb).load(imageMovie.getFthumb()).into(holder.favThumb);
         holder.favNameMovie.setText(imageMovie.getFname());
-        holder.favFavorite.setText(imageMovie.toStringIn4());
+        holder.favFavorite.setText(imageMovie.toStringSeasonEpisode());
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", imageMovie.getFtrailer());
-                intent.putExtra("resourceId", imageMovie.getFthumb());
-                intent.putExtra("name", imageMovie.getFname());
-                intent.putExtra("in4", imageMovie.toStringIn4());
-                intent.putExtra("category", imageMovie.toStringCategory());
-                intent.putExtra("synopsis", imageMovie.getFsynopsis());
+                intent.putExtra("Fuid", imageMovie.getFuid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

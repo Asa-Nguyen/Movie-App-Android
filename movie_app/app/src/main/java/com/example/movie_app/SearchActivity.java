@@ -16,7 +16,14 @@ import com.example.movie_app.Database.Database;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +37,35 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView searchRcv;
 //  Grid view
     private GridView gridView;
-    private Database db;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         initUi();
+        CollectionReference movieRef = db.collection("movie");
+        movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    List<Movie2> list = new ArrayList<>();
+                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        Movie2 movie2 = documentSnapshot.toObject(Movie2.class);
+                        list.add(movie2);
+                    }
+                    setSearchRecyclerView(list);
+                }
+            }
+        });
 
-//      Search view
-        searchMovieAdapter = new SearchMovieAdapter(this, db.getMovie2Db());
+
+        navigationView.setSelectedItemId(R.id.nav_search);
+        setBottomNav(navigationView);
+    }
+
+    private void setSearchRecyclerView(List<Movie2> list){
+        searchMovieAdapter = new SearchMovieAdapter(SearchActivity.this, list);
         searchRcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         searchRcv.setAdapter(searchMovieAdapter);
         searchView.clearFocus();
@@ -56,9 +82,8 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-        navigationView.setSelectedItemId(R.id.nav_search);
-        setBottomNav(navigationView);
     }
+
 
     private void setBottomNav(BottomNavigationView bottomNavigationView){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

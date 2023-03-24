@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,26 +169,6 @@ public class AdminActivity extends AppCompatActivity {
                 });
             }
 
-            i = 0;
-            for(CategoryMovie categoryMovie: movie2.getCcategory()){
-                String getI = Integer.toString(i++);
-                Map<String, Object> maps1 = new HashMap<>();
-                maps1.put("nameCategory", categoryMovie.getNameCategory());
-                db.collection("category").document(movie2.getFuid()).collection("category_" +getI).document(getI).set(maps1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AdminActivity.this, "Add category successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(AdminActivity.this, "Fail3 :)", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-            }
-
-
-
             Map<String, Object> maps4 = new HashMap<>();
             maps4.put("Fuid", movie2.getFuid());
             maps4.put("Fthumb", movie2.getFthumb());
@@ -198,6 +179,7 @@ public class AdminActivity extends AppCompatActivity {
             maps4.put("Fmmpa", movie2.getFmmpa());
             maps4.put("Fyear", movie2.getFyear());
             maps4.put("Fseason", movie2.getFseason());
+            maps4.put("Fcategory",movie2.getFcategory());
             db.collection("movie").document(movie2.getFuid()).set(maps4).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -210,7 +192,6 @@ public class AdminActivity extends AppCompatActivity {
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
-
         }
     }
 
@@ -224,14 +205,13 @@ public class AdminActivity extends AppCompatActivity {
         return crewList;
     }
 
-    private List<CategoryMovie> getCategorys() {
-        List<CategoryMovie> list = new ArrayList<>();
-
-        list.add(new CategoryMovie("Most popular"));
-        list.add(new CategoryMovie("Action"));
-        list.add(new CategoryMovie("Comedy"));
-        list.add(new CategoryMovie("Romance"));
-        list.add(new CategoryMovie("Horror"));
+    private ArrayList<String> getCategorys() {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Most popular");
+        list.add("Action");
+        list.add("Comedy");
+        list.add("Romance");
+        list.add("Horror");
         return list;
     }
 

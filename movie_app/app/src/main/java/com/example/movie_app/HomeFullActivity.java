@@ -51,12 +51,9 @@ public class HomeFullActivity extends AppCompatActivity {
     private CategoryAdapter categoryAdapter;
     private GenreButtonAdapter categoryButtonAdapter;
     private ContinueWatchingAdapter continueWatchingAdapter;
-    // Model
-    private List<Movie> movieList;
-    private DatabaseReference featured = FirebaseDatabase.getInstance().getReference("featured");
     // Database
+    private List<Movie2> movie2List = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private List<Movie2> movie2s = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +68,6 @@ public class HomeFullActivity extends AppCompatActivity {
                     List<Movie2> list = new ArrayList<>();
                     for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
                         Movie2 movie2 = documentSnapshot.toObject(Movie2.class);
-                        Log.d("Creator", movie2.toString());
                         list.add(movie2);
                     }
                     setImageSlider(viewPager2, sliderHandler, list);
@@ -81,10 +77,8 @@ public class HomeFullActivity extends AppCompatActivity {
                 }
             }
         });
-              
         navigationView.setSelectedItemId(R.id.nav_home);
         setBottomNav(navigationView);
-
     }
 
     private void setWatchingContinueRecyclerView(List<Movie2> movie2List){

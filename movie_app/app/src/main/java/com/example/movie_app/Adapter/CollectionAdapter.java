@@ -42,12 +42,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Co
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", movie.getFtrailer());
-                intent.putExtra("resourceId", movie.getFthumb());
-                intent.putExtra("name", movie.getFname());
-                intent.putExtra("in4", movie.toStringIn4());
-                intent.putExtra("category", movie.toStringCategory());
-                intent.putExtra("synopsis", movie.getFsynopsis());
+                intent.putExtra("Fuid", movie.getFuid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

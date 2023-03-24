@@ -13,14 +13,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.movie_app.Adapter.CollectionAdapter;
 import com.example.movie_app.Database.Database;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -34,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private Button buttonMovieList, buttonWatched, buttonMyReview, buttonSetting, buttonLogout;
     private FirebaseFirestore realtimeRef = FirebaseFirestore.getInstance();
-    private Database db;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +49,21 @@ public class ProfileActivity extends AppCompatActivity {
         initUi();
         onClickButtonSetting();
 
-        realtimeRef.collection("movie").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            private static final String TAG = "movie";
+        CollectionReference movieRef = db.collection("movie");
+        movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot document : task.getResult()){
-                        Log.d(TAG, document.getId() + "=>" + document.getData());
+                    List<Movie2> list = new ArrayList<>();
+                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        Movie2 movie2 = documentSnapshot.toObject(Movie2.class);
+                        list.add(movie2);
                     }
-                    Toast.makeText(ProfileActivity.this, "Add category successfully", Toast.LENGTH_SHORT).show();
-
-                }else{
-                    Toast.makeText(ProfileActivity.this, "Add category successfully", Toast.LENGTH_SHORT).show();
+                    setCollectionRecyclerView(list);
                 }
             }
         });
+
 
         navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setSelectedItemId(R.id.nav_account);
@@ -131,8 +137,8 @@ public class ProfileActivity extends AppCompatActivity {
 //        });
 //    }
 
-    private void setCollectionRecyclerView() {
-        collectionAdapter = new CollectionAdapter(this, db.getMovie2Db());
+    private void setCollectionRecyclerView(List<Movie2> list) {
+        collectionAdapter = new CollectionAdapter(this, list);
         collectionRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         collectionRecyclerView.setAdapter(collectionAdapter);
     }

@@ -38,29 +38,29 @@ public class Database {
             }
         });
         setCast(movie2s);
-        setCategory(movie2s);
+//        setCategory(movie2s);
         setEpisode(movie2s);
         this.movie2Db = movie2s;
     }
 
-    private void setCategory(List<Movie2> list){
-        int i = 0;
-        for(Movie2 movie2 : list){
-            String getI = Integer.toString(i++);
-            db.collection("category").document(movie2.getFuid()).collection("category_" +getI).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if(task.isSuccessful()){
-                        List<CategoryMovie> categoryMovies = new ArrayList<>();
-                        for(QueryDocumentSnapshot document : task.getResult()){
-                            categoryMovies.add(document.toObject(CategoryMovie.class));
-                        }
-                        movie2.setCcategory(categoryMovies);
-                    }
-                }
-            });
-        }
-    }
+//    private void setCategory(List<Movie2> list){
+//        int i = 0;
+//        for(Movie2 movie2 : list){
+//            String getI = Integer.toString(i++);
+//            db.collection("category").document(movie2.getFuid()).collection("category_" +getI).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if(task.isSuccessful()){
+//                        List<CategoryMovie> categoryMovies = new ArrayList<>();
+//                        for(QueryDocumentSnapshot document : task.getResult()){
+//                            categoryMovies.add(document.toObject(CategoryMovie.class));
+//                        }
+//                        movie2.setCcategory(categoryMovies);
+//                    }
+//                }
+//            });
+//        }
+//    }
 
     private void setCast(List<Movie2> list){
         int i = 0;
@@ -100,7 +100,7 @@ public class Database {
         }
     }
 
-    public List<Movie2> getMovie2Db() {
+    public List<Movie2> getMovie2Db(String s) {
         return movie2Db;
     }
 
