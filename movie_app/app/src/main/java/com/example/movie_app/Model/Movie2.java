@@ -1,8 +1,11 @@
 package com.example.movie_app.Model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.List;
 
 // Data in firebase
+@IgnoreExtraProperties
 public class Movie2 {
     private String Fuid;
     private String Fthumb;
@@ -12,6 +15,7 @@ public class Movie2 {
     private String FvideoTrailer;
     private int Fmmpa;
     private int Fyear;
+    private int Fseason;
     private List<Episode> Eepisode;
     private List<CastCrew> Ccast;
     private List<CategoryMovie> Ccategory;
@@ -19,18 +23,58 @@ public class Movie2 {
     public Movie2() {
     }
 
-    public Movie2(String Fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, List<Episode> Eepisode, List<CastCrew> Ccast, List<CategoryMovie> Ccategory) {
-        this.Fuid = Fuid;
-        this.Fthumb = fthumb;
-        this.Ftrailer = ftrailer;
-        this.Fname = fname;
-        this.Fsynopsis = fsynopsis;
-        this.FvideoTrailer = fvideoTrailer;
-        this.Fmmpa = fmmpa;
-        this.Fyear = fyear;
-        this.Eepisode = Eepisode;
-        this.Ccast = Ccast;
-        this.Ccategory = Ccategory;
+    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason) {
+        Fuid = fuid;
+        Fthumb = fthumb;
+        Ftrailer = ftrailer;
+        Fname = fname;
+        Fsynopsis = fsynopsis;
+        FvideoTrailer = fvideoTrailer;
+        Fmmpa = fmmpa;
+        Fyear = fyear;
+        Fseason = fseason;
+    }
+
+    public Movie2(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, List<Episode> eepisode, List<CastCrew> ccast, List<CategoryMovie> ccategory) {
+        Fuid = fuid;
+        Fthumb = fthumb;
+        Ftrailer = ftrailer;
+        Fname = fname;
+        Fsynopsis = fsynopsis;
+        FvideoTrailer = fvideoTrailer;
+        Fmmpa = fmmpa;
+        Fyear = fyear;
+        Fseason = fseason;
+        Eepisode = eepisode;
+        Ccast = ccast;
+        Ccategory = ccategory;
+    }
+
+    public String toStringIn4(){
+        return getFyear() + " " + getFmmpa() + " " + getFseason();
+    }
+
+    public String toStringCategory(){
+        String res = "";
+        for(CategoryMovie category: getCcategory()){
+            res+=category.getNameCategory()+" ";
+        }
+        return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie2{" +
+                "Fuid='" + Fuid + '\'' +
+                ", Fthumb='" + Fthumb + '\'' +
+                ", Ftrailer='" + Ftrailer + '\'' +
+                ", Fname='" + Fname + '\'' +
+                ", Fsynopsis='" + Fsynopsis + '\'' +
+                ", FvideoTrailer='" + FvideoTrailer + '\'' +
+                ", Fmmpa=" + Fmmpa +
+                ", Fyear=" + Fyear +
+                ", Fseason=" + Fseason +
+                '}';
     }
 
     public String getFuid() {
@@ -102,7 +146,7 @@ public class Movie2 {
     }
 
     public void setEepisode(List<Episode> eepisode) {
-        this.Eepisode = eepisode;
+        Eepisode = eepisode;
     }
 
     public List<CastCrew> getCcast() {
@@ -110,7 +154,7 @@ public class Movie2 {
     }
 
     public void setCcast(List<CastCrew> ccast) {
-        this.Ccast = ccast;
+        Ccast = ccast;
     }
 
     public List<CategoryMovie> getCcategory() {
@@ -118,6 +162,14 @@ public class Movie2 {
     }
 
     public void setCcategory(List<CategoryMovie> ccategory) {
-        this.Ccategory = ccategory;
+        Ccategory = ccategory;
+    }
+
+    public int getFseason() {
+        return Fseason;
+    }
+
+    public void setFseason(int fseason) {
+        Fseason = fseason;
     }
 }

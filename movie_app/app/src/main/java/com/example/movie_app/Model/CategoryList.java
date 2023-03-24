@@ -4,9 +4,9 @@ import java.util.List;
 
 public class CategoryList {
     private String nameCategory;
-    private List<Movie> categoryMovieList;
+    private List<Movie2> categoryMovieList;
 
-    public CategoryList(String nameCategory, List<Movie> imageMovieList) {
+    public CategoryList(String nameCategory, List<Movie2> imageMovieList) {
         this.nameCategory = nameCategory;
         this.categoryMovieList = imageMovieList;
     }
@@ -19,11 +19,11 @@ public class CategoryList {
         this.nameCategory = nameCategory;
     }
 
-    public List<Movie> getCategoryMovieList() {
+    public List<Movie2> getCategoryMovieList() {
         return categoryMovieList;
     }
 
-    public void setCategoryMovieList(List<Movie> categoryMovieList) {
+    public void setCategoryMovieList(List<Movie2> categoryMovieList) {
         this.categoryMovieList = categoryMovieList;
     }
 }

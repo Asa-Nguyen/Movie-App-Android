@@ -39,7 +39,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
         Glide.with(holder.imageMovie).load(episode.getImageEpisode()).into(holder.imageMovie);
         holder.nameMovie.setText(episode.getNameMovie());
         holder.episodeName.setText(episode.getEpisodeTitle());
-        if(episode.isCheck() == true){
+        if(episode.getIsCheck() == true){
             holder.subtitled.setText("Subscribed");
         }else{
             holder.subtitled.setText("Subscribe");

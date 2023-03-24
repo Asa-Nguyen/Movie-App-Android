@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -21,9 +22,9 @@ import java.util.List;
 public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchingAdapter.ContinueWatchingViewHolder>{
     
     private Context context;
-    private List<Movie> continueWatchingLists;
+    private List<Movie2> continueWatchingLists;
 
-    public ContinueWatchingAdapter(Context context, List<Movie> continueWatchingLists) {
+    public ContinueWatchingAdapter(Context context, List<Movie2> continueWatchingLists) {
         this.context = context;
         this.continueWatchingLists = continueWatchingLists;
     }
@@ -37,12 +38,12 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
 
     @Override
     public void onBindViewHolder(@NonNull ContinueWatchingViewHolder holder, int position) {
-        final Movie movie = continueWatchingLists.get(position);
+        final Movie2 movie = continueWatchingLists.get(position);
         if(movie == null) return;
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
         holder.titleMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.getIn4());
+        holder.genreMovie.setText(movie.toStringIn4());
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,9 +51,9 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
                 intent.putExtra("trailerImage", movie.getFtrailer());
                 intent.putExtra("resourceId", movie.getFthumb());
                 intent.putExtra("name", movie.getFname());
-                intent.putExtra("in4", movie.getIn4());
-                intent.putExtra("category", movie.getCategory());
-                intent.putExtra("synopsis", movie.getSynopsis());
+                intent.putExtra("in4", movie.toStringIn4());
+                intent.putExtra("category", movie.toStringCategory());
+                intent.putExtra("synopsis", movie.getFsynopsis());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

@@ -47,7 +47,7 @@ public class Episode {
         this.episodeTitle = episodeTitle;
     }
 
-    public boolean isCheck() {
+    public boolean getIsCheck() {
         return isCheck;
     }
 

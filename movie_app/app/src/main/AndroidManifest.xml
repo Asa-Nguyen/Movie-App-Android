@@ -40,6 +40,9 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".FavouriteActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".AdminActivity"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

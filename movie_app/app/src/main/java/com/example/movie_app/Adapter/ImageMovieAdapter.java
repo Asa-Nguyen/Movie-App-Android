@@ -14,15 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.ImageMovieViewHolder>{
     Context context;
-    List<Movie> imageMovies;
+    List<Movie2> imageMovies;
 
-    public void setData(List<Movie> list){
+    public void setData(List<Movie2> list){
         this.imageMovies = list;
         notifyDataSetChanged();
     }
@@ -36,12 +37,12 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-        final Movie movie = imageMovies.get(position);
+        final Movie2 movie = imageMovies.get(position);
         if(movie == null) return;
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFthumb()).into(holder.imageMovie);
         holder.titleMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.getIn4());
+        holder.genreMovie.setText(movie.toStringIn4());
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,9 +50,9 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
                 intent.putExtra("trailerImage", movie.getFtrailer());
                 intent.putExtra("resourceId", movie.getFthumb());
                 intent.putExtra("name", movie.getFname());
-                intent.putExtra("in4", movie.getIn4());
-                intent.putExtra("category", movie.getCategory());
-                intent.putExtra("synopsis", movie.getSynopsis());
+                intent.putExtra("in4", movie.toStringIn4());
+                intent.putExtra("category", movie.toStringCategory());
+                intent.putExtra("synopsis", movie.getFsynopsis());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

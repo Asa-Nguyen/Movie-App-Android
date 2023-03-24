@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder>{
 
-    private List<Movie> movieSliders;
+    private List<Movie2> movieSliders;
     private ViewPager2 viewPager2;
 
-    public SliderAdapter(List<Movie> movieSliders, ViewPager2 viewPager2) {
+    public SliderAdapter(List<Movie2> movieSliders, ViewPager2 viewPager2) {
         this.movieSliders = movieSliders;
         this.viewPager2 = viewPager2;
     }
@@ -39,7 +40,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        final Movie imageMovie = movieSliders.get(position);
+        final Movie2 imageMovie = movieSliders.get(position);
         Glide.with(holder.imageView).load(movieSliders.get(position).getFtrailer()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +49,9 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 intent.putExtra("trailerImage", imageMovie.getFtrailer());
                 intent.putExtra("resourceId", imageMovie.getFthumb());
                 intent.putExtra("name", imageMovie.getFname());
-                intent.putExtra("in4", imageMovie.getIn4());
-                intent.putExtra("category", imageMovie.getCategory());
-                intent.putExtra("synopsis", imageMovie.getSynopsis());
+                intent.putExtra("in4", imageMovie.toStringIn4());
+                intent.putExtra("category", imageMovie.toStringCategory());
+                intent.putExtra("synopsis", imageMovie.getFsynopsis());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

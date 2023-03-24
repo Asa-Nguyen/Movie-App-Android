@@ -12,7 +12,7 @@ public class Movie {
     private List<Episode> episodeList;
     private String synopsis;
 
-    public Movie(String resourceId, String title) {
+    public Movie(String resourceId, String title, int i) {
         this.Fthumb = resourceId;
         this.Fname = title;
     }

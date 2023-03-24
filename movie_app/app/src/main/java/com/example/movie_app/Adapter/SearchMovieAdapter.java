@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.DetailActivity;
+import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import android.content.Context;
@@ -25,9 +26,9 @@ import java.util.List;
 
 public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.SearchMovieViewHolder> implements Filterable {
     Context context;
-    List<Movie> searchMovieList;
+    List<Movie2> searchMovieList;
 
-    public SearchMovieAdapter(Context context, List<Movie> searchMovieList) {
+    public SearchMovieAdapter(Context context, List<Movie2> searchMovieList) {
         this.context = context;
         this.searchMovieList = searchMovieList;
     }
@@ -41,10 +42,10 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SearchMovieViewHolder holder, int position) {
-        Movie movie = searchMovieList.get(position);
+        Movie2 movie = searchMovieList.get(position);
         Glide.with(holder.imageView).load(movie.getFtrailer()).into(holder.imageView);
         holder.nameMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.getCategory());
+        holder.genreMovie.setText(movie.toStringCategory());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,9 +53,9 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
                 intent.putExtra("trailerImage", movie.getFtrailer());
                 intent.putExtra("resourceId", movie.getFthumb());
                 intent.putExtra("name", movie.getFname());
-                intent.putExtra("in4", movie.getIn4());
-                intent.putExtra("category", movie.getCategory());
-                intent.putExtra("synopsis", movie.getSynopsis());
+                intent.putExtra("in4", movie.toStringIn4());
+                intent.putExtra("category", movie.toStringCategory());
+                intent.putExtra("synopsis", movie.getFsynopsis());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
@@ -88,8 +89,8 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String strSearch = charSequence.toString();
-                List<Movie> searchResult = new ArrayList<>();
-                for(Movie movie : searchMovieList){
+                List<Movie2> searchResult = new ArrayList<>();
+                for(Movie2 movie : searchMovieList){
                     if(movie.getFname().toLowerCase().contains(strSearch.toLowerCase())){
                         searchResult.add(movie);
                     }
@@ -102,7 +103,7 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                searchMovieList = (List<Movie>) filterResults.values;
+                searchMovieList = (List<Movie2>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

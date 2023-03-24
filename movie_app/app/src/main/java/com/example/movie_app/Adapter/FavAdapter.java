@@ -15,22 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     private Context context;
-    private List<Movie> movieList;
+    private List<Movie2> movieList;
 
-    public FavAdapter(Context context, List<Movie> movieList) {
+    public FavAdapter(Context context, List<Movie2> movieList) {
         this.context = context;
         this.movieList = movieList;
-    }
-
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,10 +37,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FavViewHolder holder, int position) {
-        final Movie imageMovie = movieList.get(position);
+        final Movie2 imageMovie = movieList.get(position);
         Glide.with(holder.favThumb).load(imageMovie.getFthumb()).into(holder.favThumb);
         holder.favNameMovie.setText(imageMovie.getFname());
-        holder.favFavorite.setText(imageMovie.getIn4());
+        holder.favFavorite.setText(imageMovie.toStringIn4());
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,9 +48,9 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
                 intent.putExtra("trailerImage", imageMovie.getFtrailer());
                 intent.putExtra("resourceId", imageMovie.getFthumb());
                 intent.putExtra("name", imageMovie.getFname());
-                intent.putExtra("in4", imageMovie.getIn4());
-                intent.putExtra("category", imageMovie.getCategory());
-                intent.putExtra("synopsis", imageMovie.getSynopsis());
+                intent.putExtra("in4", imageMovie.toStringIn4());
+                intent.putExtra("category", imageMovie.toStringCategory());
+                intent.putExtra("synopsis", imageMovie.getFsynopsis());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

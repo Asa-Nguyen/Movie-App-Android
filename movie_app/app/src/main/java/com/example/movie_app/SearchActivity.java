@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.Adapter.SearchMovieAdapter;
+import com.example.movie_app.Database.Database;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
@@ -29,6 +30,8 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView searchRcv;
 //  Grid view
     private GridView gridView;
+    private Database db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
         initUi();
 
 //      Search view
-        searchMovieAdapter = new SearchMovieAdapter(this, getMovie());
+        searchMovieAdapter = new SearchMovieAdapter(this, db.getMovie2Db());
         searchRcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         searchRcv.setAdapter(searchMovieAdapter);
         searchView.clearFocus();

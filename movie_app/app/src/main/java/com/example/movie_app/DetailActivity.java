@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.Adapter.EpisodeAdapter;
 import com.example.movie_app.Adapter.TrailerDetailAdapter;
+import com.example.movie_app.Database.Database;
 import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Adapter.CastCrewAdapter;
 import com.example.movie_app.Model.CategoryList;
@@ -29,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     private CastCrewAdapter castCrewAdapter;
     private EpisodeAdapter episodeAdapter;
     private TrailerDetailAdapter trailerDetailAdapter;
+    private Database db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         setUpCastRecyclerView();
         setUpEpisodeRecyclerView();
         setUpTrailerRecyclerView();
+
 
         Glide.with(mTrailerMovie).load(getIntent().getStringExtra("trailerImage")).into(mTrailerMovie);
         mMovieName.setText(getIntent().getStringExtra("name"));
@@ -58,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     void setUpTrailerRecyclerView(){
-        trailerDetailAdapter = new TrailerDetailAdapter(this, getMovie());
+        trailerDetailAdapter = new TrailerDetailAdapter(this, db.getMovie2Db());
         rcvTrailer.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvTrailer.setHasFixedSize(true);
         rcvTrailer.setAdapter(trailerDetailAdapter);
@@ -83,16 +86,6 @@ public class DetailActivity extends AppCompatActivity {
         rcvCast.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvCast.setHasFixedSize(true);
         rcvCast.setAdapter(castCrewAdapter);
-    }
-    private List<CategoryList> getListCategory() {
-        List<CategoryList> list = new ArrayList<>();
-
-        list.add(new CategoryList("Most popular", getMovie()));
-        list.add(new CategoryList("Action", getMovie()));
-        list.add(new CategoryList("Comedy", getMovie()));
-        list.add(new CategoryList("Romance", getMovie()));
-        list.add(new CategoryList("Horror", getMovie()));
-        return list;
     }
 
     private List<Episode> getEpisodes(){
