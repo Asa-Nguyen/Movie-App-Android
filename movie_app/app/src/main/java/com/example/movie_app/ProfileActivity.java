@@ -2,31 +2,21 @@ package com.example.movie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.movie_app.Adapter.CollectionAdapter;
-import com.example.movie_app.Database.Database;
-import com.example.movie_app.Model.CastCrew;
-import com.example.movie_app.Model.Episode;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -54,9 +44,9 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    List<Movie2> list = new ArrayList<>();
+                    List<Movie> list = new ArrayList<>();
                     for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                        Movie2 movie2 = documentSnapshot.toObject(Movie2.class);
+                        Movie movie2 = documentSnapshot.toObject(Movie.class);
                         list.add(movie2);
                     }
                     setCollectionRecyclerView(list);
@@ -137,7 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
 //        });
 //    }
 
-    private void setCollectionRecyclerView(List<Movie2> list) {
+    private void setCollectionRecyclerView(List<Movie> list) {
         collectionAdapter = new CollectionAdapter(this, list);
         collectionRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         collectionRecyclerView.setAdapter(collectionAdapter);

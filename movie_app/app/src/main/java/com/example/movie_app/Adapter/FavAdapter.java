@@ -15,16 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     private Context context;
-    private List<Movie2> movieList;
+    private List<Movie> movieList;
 
-    public FavAdapter(Context context, List<Movie2> movieList) {
+    public FavAdapter(Context context, List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
     }
@@ -37,7 +36,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FavViewHolder holder, int position) {
-        final Movie2 imageMovie = movieList.get(position);
+        final Movie imageMovie = movieList.get(position);
         Glide.with(holder.favThumb).load(imageMovie.getFthumb()).into(holder.favThumb);
         holder.favNameMovie.setText(imageMovie.getFname());
         holder.favFavorite.setText(imageMovie.toStringSeasonEpisode());

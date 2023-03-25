@@ -96,8 +96,6 @@ public class SignInActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     onHomeFullActivity();
-                    emailEditText.getText().clear();
-                    passwordEditText.getText().clear();
                 }else{
                     Toast.makeText(SignInActivity.this, "Wrong password or email", Toast.LENGTH_SHORT).show();
                 }

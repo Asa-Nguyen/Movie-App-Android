@@ -11,15 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 import java.util.List;
 
 public class TrailerDetailAdapter extends RecyclerView.Adapter<TrailerDetailAdapter.TrailerDetailViewHolder>{
     private Context context;
-    private List<Movie2> movieList;
+    private List<Movie> movieList;
 
-    public TrailerDetailAdapter(Context context, List<Movie2> movieList) {
+    public TrailerDetailAdapter(Context context, List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
     }
@@ -33,7 +32,7 @@ public class TrailerDetailAdapter extends RecyclerView.Adapter<TrailerDetailAdap
 
     @Override
     public void onBindViewHolder(@NonNull TrailerDetailViewHolder holder, int position) {
-        final Movie2 movie = movieList.get(position);
+        final Movie movie = movieList.get(position);
         if(movie == null) return;
         Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
     }

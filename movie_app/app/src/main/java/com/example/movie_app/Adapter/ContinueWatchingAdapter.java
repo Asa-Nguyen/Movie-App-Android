@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -22,9 +21,9 @@ import java.util.List;
 public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchingAdapter.ContinueWatchingViewHolder>{
     
     private Context context;
-    private List<Movie2> continueWatchingLists;
+    private List<Movie> continueWatchingLists;
 
-    public ContinueWatchingAdapter(Context context, List<Movie2> continueWatchingLists) {
+    public ContinueWatchingAdapter(Context context, List<Movie> continueWatchingLists) {
         this.context = context;
         this.continueWatchingLists = continueWatchingLists;
     }
@@ -38,7 +37,7 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
 
     @Override
     public void onBindViewHolder(@NonNull ContinueWatchingViewHolder holder, int position) {
-        final Movie2 movie = continueWatchingLists.get(position);
+        final Movie movie = continueWatchingLists.get(position);
         if(movie == null) return;
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);

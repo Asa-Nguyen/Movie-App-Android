@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.CollectionViewHolder>{
     Context context;
-    private List<Movie2> listCollections;
+    private List<Movie> listCollections;
 
-    public CollectionAdapter(Context context, List<Movie2> listCollections) {
+    public CollectionAdapter(Context context, List<Movie> listCollections) {
         this.context = context;
         this.listCollections = listCollections;
     }
@@ -36,7 +35,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Co
 
     @Override
     public void onBindViewHolder(@NonNull CollectionViewHolder holder, int position) {
-        final Movie2 movie = listCollections.get(position);
+        final Movie movie = listCollections.get(position);
         Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override

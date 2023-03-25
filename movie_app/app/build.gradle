@@ -54,4 +54,6 @@ dependencies {
 //  firebase auth
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+//  map to object
+    implementation 'com.google.code.gson:gson:2.8.8'
 }

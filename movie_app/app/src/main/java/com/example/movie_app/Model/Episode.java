@@ -7,12 +7,11 @@ public class Episode {
     private String playMovie;
     private boolean isCheck;
 
-    public Episode(String nameMovie, String imageEpisode, String episodeTitle, String playMovie, boolean isCheck) {
+    public Episode(String nameMovie, String imageEpisode, String episodeTitle, String playMovie) {
         this.nameMovie = nameMovie;
         this.imageEpisode = imageEpisode;
         this.episodeTitle = episodeTitle;
         this.playMovie = playMovie;
-        this.isCheck = isCheck;
     }
 
     public String getNameMovie() {

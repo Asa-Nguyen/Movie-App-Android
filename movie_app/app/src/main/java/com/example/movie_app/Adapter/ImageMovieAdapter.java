@@ -14,16 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 
 import java.util.List;
 
 public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.ImageMovieViewHolder>{
     Context context;
-    List<Movie2> imageMovies;
+    List<Movie> imageMovies;
 
-    public void setData(List<Movie2> list){
+    public void setData(List<Movie> list){
         this.imageMovies = list;
         notifyDataSetChanged();
     }
@@ -37,7 +36,7 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-        final Movie2 movie = imageMovies.get(position);
+        final Movie movie = imageMovies.get(position);
         if(movie == null) return;
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFthumb()).into(holder.imageMovie);

@@ -3,7 +3,6 @@ package com.example.movie_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -20,24 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.movie_app.Adapter.ContinueWatchingAdapter;
-import com.example.movie_app.Database.Database;
-import com.example.movie_app.Model.CastCrew;
 import com.example.movie_app.Adapter.CategoryAdapter;
 import com.example.movie_app.Adapter.GenreButtonAdapter;
 import com.example.movie_app.Model.CategoryList;
-import com.example.movie_app.Model.Episode;
-import com.example.movie_app.Model.Movie;
 import com.example.movie_app.Adapter.SliderAdapter;
-import com.example.movie_app.Model.Movie2;
+import com.example.movie_app.Model.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -52,7 +42,7 @@ public class HomeFullActivity extends AppCompatActivity {
     private GenreButtonAdapter categoryButtonAdapter;
     private ContinueWatchingAdapter continueWatchingAdapter;
     // Database
-    private List<Movie2> movie2List = new ArrayList<>();
+    private List<Movie> movie2List = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +55,9 @@ public class HomeFullActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    List<Movie2> list = new ArrayList<>();
+                    List<Movie> list = new ArrayList<>();
                     for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                        Movie2 movie2 = documentSnapshot.toObject(Movie2.class);
+                        Movie movie2 = documentSnapshot.toObject(Movie.class);
                         list.add(movie2);
                     }
                     setImageSlider(viewPager2, sliderHandler, list);
@@ -81,20 +71,20 @@ public class HomeFullActivity extends AppCompatActivity {
         setBottomNav(navigationView);
     }
 
-    private void setWatchingContinueRecyclerView(List<Movie2> movie2List){
+    private void setWatchingContinueRecyclerView(List<Movie> movie2List){
         continueWatchingAdapter = new ContinueWatchingAdapter(this, movie2List);
         rcvWatchingContinue.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvWatchingContinue.setAdapter(continueWatchingAdapter);
     }
 
-    private void setGenreButtonRecyclerView(List<Movie2>movie2List){
+    private void setGenreButtonRecyclerView(List<Movie>movie2List){
         categoryButtonAdapter = new GenreButtonAdapter(this);
         categoryButtonAdapter.setData(getListCategory(movie2List));
         rcvGenreButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvGenreButton.setAdapter(categoryButtonAdapter);
     }
 
-    private void setGenreMovieRecyclerView(List<Movie2> movie2List){
+    private void setGenreMovieRecyclerView(List<Movie> movie2List){
         categoryAdapter = new CategoryAdapter(this);
         categoryAdapter.setData(getListCategory(movie2List));
         rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -112,7 +102,7 @@ public class HomeFullActivity extends AppCompatActivity {
     }
 
 //  Setup Image slide
-    private void setImageSlider(ViewPager2 imageSlider, Handler handler, List<Movie2> movie2List){
+    private void setImageSlider(ViewPager2 imageSlider, Handler handler, List<Movie> movie2List){
         imageSlider.setAdapter(new SliderAdapter(movie2List, viewPager2));
         imageSlider.setClipToPadding(false);
         imageSlider.setClipChildren(false);
@@ -173,7 +163,7 @@ public class HomeFullActivity extends AppCompatActivity {
         });
     }
 
-    private List<CategoryList> getListCategory(List<Movie2> movie2List) {
+    private List<CategoryList> getListCategory(List<Movie> movie2List) {
         List<CategoryList> list = new ArrayList<>();
 
         list.add(new CategoryList("Most popular", movie2List));

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.DetailActivity;
-import com.example.movie_app.Model.Movie2;
+import com.example.movie_app.Model.Movie;
 import com.example.movie_app.R;
 
 import android.content.Context;
@@ -19,16 +19,15 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_app.Model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.SearchMovieViewHolder> implements Filterable {
     Context context;
-    List<Movie2> searchMovieList;
+    List<Movie> searchMovieList;
 
-    public SearchMovieAdapter(Context context, List<Movie2> searchMovieList) {
+    public SearchMovieAdapter(Context context, List<Movie> searchMovieList) {
         this.context = context;
         this.searchMovieList = searchMovieList;
     }
@@ -42,7 +41,7 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SearchMovieViewHolder holder, int position) {
-        Movie2 movie = searchMovieList.get(position);
+        Movie movie = searchMovieList.get(position);
         Glide.with(holder.imageView).load(movie.getFtrailer()).into(holder.imageView);
         holder.nameMovie.setText(movie.getFname());
         holder.genreMovie.setText(movie.toStringCategory());
@@ -84,8 +83,8 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String strSearch = charSequence.toString();
-                List<Movie2> searchResult = new ArrayList<>();
-                for(Movie2 movie : searchMovieList){
+                List<Movie> searchResult = new ArrayList<>();
+                for(Movie movie : searchMovieList){
                     if(movie.getFname().toLowerCase().contains(strSearch.toLowerCase())){
                         searchResult.add(movie);
                     }
@@ -98,7 +97,7 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                searchMovieList = (List<Movie2>) filterResults.values;
+                searchMovieList = (List<Movie>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

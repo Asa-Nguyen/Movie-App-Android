@@ -12,7 +12,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
 import com.example.movie_app.Model.Movie;
-import com.example.movie_app.Model.Movie2;
 import com.example.movie_app.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -20,10 +19,10 @@ import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder>{
 
-    private List<Movie2> movieSliders;
+    private List<Movie> movieSliders;
     private ViewPager2 viewPager2;
 
-    public SliderAdapter(List<Movie2> movieSliders, ViewPager2 viewPager2) {
+    public SliderAdapter(List<Movie> movieSliders, ViewPager2 viewPager2) {
         this.movieSliders = movieSliders;
         this.viewPager2 = viewPager2;
     }
@@ -40,7 +39,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        final Movie2 imageMovie = movieSliders.get(position);
+        final Movie imageMovie = movieSliders.get(position);
         Glide.with(holder.imageView).load(movieSliders.get(position).getFtrailer()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override

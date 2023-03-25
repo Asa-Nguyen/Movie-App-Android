@@ -1,79 +1,95 @@
 package com.example.movie_app.Model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+@IgnoreExtraProperties
 public class Movie {
+    private String Fuid;
     private String Fthumb;
-    private String Fname;
     private String Ftrailer;
-    private String category;
-    private String in4;
-    private List<CastCrew> castLists;
-    private List<Episode> episodeList;
-    private String synopsis;
+    private String Fname;
+    private String Fsynopsis;
+    private String FvideoTrailer;
+    private int Fmmpa;
+    private int Fyear;
+    private int Fseason;
+    private ArrayList<String> Fcategory;
+    private List<Episode> Eepisode;
+    private List<CastCrew> Ccast;
 
-    public Movie(String resourceId, String title, int i) {
-        this.Fthumb = resourceId;
-        this.Fname = title;
+    public Movie() {
     }
 
-    public Movie(){
-
+    public Movie(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, ArrayList<String> fcategory) {
+        Fuid = fuid;
+        Fthumb = fthumb;
+        Ftrailer = ftrailer;
+        Fname = fname;
+        Fsynopsis = fsynopsis;
+        FvideoTrailer = fvideoTrailer;
+        Fmmpa = fmmpa;
+        Fyear = fyear;
+        Fseason = fseason;
+        Fcategory = fcategory;
     }
 
-    public Movie(String Fthumb, String Fname, String Ftrailer, String category, String in4, List<CastCrew> castLists, List<Episode> episodeList, String synopsis) {
-        this.Fthumb = Fthumb;
-        this.Fname = Fname;
-        this.Ftrailer = Ftrailer;
-        this.category = category;
-        this.in4 = in4;
-        this.castLists = castLists;
-        this.episodeList = episodeList;
-        this.synopsis = synopsis;
+    public Movie(String fuid, String fthumb, String ftrailer, String fname, String fsynopsis, String fvideoTrailer, int fmmpa, int fyear, int fseason, ArrayList<String> fcategory, List<Episode> eepisode, List<CastCrew> ccast) {
+        Fuid = fuid;
+        Fthumb = fthumb;
+        Ftrailer = ftrailer;
+        Fname = fname;
+        Fsynopsis = fsynopsis;
+        FvideoTrailer = fvideoTrailer;
+        Fmmpa = fmmpa;
+        Fyear = fyear;
+        Fseason = fseason;
+        Fcategory = fcategory;
+        Eepisode = eepisode;
+        Ccast = ccast;
     }
 
-    public List<Episode> getEpisodeList() {
-        return episodeList;
+    public String toStringIn4(){
+        return Fyear + " " + Fmmpa + " Season " + Fseason;
     }
 
-    public void setEpisodeList(List<Episode> episodeList) {
-        this.episodeList = episodeList;
+    public String toStringSeasonEpisode(){
+        return "S"+ Fseason + " - " + Fname;
     }
 
-    public List<CastCrew> getCastLists() {
-        return castLists;
+    public String toStringCategory(){
+        String res = "";
+        for(int i = 0;i < Fcategory.size() && i < 3; ++i){
+            res+= Fcategory.get(i) +" ";
+
+        }
+        return res;
     }
 
-    public void setCastLists(List<CastCrew> castLists) {
-        this.castLists = castLists;
+    @Override
+    public String toString() {
+        return "Movie2{" +
+                "Fuid='" + Fuid + '\'' +
+                ", Fthumb='" + Fthumb + '\'' +
+                ", Ftrailer='" + Ftrailer + '\'' +
+                ", Fname='" + Fname + '\'' +
+                ", Fsynopsis='" + Fsynopsis + '\'' +
+                ", FvideoTrailer='" + FvideoTrailer + '\'' +
+                ", Fmmpa=" + Fmmpa +
+                ", Fyear=" + Fyear +
+                ", Fseason=" + Fseason +
+                '}';
     }
 
-    public String getFtrailer() {return Ftrailer;}
-
-    public void setFtrailer(String ftrailer) {this.Ftrailer = ftrailer;}
-
-    public String getCategory() {
-        return category;
+    public String getFuid() {
+        return Fuid;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getIn4() {
-        return in4;
-    }
-
-    public void setIn4(String in4) {
-        this.in4 = in4;
-    }
-
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setFuid(String fuid) {
+        Fuid = fuid;
     }
 
     public String getFthumb() {
@@ -81,12 +97,86 @@ public class Movie {
     }
 
     public void setFthumb(String fthumb) {
-        this.Fthumb = fthumb;
+        Fthumb = fthumb;
     }
 
-    public String getFname() {return Fname;}
+    public String getFtrailer() {
+        return Ftrailer;
+    }
 
-    public void setFname(String title) {
-        this.Fname = title;
+    public void setFtrailer(String ftrailer) {
+        Ftrailer = ftrailer;
+    }
+
+    public String getFname() {
+        return Fname;
+    }
+
+    public void setFname(String fname) {
+        Fname = fname;
+    }
+
+    public String getFsynopsis() {
+        return Fsynopsis;
+    }
+
+    public void setFsynopsis(String fsynopsis) {
+        Fsynopsis = fsynopsis;
+    }
+
+    public String getFvideoTrailer() {
+        return FvideoTrailer;
+    }
+
+    public void setFvideoTrailer(String fvideoTrailer) {
+        FvideoTrailer = fvideoTrailer;
+    }
+
+    public int getFmmpa() {
+        return Fmmpa;
+    }
+
+    public void setFmmpa(int fmmpa) {
+        Fmmpa = fmmpa;
+    }
+
+    public int getFyear() {
+        return Fyear;
+    }
+
+    public void setFyear(int fyear) {
+        Fyear = fyear;
+    }
+
+    public int getFseason() {
+        return Fseason;
+    }
+
+    public void setFseason(int fseason) {
+        Fseason = fseason;
+    }
+
+    public ArrayList<String> getFcategory() {
+        return Fcategory;
+    }
+
+    public void setFcategory(ArrayList<String> fcategory) {
+        Fcategory = fcategory;
+    }
+
+    public List<Episode> getEepisode() {
+        return Eepisode;
+    }
+
+    public void setEepisode(List<Episode> eepisode) {
+        Eepisode = eepisode;
+    }
+
+    public List<CastCrew> getCcast() {
+        return Ccast;
+    }
+
+    public void setCcast(List<CastCrew> ccast) {
+        Ccast = ccast;
     }
 }
