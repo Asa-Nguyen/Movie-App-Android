@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,20 +36,17 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
 
     @Override
     public void onBindViewHolder(@NonNull ImageMovieViewHolder holder, int position) {
-        final Movie imageMovie = imageMovies.get(position);
-        if(imageMovie == null) return;
+        final Movie movie = imageMovies.get(position);
+        if(movie == null) return;
         // Load image url
-        Glide.with(holder.imageView).load(imageMovie.getThumbUrl()).into(holder.imageView);
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        Glide.with(holder.imageMovie).load(movie.getFthumb()).into(holder.imageMovie);
+        holder.titleMovie.setText(movie.getFname());
+        holder.genreMovie.setText(movie.toStringSeasonEpisode());
+        holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", imageMovie.getTrailerImage());
-                intent.putExtra("resourceId", imageMovie.getThumbUrl());
-                intent.putExtra("name", imageMovie.getNameMovie());
-                intent.putExtra("in4", imageMovie.getIn4());
-                intent.putExtra("category", imageMovie.getCategory());
-                intent.putExtra("synopsis", imageMovie.getSynopsis());
+                intent.putExtra("Fuid", movie.getFuid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
@@ -61,10 +59,13 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
     }
 
     public class ImageMovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView imageView;
+        ImageView imageMovie;
+        TextView titleMovie, genreMovie;
         public ImageMovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image_movie);
+            imageMovie = itemView.findViewById(R.id.image_movie);
+            titleMovie = itemView.findViewById(R.id.title_item_movie);
+            genreMovie = itemView.findViewById(R.id.genre_item_movie);
         }
 
         @Override

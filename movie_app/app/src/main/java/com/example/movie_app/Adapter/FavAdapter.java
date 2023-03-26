@@ -28,11 +28,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         this.movieList = movieList;
     }
 
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public FavViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,19 +37,14 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FavViewHolder holder, int position) {
         final Movie imageMovie = movieList.get(position);
-        Glide.with(holder.favThumb).load(imageMovie.getThumbUrl()).into(holder.favThumb);
-        holder.favNameMovie.setText(imageMovie.getNameMovie());
-        holder.favFavorite.setText(imageMovie.getIn4());
+        Glide.with(holder.favThumb).load(imageMovie.getFthumb()).into(holder.favThumb);
+        holder.favNameMovie.setText(imageMovie.getFname());
+        holder.favFavorite.setText(imageMovie.toStringSeasonEpisode());
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("trailerImage", imageMovie.getTrailerImage());
-                intent.putExtra("resourceId", imageMovie.getThumbUrl());
-                intent.putExtra("name", imageMovie.getNameMovie());
-                intent.putExtra("in4", imageMovie.getIn4());
-                intent.putExtra("category", imageMovie.getCategory());
-                intent.putExtra("synopsis", imageMovie.getSynopsis());
+                intent.putExtra("Fuid", imageMovie.getFuid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
@@ -74,7 +64,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         public FavViewHolder(@NonNull View itemView) {
             super(itemView);
             favThumb = itemView.findViewById(R.id.fav_thumb);
-            favNameMovie = itemView.findViewById(R.id.fav_name_movie);
+            favNameMovie = itemView.findViewById(R.id.episode_name_movie);
             favFavorite = itemView.findViewById(R.id.fav_favorite);
             favButton = itemView.findViewById(R.id.fav_watching_btn);
         }

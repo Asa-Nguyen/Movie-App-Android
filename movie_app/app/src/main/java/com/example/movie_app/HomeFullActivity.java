@@ -18,64 +18,92 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.movie_app.Model.CastCrew;
+import com.example.movie_app.Adapter.ContinueWatchingAdapter;
 import com.example.movie_app.Adapter.CategoryAdapter;
-import com.example.movie_app.Adapter.CategoryButtonAdapter;
-import com.example.movie_app.Model.CategoryMovie;
-import com.example.movie_app.Model.Movie;
+import com.example.movie_app.Adapter.GenreButtonAdapter;
+import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.Adapter.SliderAdapter;
+import com.example.movie_app.Model.Movie;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class HomeFullActivity extends AppCompatActivity {
-    // Variable for imageSlider
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
-    // Variable for rcvCategory Image
-    private RecyclerView rcvCategoryImage;
-    private CategoryAdapter categoryAdapter;
-    // Variable for rcvCategory Button
-    private RecyclerView rcvCategoryButton;
-    private CategoryButtonAdapter categoryButtonAdapter;
-    // Navigation
+    private RecyclerView rcvCategoryImage, rcvGenreButton, rcvWatchingContinue;
     private BottomNavigationView navigationView;
-
-
+    // Adapter
+    private CategoryAdapter categoryAdapter;
+    private GenreButtonAdapter categoryButtonAdapter;
+    private ContinueWatchingAdapter continueWatchingAdapter;
+    // Database
+    private List<Movie> movie2List = new ArrayList<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
         initUi();
-        // Image Slider --------------
-        setImageSlider(viewPager2, sliderHandler);
 
-        // RecyclerView Button ---------
-        categoryButtonAdapter = new CategoryButtonAdapter(this);
-        categoryButtonAdapter.setData(getListCategory());
-        rcvCategoryButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        rcvCategoryButton.setAdapter(categoryButtonAdapter);
-
-        // RecyclerView ----------------
-        categoryAdapter = new CategoryAdapter(this);
-        categoryAdapter.setData(getListCategory());
-        rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        rcvCategoryImage.setNestedScrollingEnabled(false);
-        rcvCategoryImage.setAdapter(categoryAdapter);
-
-        // Bottom navigation
+        CollectionReference movieRef = db.collection("movie");
+        movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    List<Movie> list = new ArrayList<>();
+                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        Movie movie2 = documentSnapshot.toObject(Movie.class);
+                        list.add(movie2);
+                    }
+                    setImageSlider(viewPager2, sliderHandler, list);
+                    setWatchingContinueRecyclerView(list);
+                    setGenreButtonRecyclerView(list);
+                    setGenreMovieRecyclerView(list);
+                }
+            }
+        });
         navigationView.setSelectedItemId(R.id.nav_home);
         setBottomNav(navigationView);
     }
+
+    private void setWatchingContinueRecyclerView(List<Movie> movie2List){
+        continueWatchingAdapter = new ContinueWatchingAdapter(this, movie2List);
+        rcvWatchingContinue.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvWatchingContinue.setAdapter(continueWatchingAdapter);
+    }
+
+    private void setGenreButtonRecyclerView(List<Movie>movie2List){
+        categoryButtonAdapter = new GenreButtonAdapter(this);
+        categoryButtonAdapter.setData(getListCategory(movie2List));
+        rcvGenreButton.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rcvGenreButton.setAdapter(categoryButtonAdapter);
+    }
+
+    private void setGenreMovieRecyclerView(List<Movie> movie2List){
+        categoryAdapter = new CategoryAdapter(this);
+        categoryAdapter.setData(getListCategory(movie2List));
+        rcvCategoryImage.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        rcvCategoryImage.setNestedScrollingEnabled(false);
+        rcvCategoryImage.setAdapter(categoryAdapter);
+    }
+
 //  Using init
     private void initUi(){
         viewPager2 = findViewById(R.id.viewPagerImageSlider2);
-        rcvCategoryButton = findViewById(R.id.rcv_btn_category);
+        rcvGenreButton = findViewById(R.id.rcv_btn_category);
         rcvCategoryImage = findViewById(R.id.rcv_category);
         navigationView = findViewById(R.id.bottom_navigation);
+        rcvWatchingContinue = findViewById(R.id.rcv_continue_watching);
     }
 
 //  Setup Image slide
-    private void setImageSlider(ViewPager2 imageSlider, Handler handler){
-        imageSlider.setAdapter(new SliderAdapter(getMovie(), viewPager2));
+    private void setImageSlider(ViewPager2 imageSlider, Handler handler, List<Movie> movie2List){
+        imageSlider.setAdapter(new SliderAdapter(movie2List, viewPager2));
         imageSlider.setClipToPadding(false);
         imageSlider.setClipChildren(false);
         imageSlider.setOffscreenPageLimit(3);
@@ -122,7 +150,7 @@ public class HomeFullActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_account:
-                        startActivity(new Intent(getApplicationContext(), AccountActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_favourite:
@@ -135,66 +163,14 @@ public class HomeFullActivity extends AppCompatActivity {
         });
     }
 
-    private List<CategoryMovie> getListCategory() {
-        List<CategoryMovie> list = new ArrayList<>();
+    private List<CategoryList> getListCategory(List<Movie> movie2List) {
+        List<CategoryList> list = new ArrayList<>();
 
-        list.add(new CategoryMovie("Most popular", getMovie()));
-        list.add(new CategoryMovie("Action", getMovie()));
-        list.add(new CategoryMovie("Comedy", getMovie()));
-        list.add(new CategoryMovie("Romance", getMovie()));
-        list.add(new CategoryMovie("Horror", getMovie()));
+        list.add(new CategoryList("Most popular", movie2List));
+        list.add(new CategoryList("Action", movie2List));
+        list.add(new CategoryList("Comedy", movie2List));
+        list.add(new CategoryList("Romance", movie2List));
+        list.add(new CategoryList("Horror", movie2List));
         return list;
-    }
-
-    private List<Movie> getMovie() {
-        List<CastCrew> crewList = new ArrayList<>();
-        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/c/c2/Tobey_Maguire_2014.jpg&f=w", "Tobey Maguire"));
-        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/1/14/Willem_Dafoe_Cannes_2019.jpg&f=w", "Willem Dafoe"));
-        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/c/cf/James_Franco_4,_2013.jpg&f=w", "James Franco"));
-        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/e/e5/Joe_Manganiello_July_2015.jpg&f=w", "Joe Manganiello"));
-        crewList.add(new CastCrew("https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/d/d4/Rosemary_Harris_Spiderman_2007_Shankbone.jpg&f=w", "Rosemary Harris"));
-        List<Movie> imageMovieList = new ArrayList<>();
-        imageMovieList.add(new Movie(
-                "https://znews-photo.zingcdn.me/w660/Uploaded/fsmhv/2014_02_05/Capt2_Teaser2_1Sht_v9_2.jpg",
-                "How to Train Your Dragon",
-                "https://highlightsalongtheway.com/wp-content/uploads/2019/02/DR3_StandeeWebArt_RGB_1-scaled.jpg",
-                "Action | adventure | S**",
-                "2023 | 18+ | Season 1",
-                crewList,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ));
-        imageMovieList.add(new Movie(
-                "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_.jpg",
-                "Frozen",
-                "https://www.broadcastprome.com/wp-content/uploads/2020/07/Frozen-1.jpg",
-                "Action | adventure | S**",
-                "2023 | 18+ | Season 1",
-                crewList,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-        imageMovieList.add(new Movie(
-                "https://lumiere-a.akamaihd.net/v1/images/p_onward_19732_09862641.jpeg",
-                "Onward",
-                "https://www.showcasecinemas.com/Media/3032/onwardmobcall.jpg",
-                "Action | adventure | S**",
-                "2023 | 18+ | Season 1",
-                crewList,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-        imageMovieList.add(new Movie(
-                "https://static.tvtropes.org/pmwiki/pub/images/ralphbreakstheinternet.png",
-                "Ralph Breaks the Internet",
-                "https://images2.alphacoders.com/953/thumb-1920-953261.jpg",
-                "Action | adventure | S**",
-                "2023 | 18+ | Season 1",
-                crewList,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-        imageMovieList.add(new Movie(
-                "https://static.wikia.nocookie.net/netflix/images/2/27/Sponge_on_the_Run_Poster.jpg",
-                "SpongeBob SquarePants",
-                "https://lrmonline.com/wp-content/uploads/2021/03/SpongeBobSpongeOnTheRun-3840x2160-1-scaled.jpg",
-                "Action | adventure | S**",
-                "2023 | 18+ | Season 1",
-                crewList,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-
-        return imageMovieList;
     }
 }

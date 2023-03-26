@@ -7,23 +7,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.R;
 
 import java.util.List;
 
-public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAdapter.CategoryButtonViewHolder>{
+public class GenreButtonAdapter extends RecyclerView.Adapter<GenreButtonAdapter.CategoryButtonViewHolder>{
 
     private Context mContext;
-    private List<CategoryMovie> categoryButtonLists;
+    private List<CategoryList> categoryButtonLists;
 
-    public CategoryButtonAdapter(Context mContext) {
+    public GenreButtonAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<CategoryMovie> categoryButtonLists){
+    public void setData(List<CategoryList> categoryButtonLists){
         this.categoryButtonLists = categoryButtonLists;
         notifyDataSetChanged();
     }
@@ -37,9 +38,11 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
 
     @Override
     public void onBindViewHolder(@NonNull CategoryButtonViewHolder holder, int position) {
-        CategoryMovie categoryBtn = categoryButtonLists.get(position);
+        CategoryList categoryBtn = categoryButtonLists.get(position);
         if(categoryBtn == null){
             return;
+        }
+        if(position == 0 || position == categoryButtonLists.size()){
         }
         holder.btnCategory.setText(categoryBtn.getNameCategory());
     }
@@ -52,9 +55,11 @@ public class CategoryButtonAdapter extends RecyclerView.Adapter<CategoryButtonAd
     public class CategoryButtonViewHolder extends RecyclerView.ViewHolder{
 
         private  TextView btnCategory;
+        private CardView item_btn_categories;
         public CategoryButtonViewHolder(@NonNull View itemView) {
             super(itemView);
             btnCategory = (TextView) itemView.findViewById(R.id.buttonCategory);
+            item_btn_categories = (CardView) itemView.findViewById(R.id.item_btn_category);
         }
     }
 }

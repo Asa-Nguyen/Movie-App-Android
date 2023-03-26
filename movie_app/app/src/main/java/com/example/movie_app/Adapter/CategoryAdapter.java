@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.movie_app.Model.CategoryMovie;
+import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.R;
 
 import java.util.List;
@@ -18,14 +18,14 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
     private Context mContext;
-    private List<CategoryMovie> categoryMovieList;
+    private List<CategoryList> categoryListList;
 
     public CategoryAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<CategoryMovie> categoryMovieList){
-        this.categoryMovieList = categoryMovieList;
+    public void setData(List<CategoryList> categoryListList){
+        this.categoryListList = categoryListList;
         notifyDataSetChanged();
     }
 
@@ -38,23 +38,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        CategoryMovie categoryMovie = categoryMovieList.get(position);
-        if(categoryMovie == null){
+        CategoryList categoryList = categoryListList.get(position);
+        if(categoryList == null){
             return;
         }
-        holder.tvNameCategory.setText(categoryMovie.getNameCategory());
+        holder.tvNameCategory.setText(categoryList.getNameCategory());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvMovie.setLayoutManager(linearLayoutManager);
 
         ImageMovieAdapter movieAdapter = new ImageMovieAdapter();
-        movieAdapter.setData(categoryMovie.getCategoryMovieList());
+        movieAdapter.setData(categoryList.getCategoryMovieList());
         holder.rcvMovie.setAdapter(movieAdapter);
     }
 
     @Override
     public int getItemCount() {
-        return categoryMovieList != null ? categoryMovieList.size() : 0;
+        return categoryListList != null ? categoryListList.size() : 0;
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder{

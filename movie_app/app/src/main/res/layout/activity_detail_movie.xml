@@ -17,153 +17,149 @@
             tools:context=".DetailActivity">
 
             <ImageView
-                android:id="@+id/trailer_image"
+                android:id="@+id/detail_trailer_image"
                 android:layout_width="match_parent"
-                android:layout_height="221dp"
+                android:layout_height="260dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/banner_2" />
 
-            <ImageView
-                android:id="@+id/shadow_bg"
-                android:layout_width="match_parent"
-                android:layout_height="221dp"
-                app:layout_constraintEnd_toEndOf="@+id/trailer_image"
-                app:layout_constraintStart_toStartOf="@+id/trailer_image"
-                app:layout_constraintTop_toTopOf="@+id/trailer_image"
-                app:srcCompat="@drawable/shadow_gradient_bg" />
-
-            <ImageButton
-                android:id="@+id/bookmark"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/custom_second_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/trailer_image"
-                app:srcCompat="@drawable/ic_baseline_bookmark_border_24" />
-
-            <ImageView
-                android:id="@+id/thumb"
-                android:layout_width="120dp"
-                android:layout_height="172dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="181dp"
-                android:scaleType="centerCrop"
-                android:transitionName="imageMain"
-                app:layout_constraintEnd_toEndOf="@+id/trailer_image"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@+id/trailer_image"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/pos_dragon" />
-
             <TextView
-                android:id="@+id/movie_name"
-                android:layout_width="170dp"
+                android:id="@+id/detail_movie_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/releway_b7"
+                android:lineSpacingExtra="38dp"
                 android:text="Ralph Breaks the Internet"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/thumb"
-                app:layout_constraintTop_toBottomOf="@+id/trailer_image" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_trailer_image" />
 
             <TextView
-                android:id="@+id/in4"
+                android:id="@+id/detail_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/releway_b5"
+                android:lineSpacingExtra="27dp"
                 android:text="2023 | 18+ | Season 1"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/thumb"
-                app:layout_constraintTop_toBottomOf="@+id/movie_name" />
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_movie_name" />
 
             <TextView
-                android:id="@+id/category"
+                android:id="@+id/detail_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="4dp"
                 android:text="Action | adventure | S**"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/thumb"
-                app:layout_constraintTop_toBottomOf="@+id/in4" />
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_genre" />
 
             <ImageButton
-                android:id="@+id/play_video_btn"
+                android:id="@+id/detail_play_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="40dp"
                 android:background="@drawable/circle_gradient_bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trailer_image"
-                app:srcCompat="@drawable/ic_play_btn" />
+                app:layout_constraintBottom_toBottomOf="@+id/detail_trailer_image"
+                app:layout_constraintEnd_toEndOf="@+id/detail_trailer_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_play" />
 
             <TextView
-                android:id="@+id/synopsis"
+                android:id="@+id/detail_synopsis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/releway_b7"
                 android:text="Synopsis"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thumb" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_category" />
 
             <TextView
-                android:id="@+id/synopsis_detail"
+                android:id="@+id/detail_synopsis_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginEnd="23dp"
+                android:fontFamily="@font/releway_b5"
                 android:text="Wreck-It Ralph wants to be loved by many people like his kind friend, Fix-It Felix. But no one likes evil characters like Ralph.\nRalph's goal was simple, wanting to win and get a medal to be considered a hero. But without realizing Ralph instead paved the way for criminals who can kill all the games in the game complex. Read more"
                 android:textSize="14dp"
-                app:fontFamily="@font/montserrat"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/synopsis" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_synopsis" />
 
             <TextView
-                android:id="@+id/cast_title"
+                android:id="@+id/title_episode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="25dp"
-                android:text="Cast and Crew"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/releway_b7"
+                android:text="S1 - Chainsaw Man"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/synopsis_detail" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_cast_rcv" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_cast_detail"
+                android:id="@+id/detail_episode_rcv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+                app:layout_constraintTop_toBottomOf="@+id/title_episode" />
+
+            <TextView
+                android:id="@+id/detail_cast_title_rcv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/releway_b7"
+                android:text="Cast and Crew"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_synopsis_about" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_cast_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_cast_title_rcv" />
 
             <TextView
                 android:id="@+id/trailer_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="24dp"
                 android:text="Trailer"
                 android:textSize="18dp"
+                android:fontFamily="@font/releway_b7"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_cast_detail" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_episode_rcv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_trailer"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -176,7 +172,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rcv_trailer" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
