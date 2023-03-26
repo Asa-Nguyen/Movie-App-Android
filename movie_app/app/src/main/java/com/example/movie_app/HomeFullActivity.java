@@ -3,6 +3,7 @@ package com.example.movie_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import java.util.List;
 import com.example.movie_app.Adapter.ContinueWatchingAdapter;
 import com.example.movie_app.Adapter.CategoryAdapter;
 import com.example.movie_app.Adapter.GenreButtonAdapter;
+import com.example.movie_app.Database.DataLocalManager;
 import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.Adapter.SliderAdapter;
 import com.example.movie_app.Model.Movie;
@@ -49,7 +51,6 @@ public class HomeFullActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
         initUi();
-
         CollectionReference movieRef = db.collection("movie");
         movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

@@ -2,6 +2,7 @@ package com.example.movie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie_app.Adapter.CollectionAdapter;
+import com.example.movie_app.Database.DataLocalManager;
+import com.example.movie_app.Model.HelperClass;
 import com.example.movie_app.Model.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -29,16 +37,33 @@ public class ProfileActivity extends AppCompatActivity {
     private CollectionAdapter collectionAdapter;
     private BottomNavigationView navigationView;
     private Button buttonMovieList, buttonWatched, buttonMyReview, buttonSetting, buttonLogout;
-    private FirebaseFirestore realtimeRef = FirebaseFirestore.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    private DatabaseReference realtimeRef = FirebaseDatabase.getInstance().getReference("users/" + DataLocalManager.getUserUid());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         initUi();
-        onClickButtonSetting();
 
+        realtimeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HelperClass data = snapshot.getValue(HelperClass.class);
+                Log.d("Creator", data.toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Creator", "fail");
+            }
+        });
+
+        onClickButtonSetting();
+        extractedCollection();
+        navigationView.setSelectedItemId(R.id.nav_account);
+        setBottomNav(navigationView);
+    }
+
+    private void extractedCollection() {
         CollectionReference movieRef = db.collection("movie");
         movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -53,26 +78,12 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        navigationView = findViewById(R.id.bottom_navigation);
-        navigationView.setSelectedItemId(R.id.nav_account);
-
-        setBottomNav(navigationView);
-//        setCollectionRecyclerView();
     }
 
-    private void onClickButtonSetting() {
-        buttonSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+
 
     private void initUi() {
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         collectionRecyclerView = (RecyclerView) findViewById(R.id.collectionRecyclerView);
         buttonMovieList = (Button) findViewById(R.id.profile_button_animelist);
         buttonWatched = (Button) findViewById(R.id.profile_button_watched);
@@ -89,43 +100,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void onClickButtonMyReview(){
-        buttonWatched.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-    }
-
-    private void onClickButtonMyWatched(){
-        buttonMyReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-    }
-
-    private void onClickButtonMovieList(){
-        buttonMovieList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-    }
-
-//    private void onClickButtonSetting(){
-//        buttonSetting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
     private void setCollectionRecyclerView(List<Movie> list) {
         collectionAdapter = new CollectionAdapter(this, list);
@@ -154,6 +128,43 @@ public class ProfileActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+    }
+
+    private void onClickButtonSetting() {
+        buttonSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void onClickButtonMyReview(){
+        buttonWatched.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void onClickButtonMyWatched(){
+        buttonMyReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void onClickButtonMovieList(){
+        buttonMovieList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

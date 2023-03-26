@@ -91,7 +91,7 @@
                 android:layout_width="255dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="58dp"
-                android:background="@drawable/custom_btn_unactive"
+                android:background="@xml/custom_btn_unactive"
                 android:text="Login"
                 android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -154,10 +154,10 @@
                 android:layout_height="64dp"
                 android:layout_marginStart="107dp"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/custom_btn_circle"
+                android:background="@xml/custom_btn_circle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:srcCompat="@drawable/ic_facebook" />
+                app:srcCompat="@xml/ic_facebook" />
 
             <ImageButton
                 android:id="@+id/si_google_btn"
@@ -165,10 +165,10 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="107dp"
-                android:background="@drawable/custom_btn_circle"
+                android:background="@xml/custom_btn_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:srcCompat="@drawable/ic_google" />
+                app:srcCompat="@xml/ic_google" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

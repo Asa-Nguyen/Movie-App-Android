@@ -23,8 +23,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/trailer_1" />
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -56,5 +55,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/item_search_name_movie"
         app:layout_constraintTop_toTopOf="@+id/item_search_name_movie"
-        app:srcCompat="@drawable/ic_group" />
+        app:srcCompat="@xml/ic_group" />
 </androidx.constraintlayout.widget.ConstraintLayout>

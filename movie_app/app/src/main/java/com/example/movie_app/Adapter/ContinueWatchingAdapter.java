@@ -42,7 +42,7 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
         holder.titleMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.toStringSeasonEpisode());
+        holder.genreMovie.setText(movie.toStringCategory());
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

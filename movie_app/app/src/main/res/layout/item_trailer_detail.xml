@@ -22,19 +22,18 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/trailer_1" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
             android:id="@+id/detail_play_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@drawable/circle_gradient_bg"
+            android:background="@xml/circle_gradient_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_play" />
+            app:srcCompat="@xml/ic_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

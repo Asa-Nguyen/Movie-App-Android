@@ -14,7 +14,6 @@
             android:layout_width="100dp"
             android:layout_height="147dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/pos_onward"
             />
 
     </LinearLayout>

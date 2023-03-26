@@ -23,7 +23,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="66dp"
                 android:layout_marginEnd="25dp"
-                android:background="@drawable/custom_search_bg"
+                android:background="@xml/custom_search_bg"
                 app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,9 +1,14 @@
 package com.example.movie_app;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,9 +34,10 @@ import java.util.List;
 import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
+    public VideoView videoView;
     private ImageView mTrailerMovie;
     private TextView mMovieName, mIn4, mCategory, mEpisode, mSynopsis;
-    private ImageButton playVideo;
+    private ImageButton playVideoButton, backButton, favoriteButton;
     private RecyclerView rcvCast, rcvEpisode, rcvTrailer;
     private CastCrewAdapter castCrewAdapter;
     private EpisodeAdapter episodeAdapter;
@@ -41,47 +47,24 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
-        // main uid movie
-        String FuidMovie = getIntent().getStringExtra("Fuid");
         initUi();
+        // main uid movie
+        onClickButtonBack();
+        String FuidMovie = getIntent().getStringExtra("Fuid");
 
-        DocumentReference movieRef = db.collection("movie").document(FuidMovie);
-        movieRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Movie moviePage = documentSnapshot.toObject(Movie.class);
-                Glide.with(mTrailerMovie).load(moviePage.getFtrailer()).into(mTrailerMovie);
-                mMovieName.setText(moviePage.getFname());
-                mSynopsis.setText(moviePage.getFsynopsis());
-                mCategory.setText(moviePage.toStringCategory());
-                mIn4.setText(moviePage.toStringIn4());
-                mEpisode.setText(moviePage.toStringSeasonEpisode());
+        setUpDetail(FuidMovie);
+        setUpEpisode(FuidMovie);
+        setUpCast(FuidMovie);
 
-            }
-        });
+//        favoriteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+    }
 
-        DocumentReference episodeRef = db.collection("episode").document(FuidMovie);
-        episodeRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot document = task.getResult();
-                    if(document.exists()){
-                        List<Episode> episodeList = new ArrayList<>();
-                        ArrayList<Map<String, Object>> data = (ArrayList<Map<String, Object>>) document.get(FuidMovie);
-                        for(Map map : data){
-                            Episode dataEpisode = new Episode(map.get("nameMovie").toString(),
-                                    map.get("imageEpisode").toString(),
-                                    map.get("episodeTitle").toString(),
-                                    map.get("playMovie").toString());
-                            episodeList.add(dataEpisode);
-                        }
-                        setUpEpisodeRecyclerView(episodeList);
-                    }
-                }
-            }
-        });
-
+    private void setUpCast(String FuidMovie){
         DocumentReference castRef = db.collection("cast").document(FuidMovie);
         castRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -103,13 +86,76 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    private void setUpEpisode(String FuidMovie){
+        DocumentReference episodeRef = db.collection("episode").document(FuidMovie);
+        episodeRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        List<Episode> episodeList = new ArrayList<>();
+                        ArrayList<Map<String, Object>> data = (ArrayList<Map<String, Object>>) document.get(FuidMovie);
+                        for(Map map : data){
+                            Episode dataEpisode = new Episode(map.get("nameMovie").toString(),
+                                    map.get("imageEpisode").toString(),
+                                    map.get("episodeTitle").toString(),
+                                    map.get("playMovie").toString());
+                            episodeList.add(dataEpisode);
+                        }
+                        setUpEpisodeRecyclerView(episodeList);
+                    }
+                }
+            }
+        });
+    }
+
+    private void setUpVideoView(String url){
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
+
+        Uri uri = Uri.parse(url);
+        videoView.setVideoURI(uri);
+        videoView.requestFocus();
+        videoView.start();
+    }
+
+    private void setUpDetail(String FuidMovie){
+        DocumentReference movieRef = db.collection("movie").document(FuidMovie);
+        movieRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Movie moviePage = documentSnapshot.toObject(Movie.class);
+                mMovieName.setText(moviePage.getFname());
+                mSynopsis.setText(moviePage.getFsynopsis());
+                mCategory.setText(moviePage.toStringCategory());
+                mIn4.setText(moviePage.toStringIn4());
+                mEpisode.setText(moviePage.toStringSeasonEpisode());
+                setUpVideoView(moviePage.getFvideoTrailer());
+            }
+        });
+    }
+
+    private void onClickButtonBack(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHomeFullActivity();
+            }
+        });
+    }
+
     private void initUi(){
+        videoView = (VideoView) findViewById(R.id.video_view);
         mTrailerMovie = (ImageView) findViewById(R.id.detail_trailer_image);
         mMovieName = (TextView) findViewById(R.id.detail_movie_name);
         mIn4 = (TextView) findViewById(R.id.detail_genre);
         mSynopsis = (TextView) findViewById(R.id.detail_synopsis_about);
         rcvCast = (RecyclerView) findViewById(R.id.detail_cast_rcv);
-        playVideo = (ImageButton) findViewById(R.id.detail_play_button);
+        playVideoButton = (ImageButton) findViewById(R.id.detail_play_button);
+        backButton = (ImageButton) findViewById(R.id.button_back_detail);
+//        favoriteButton = (ImageButton) findViewById(R.id.favorite_button);
         mCategory = (TextView) findViewById(R.id.detail_category);
         rcvEpisode = (RecyclerView) findViewById(R.id.detail_episode_rcv);
         rcvTrailer = (RecyclerView) findViewById(R.id.rcv_trailer);
@@ -137,23 +183,8 @@ public class DetailActivity extends AppCompatActivity {
         rcvCast.setAdapter(castCrewAdapter);
     }
 
-    private List<Episode> getEpisodes(){
-        List<Episode> episodeList = new ArrayList<>();
-        episodeList.add(new Episode(
-                "Chainsaw man",
-                "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/91c8f9e4ddbcbcee7d8c12ace10e6dcf.jpe",
-                "E1 - DOG & CHAINSAW",
-                "1"));
-        episodeList.add(new Episode(
-                "Chainsaw man",
-                "https://static.wikia.nocookie.net/chainsaw-man/images/0/07/Episode_2-1.png/revision/latest?cb=20221018090613",
-                "E2 - ARRIVAL IN TOKYO",
-                "1"));
-        episodeList.add(new Episode(
-                "Chainsaw man",
-                "https://www.slashfilm.com/img/gallery/chainsaw-man-episode-3-is-an-action-packed-funny-and-gnarly/intro-1666735069.jpg",
-                "E3 -  MEOWY'S WHEREABOUTS",
-                "1"));
-        return episodeList;
+    public void onHomeFullActivity(){
+        Intent intent = new Intent(this, HomeFullActivity.class);
+        startActivity(intent);
     }
 }

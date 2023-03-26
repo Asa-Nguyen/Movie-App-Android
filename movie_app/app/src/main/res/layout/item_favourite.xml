@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="12dp"
-        android:background="@drawable/custom_search_bg">
+        android:background="@xml/custom_search_bg">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -27,8 +27,7 @@
                 android:id="@+id/fav_thumb"
                 android:layout_width="130dp"
                 android:layout_height="140dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/pos_ralph" />
+                android:scaleType="centerCrop"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -61,7 +60,7 @@
             android:layout_marginStart="12dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/custom_main_button"
+            android:background="@xml/custom_main_button"
             android:text="Watching Now"
             android:fontFamily="@font/releway_b5"
             android:textAllCaps="false"
@@ -75,7 +74,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+            app:srcCompat="@xml/ic_baseline_more_vert_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/shadow2_gradient" />
+                app:srcCompat="@xml/shadow2_gradient" />
 
             <TextView
                 android:id="@+id/title_continue_watching"

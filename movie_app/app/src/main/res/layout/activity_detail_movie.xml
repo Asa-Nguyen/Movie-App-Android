@@ -16,15 +16,24 @@
             android:background="@color/dark_2"
             tools:context=".DetailActivity">
 
-            <ImageView
-                android:id="@+id/detail_trailer_image"
+
+            <VideoView
+                android:id="@+id/video_view"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageButton
+                android:id="@+id/button_back_detail"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="47dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/banner_2" />
+                app:srcCompat="@drawable/ic_back" />
 
             <TextView
                 android:id="@+id/detail_movie_name"
@@ -37,7 +46,7 @@
                 android:text="Ralph Breaks the Internet"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_trailer_image" />
+                app:layout_constraintTop_toBottomOf="@+id/video_view" />
 
             <TextView
                 android:id="@+id/detail_genre"
@@ -63,16 +72,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_genre" />
 
-            <ImageButton
-                android:id="@+id/detail_play_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/circle_gradient_bg"
-                app:layout_constraintBottom_toBottomOf="@+id/detail_trailer_image"
-                app:layout_constraintEnd_toEndOf="@+id/detail_trailer_image"
+            <RelativeLayout
+                android:id="@+id/status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_play" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_category">
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/detail_synopsis"
@@ -84,15 +93,15 @@
                 android:text="Synopsis"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_category" />
+                app:layout_constraintTop_toBottomOf="@+id/status_bar" />
 
             <TextView
                 android:id="@+id/detail_synopsis_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="23dp"
                 android:fontFamily="@font/releway_b5"
                 android:text="Wreck-It Ralph wants to be loved by many people like his kind friend, Fix-It Felix. But no one likes evil characters like Ralph.\nRalph's goal was simple, wanting to win and get a medal to be considered a hero. But without realizing Ralph instead paved the way for criminals who can kill all the games in the game complex. Read more"
@@ -150,9 +159,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/releway_b7"
                 android:text="Trailer"
                 android:textSize="18dp"
-                android:fontFamily="@font/releway_b7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_episode_rcv" />
 
@@ -173,6 +182,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rcv_trailer" />
 
+            <ImageButton
+                android:id="@+id/favorite_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_movie_name"
+                app:layout_constraintStart_toEndOf="@+id/detail_movie_name"
+                app:layout_constraintTop_toTopOf="@+id/detail_movie_name"
+                app:srcCompat="@xml/ic_baseline_grade_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

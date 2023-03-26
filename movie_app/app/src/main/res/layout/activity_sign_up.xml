@@ -40,25 +40,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/change_avatar"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
                 android:layout_marginTop="40dp"
+                android:background="@color/dark_2"
+                android:src="@drawable/ill_photo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:srcCompat="@drawable/ill_photo" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="-10dp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintStart_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:srcCompat="@drawable/ic_add" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TextInputLayout1"
@@ -67,7 +58,7 @@
                 android:layout_marginTop="44dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+                app:layout_constraintTop_toBottomOf="@+id/change_avatar">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_username"
@@ -135,7 +126,7 @@
                 android:layout_width="255dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="44dp"
-                android:background="@drawable/custom_btn_unactive"
+                android:background="@xml/custom_btn_unactive"
                 android:text="Login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -41,7 +41,7 @@ public class ImageMovieAdapter extends  RecyclerView.Adapter<ImageMovieAdapter.I
         // Load image url
         Glide.with(holder.imageMovie).load(movie.getFthumb()).into(holder.imageMovie);
         holder.titleMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.toStringSeasonEpisode());
+        holder.genreMovie.setText(movie.toStringCategory());
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

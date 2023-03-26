@@ -26,14 +26,13 @@
                 android:id="@+id/episodeImage"
                 android:layout_width="200dp"
                 android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trailer_1" />
+                android:scaleType="centerCrop"/>
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="200dp"
                 android:layout_height="120dp"
-                app:srcCompat="@drawable/shadow2_gradient" />
+                app:srcCompat="@xml/shadow2_gradient" />
 
             <TextView
                 android:id="@+id/episode_time_movie"
