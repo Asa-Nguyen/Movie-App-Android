@@ -40,6 +40,12 @@ public class CastCrewAdapter extends RecyclerView.Adapter<CastCrewAdapter.CastCr
         // Load image url
         Glide.with(holder.imageCast).load(crewLists.get(position).getCimage()).into(holder.imageCast);
         holder.nameCast.setText(castCrew.getCname());
+
+        if(position == getItemCount() - 1) {
+            // Set the margin for the viewholder
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.setMargins(0, 0, 25, 0);
+        }
     }
 
     @Override

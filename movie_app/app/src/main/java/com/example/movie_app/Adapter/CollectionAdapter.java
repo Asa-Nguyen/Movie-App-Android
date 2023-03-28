@@ -2,6 +2,7 @@ package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +45,18 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Co
                 intent.putExtra("Fuid", movie.getFuid());
                 intent.putExtra("Fname", movie.getFname());
                 intent.putExtra("Ftrailer", movie.getFtrailer());
-                intent.putExtra("Ffavorite", movie.toStringCategory());intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("Ffavorite", movie.toStringCategory());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
         });
+
+        if(position == getItemCount() - 1) {
+            ViewGroup.MarginLayoutParams layoutParams =
+                    (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.rightMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 25, holder.itemView.getResources().getDisplayMetrics());
+        }
     }
 
     @Override

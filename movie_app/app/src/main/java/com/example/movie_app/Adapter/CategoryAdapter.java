@@ -1,6 +1,7 @@
 package com.example.movie_app.Adapter;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,14 +43,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         if(categoryList == null){
             return;
         }
-        holder.tvNameCategory.setText(categoryList.getNameCategory());
 
+        if(position == getItemCount() - 1) {
+            ViewGroup.MarginLayoutParams layoutParams =
+                    (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.rightMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 25, holder.itemView.getResources().getDisplayMetrics());
+        }
+        holder.tvNameCategory.setText(categoryList.getNameCategory());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
         holder.rcvMovie.setLayoutManager(linearLayoutManager);
 
         ImageMovieAdapter movieAdapter = new ImageMovieAdapter();
         movieAdapter.setData(categoryList.getCategoryMovieList());
         holder.rcvMovie.setAdapter(movieAdapter);
+
     }
 
     @Override

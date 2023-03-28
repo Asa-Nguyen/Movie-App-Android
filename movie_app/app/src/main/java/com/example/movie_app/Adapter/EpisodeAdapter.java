@@ -51,6 +51,8 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
                 DetailActivity activity = (DetailActivity) view.getContext();
                 Uri uri = Uri.parse(episode.getPlayMovie());
                 activity.videoView.setVideoURI(uri);
+                activity.cUri = uri.toString();
+                activity.cEpisodeTitle = episode.getEpisodeTitle();
             }
         });
     }

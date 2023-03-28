@@ -134,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity {
         buttonSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, AdminActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, AccountActivity.class);
                 startActivity(intent);
             }
         });

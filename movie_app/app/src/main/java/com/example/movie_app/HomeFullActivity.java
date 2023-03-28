@@ -25,10 +25,16 @@ import com.example.movie_app.Adapter.GenreButtonAdapter;
 import com.example.movie_app.Database.DataLocalManager;
 import com.example.movie_app.Model.CategoryList;
 import com.example.movie_app.Adapter.SliderAdapter;
+import com.example.movie_app.Model.ContinueWatching;
 import com.example.movie_app.Model.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -43,14 +49,32 @@ public class HomeFullActivity extends AppCompatActivity {
     private CategoryAdapter categoryAdapter;
     private GenreButtonAdapter categoryButtonAdapter;
     private ContinueWatchingAdapter continueWatchingAdapter;
-    // Database
     private List<Movie> movie2List = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DatabaseReference continueRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/users/" + DataLocalManager.getUserUid() + "/continue");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homefull);
         initUi();
+
+        continueRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<ContinueWatching> continueData = new ArrayList<>();
+                for(DataSnapshot data : snapshot.getChildren()){
+                    ContinueWatching continueWatching = data.getValue(ContinueWatching.class);
+                    continueData.add(continueWatching);
+                }
+                setWatchingContinueRecyclerView(continueData);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Creator", "Error get continue watching!");
+            }
+        });
+
         CollectionReference movieRef = db.collection("movie");
         movieRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -62,7 +86,6 @@ public class HomeFullActivity extends AppCompatActivity {
                         list.add(movie2);
                     }
                     setImageSlider(viewPager2, sliderHandler, list);
-                    setWatchingContinueRecyclerView(list);
                     setGenreButtonRecyclerView(list);
                     setGenreMovieRecyclerView(list);
                 }
@@ -72,7 +95,7 @@ public class HomeFullActivity extends AppCompatActivity {
         setBottomNav(navigationView);
     }
 
-    private void setWatchingContinueRecyclerView(List<Movie> movie2List){
+    private void setWatchingContinueRecyclerView(List<ContinueWatching> movie2List){
         continueWatchingAdapter = new ContinueWatchingAdapter(this, movie2List);
         rcvWatchingContinue.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rcvWatchingContinue.setAdapter(continueWatchingAdapter);

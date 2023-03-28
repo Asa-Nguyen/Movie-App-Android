@@ -2,6 +2,7 @@ package com.example.movie_app.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_app.DetailActivity;
+import com.example.movie_app.Model.ContinueWatching;
 import com.example.movie_app.Model.Movie;
 import com.example.movie_app.R;
 
@@ -21,9 +23,9 @@ import java.util.List;
 public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchingAdapter.ContinueWatchingViewHolder>{
     
     private Context context;
-    private List<Movie> continueWatchingLists;
+    private List<ContinueWatching> continueWatchingLists;
 
-    public ContinueWatchingAdapter(Context context, List<Movie> continueWatchingLists) {
+    public ContinueWatchingAdapter(Context context, List<ContinueWatching> continueWatchingLists) {
         this.context = context;
         this.continueWatchingLists = continueWatchingLists;
     }
@@ -37,24 +39,31 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
 
     @Override
     public void onBindViewHolder(@NonNull ContinueWatchingViewHolder holder, int position) {
-        final Movie movie = continueWatchingLists.get(position);
+        final ContinueWatching movie = continueWatchingLists.get(position);
         if(movie == null) return;
         // Load image url
-        Glide.with(holder.imageMovie).load(movie.getFtrailer()).into(holder.imageMovie);
-        holder.titleMovie.setText(movie.getFname());
-        holder.genreMovie.setText(movie.toStringCategory());
+        Glide.with(holder.imageMovie).load(movie.getCtrailer()).into(holder.imageMovie);
+        holder.titleMovie.setText(movie.getCname());
+        holder.episode.setText(movie.getCfavorite());
         holder.imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("Fuid", movie.getFuid());
-                intent.putExtra("Fname", movie.getFname());
-                intent.putExtra("Ftrailer", movie.getFtrailer());
-                intent.putExtra("Ffavorite", movie.toStringCategory());
+                intent.putExtra("Fuid", movie.getCuid());
+                intent.putExtra("Fname", movie.getCname());
+                intent.putExtra("Ftrailer", movie.getCtrailer());
+                intent.putExtra("Ffavorite", movie.getCfavorite());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }
         });
+
+        if(position == getItemCount() - 1) {
+            ViewGroup.MarginLayoutParams layoutParams =
+                    (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.rightMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 25, holder.itemView.getResources().getDisplayMetrics());
+        }
     }
 
     @Override
@@ -64,13 +73,13 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
 
     public class ContinueWatchingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageMovie;
-        TextView titleMovie, genreMovie, timeMovie;
+        TextView titleMovie, episode, timeMovie;
         public ContinueWatchingViewHolder(@NonNull View itemView) {
             super(itemView);
             imageMovie = itemView.findViewById(R.id.continue_image_movie);
             timeMovie = itemView.findViewById(R.id.continue_in4);
             titleMovie = itemView.findViewById(R.id.continue_movie_name);
-            genreMovie = itemView.findViewById(R.id.continue_in4);
+            episode = itemView.findViewById(R.id.continue_in4);
         }
 
         @Override

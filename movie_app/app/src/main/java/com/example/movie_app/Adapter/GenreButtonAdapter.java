@@ -1,6 +1,7 @@
 package com.example.movie_app.Adapter;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,13 @@ public class GenreButtonAdapter extends RecyclerView.Adapter<GenreButtonAdapter.
         if(position == 0 || position == categoryButtonLists.size()){
         }
         holder.btnCategory.setText(categoryBtn.getNameCategory());
+
+        if(position == getItemCount() - 1) {
+            ViewGroup.MarginLayoutParams layoutParams =
+                    (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.rightMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 25, holder.itemView.getResources().getDisplayMetrics());
+        }
     }
 
     @Override

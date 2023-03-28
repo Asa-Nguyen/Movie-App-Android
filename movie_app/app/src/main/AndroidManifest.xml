@@ -46,7 +46,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".AdminActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".CropImageActivity"/>
+        <activity android:name=".AccountActivity"/>
 
     </application>
 

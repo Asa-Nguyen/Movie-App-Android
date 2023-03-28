@@ -28,7 +28,7 @@
             android:id="@+id/detail_play_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@xml/circle_gradient_bg"
+            android:background="@xml/custom_circle_gradient_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

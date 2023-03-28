@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.movie_app.Adapter.EpisodeAdapter;
 import com.example.movie_app.Adapter.TrailerDetailAdapter;
 import com.example.movie_app.Database.DataLocalManager;
@@ -26,11 +25,8 @@ import com.example.movie_app.Model.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,29 +37,46 @@ import java.util.List;
 import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
+    // using set value to continue video
     public VideoView videoView;
+    public String cUri, cEpisodeTitle = "";
+
+    private MediaController mediaController;
     private ImageView mTrailerMovie;
     private TextView mMovieName, mIn4, mCategory, mEpisode, mSynopsis;
-    private ImageButton playVideoButton, backButton, favoriteButton;
+    private ImageButton backButton, favoriteButton;
     private RecyclerView rcvCast, rcvEpisode, rcvTrailer;
     private CastCrewAdapter castCrewAdapter;
     private EpisodeAdapter episodeAdapter;
     private TrailerDetailAdapter trailerDetailAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DatabaseReference favoriteRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/users");
+    private DatabaseReference realtimeRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://movie-app-eb471-default-rtdb.firebaseio.com/users");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
         initUi();
         // main uid movie
-        onClickButtonBack();
         String FuidMovie = getIntent().getStringExtra("Fuid");
+        onClickButtonBack();
 
         setUpDetail(FuidMovie);
         setUpEpisode(FuidMovie);
         setUpCast(FuidMovie);
 
+        onClickFavoriteButton(FuidMovie);
+
+        Map<String, Object> continuteWatching = new HashMap<>();
+        continuteWatching.put("Cuid", FuidMovie);
+        continuteWatching.put("Cname", mMovieName.getText());
+        continuteWatching.put("Cfavorite", getIntent().getStringExtra("Ffavorite"));
+        continuteWatching.put("Ctrailer", getIntent().getStringExtra("Ftrailer"));
+        continuteWatching.put("CcurentTime", videoView.getCurrentPosition());
+        continuteWatching.put("Cduration ", videoView.getDuration());
+        realtimeRef.child(DataLocalManager.getUserUid()).child("continue").child(FuidMovie).setValue(continuteWatching);
+    }
+
+    private void onClickFavoriteButton(String FuidMovie){
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
                 movie.put("Fname", getIntent().getStringExtra("Fname"));
                 movie.put("Ffavorite", getIntent().getStringExtra("Ffavorite"));
                 movie.put("Ftrailer", getIntent().getStringExtra("Ftrailer"));
-                favoriteRef.child(DataLocalManager.getUserUid()).child("favorite").child(FuidMovie).setValue(movie);
+                realtimeRef.child(DataLocalManager.getUserUid()).child("favorite").child(FuidMovie).setValue(movie);
             }
         });
     }
@@ -124,10 +137,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setUpVideoView(String url){
-        MediaController mediaController = new MediaController(this);
+        mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
-
         Uri uri = Uri.parse(url);
         videoView.setVideoURI(uri);
         videoView.requestFocus();
@@ -166,7 +178,6 @@ public class DetailActivity extends AppCompatActivity {
         mIn4 = (TextView) findViewById(R.id.detail_genre);
         mSynopsis = (TextView) findViewById(R.id.detail_synopsis_about);
         rcvCast = (RecyclerView) findViewById(R.id.detail_cast_rcv);
-        playVideoButton = (ImageButton) findViewById(R.id.detail_play_button);
         backButton = (ImageButton) findViewById(R.id.button_back_detail);
         favoriteButton = (ImageButton) findViewById(R.id.favorite_button);
         mCategory = (TextView) findViewById(R.id.detail_category);
