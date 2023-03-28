@@ -45,7 +45,6 @@ public class SignInActivity extends AppCompatActivity {
         setTextViewColor(textViewSignUp, getResources().getColor(R.color.light_gradient1), getResources().getColor(R.color.light_gradient2));
 //      Login
         mPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-
         mAuth = FirebaseAuth.getInstance();
         getPreferencesData();
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +91,6 @@ public class SignInActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(emailTxt, passwordTxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor= sharedPreferences.edit();
-                editor.putString("name", "true");
-                editor.apply();
                 DataLocalManager.setUserUid(mAuth.getCurrentUser().getUid());
                 if(task.isSuccessful()){
                     Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();

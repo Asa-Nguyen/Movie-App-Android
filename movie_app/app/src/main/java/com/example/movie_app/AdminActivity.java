@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminActivity extends AppCompatActivity {
-    private static final String TAG = "Quan que";
     private Button add, back;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
@@ -124,12 +123,12 @@ public class AdminActivity extends AppCompatActivity {
             db.collection("episode").document(movie2.getFuid()).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                    Log.d("Creator", "DocumentSnapshot successfully written!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error writing document", e);
+                    Log.w("Creator", "Error writing document", e);
                 }
             });
             map.clear();
@@ -137,12 +136,12 @@ public class AdminActivity extends AppCompatActivity {
             db.collection("cast").document(movie2.getFuid()).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                    Log.d("Creator", "DocumentSnapshot successfully written!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error writing document", e);
+                    Log.w("Creator", "Error writing document", e);
                 }
             });
 
@@ -160,12 +159,12 @@ public class AdminActivity extends AppCompatActivity {
             db.collection("movie").document(movie2.getFuid()).set(maps4).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                    Log.d("Creator", "DocumentSnapshot successfully written!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error writing document", e);
+                    Log.w("Creator", "Error writing document", e);
                 }
             });
 

@@ -16,14 +16,40 @@
             android:background="@color/dark_2"
             tools:context=".FavouriteActivity">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fav_rcv"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/releway_b7"
+                android:lineSpacingExtra="38dp"
+                android:text="My Favorite"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/title_favorite_rcv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/releway_b7"
+                android:lineSpacingExtra="38dp"
+                android:text="Anime"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fav_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_favorite_rcv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

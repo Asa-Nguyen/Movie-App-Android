@@ -63,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setSearchRecyclerView(List<Movie> list){
         searchMovieAdapter = new SearchMovieAdapter(SearchActivity.this, list);
+        searchRcv.setHasFixedSize(true);
         searchRcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         searchRcv.setAdapter(searchMovieAdapter);
         searchView.clearFocus();

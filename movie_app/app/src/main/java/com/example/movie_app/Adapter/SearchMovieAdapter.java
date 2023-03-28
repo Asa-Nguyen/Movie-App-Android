@@ -1,6 +1,7 @@
 package com.example.movie_app.Adapter;
 
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -45,11 +46,23 @@ public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieAdapter.
         Glide.with(holder.imageView).load(movie.getFtrailer()).into(holder.imageView);
         holder.nameMovie.setText(movie.getFname());
         holder.genreMovie.setText(movie.toStringCategory());
+
+        if (position == searchMovieList.size() - 1) {
+            // Set the bottom margin for the item view
+            ViewGroup.MarginLayoutParams layoutParams =
+                    (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.bottomMargin = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 100, holder.itemView.getResources().getDisplayMetrics());
+        }
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 intent.putExtra("Fuid", movie.getFuid());
+                intent.putExtra("Fname", movie.getFname());
+                intent.putExtra("Ftrailer", movie.getFtrailer());
+                intent.putExtra("Ffavorite", movie.toStringCategory());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

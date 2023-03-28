@@ -4,7 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @IgnoreExtraProperties
 public class Movie {
@@ -14,6 +13,7 @@ public class Movie {
     private String Fname;
     private String Fsynopsis;
     private String FvideoTrailer;
+    private String Ffavorite;
     private int Fmmpa;
     private int Fyear;
     private int Fseason;
@@ -178,5 +178,13 @@ public class Movie {
 
     public void setCcast(List<CastCrew> ccast) {
         Ccast = ccast;
+    }
+
+    public String getFfavorite() {
+        return Ffavorite;
+    }
+
+    public void setFfavorite(String ffavorite) {
+        Ffavorite = ffavorite;
     }
 }

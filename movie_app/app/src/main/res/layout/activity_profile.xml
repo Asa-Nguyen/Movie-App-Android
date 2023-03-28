@@ -36,7 +36,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/username_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
             <TextView
-                android:id="@+id/profile_email"
+                android:id="@+id/email_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -57,9 +57,9 @@
                 android:text="ngodat.it213@gmail.com"
                 android:textColor="@color/un_select_color"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView8"
-                app:layout_constraintStart_toStartOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintEnd_toEndOf="@+id/username_profile"
+                app:layout_constraintStart_toStartOf="@+id/username_profile"
+                app:layout_constraintTop_toBottomOf="@+id/username_profile" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -72,7 +72,7 @@
                 android:textColor="@color/white"
                 android:textSize="22dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+                app:layout_constraintTop_toBottomOf="@+id/email_profile" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/collectionRecyclerView"
@@ -102,7 +102,7 @@
                     android:drawableRight="@xml/ic_right"
                     android:gravity="left|center_vertical"
                     android:padding="10dp"
-                    android:text="Anime list"
+                    android:text="Movie list"
                     android:textAllCaps="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

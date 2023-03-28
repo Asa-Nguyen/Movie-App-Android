@@ -48,6 +48,9 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 intent.putExtra("Fuid", movie.getFuid());
+                intent.putExtra("Fname", movie.getFname());
+                intent.putExtra("Ftrailer", movie.getFtrailer());
+                intent.putExtra("Ffavorite", movie.toStringCategory());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);
             }

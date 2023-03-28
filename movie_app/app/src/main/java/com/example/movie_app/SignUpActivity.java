@@ -72,37 +72,16 @@ public class SignUpActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(SignUpActivity.this, "Create Successfully", Toast.LENGTH_SHORT).show();
                     String currentUserId = mAuth.getCurrentUser().getUid();
-
                     HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("name", usernameTxt);
+                    userdataMap.put("username", usernameTxt);
                     userdataMap.put("email", emailTxt);
-                    userdataMap.put("name", passwordTxt);
+                    userdataMap.put("password", passwordTxt);
                     databaseReference.child("users").child(currentUserId).updateChildren(userdataMap);
                     onSignInActivity();
                 }else{
                     Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_SHORT).show();
 
                 }
-            }
-        });
-    }
-
-    private void realtimeCheck(){
-        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild(usernameTxt) || snapshot.child(usernameTxt).hasChild(emailTxt)){
-                    Toast.makeText(SignUpActivity.this, "Email or username is already registered!", Toast.LENGTH_SHORT).show();
-                }else{
-                    HelperClass helperClass = new HelperClass(emailTxt, usernameTxt,passwordTxt);
-                    databaseReference.child("users").child(usernameTxt).setValue(helperClass);
-                    Toast.makeText(SignUpActivity.this, "Create account successfully!", Toast.LENGTH_SHORT).show();
-                    onSignInActivity();
-                    finish();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
